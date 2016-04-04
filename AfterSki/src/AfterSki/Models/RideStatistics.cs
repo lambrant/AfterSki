@@ -15,11 +15,6 @@ namespace AfterSki.Models
         public string liftName { get; set; }
         public int height { get; set; }
         public string swipeDate { get; set; }
-        public List<RideStatistic> rideStatistics { get; set; }
-        public List<VisitedDestination> visitedDestinations { get; set; }
-        public List<NotVisitedDestination> notVisitedDestinations { get; set; }
-        public List<ActiveSeason> activeSeasons { get; set; }
-        public DefaultSeason defaultSeason { get; set; }
 
         public class Destination2
         {
@@ -134,7 +129,33 @@ namespace AfterSki.Models
             public object weeks { get; set; }
         }
 
+        /// <summary>
+        /// list data from jsonurl on rideStatus
+        /// </summary>
+        public List<RideStatistic> rideStatistics { get; set; }
+        /// <summary>
+        /// list datat from jsonurl on visitedDestinations
+        /// </summary>
+        public List<VisitedDestination> visitedDestinations { get; set; }
+        /// <summary>
+        /// list datat from jsonurl on notVisitedDestinations
+        /// </summary>
+        public List<NotVisitedDestination> notVisitedDestinations { get; set; }
+        /// <summary>
+        /// list datat from jsonurl on activeSeasons
+        /// </summary>
+        public List<ActiveSeason> activeSeasons { get; set; }
+        /// <summary>
+        /// list datat from jsonurl on defaultSeason
+        /// </summary>
+        public DefaultSeason defaultSeason { get; set; }
 
+        /// <summary>
+        /// deserializees the jsondatat from url
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="url"></param>
+        /// <returns></returns>
         private static T jsonSerializer<T>(string url) where T : new()
         {
 
@@ -154,6 +175,10 @@ namespace AfterSki.Models
 
         public void getSkiData()
         {
+            ///<summary>
+            ///get json data from url string
+            ///and put out datat to list via jsonSerializer
+            ///</summary>
             string url = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
             var jsData = jsonSerializer<RideStatistic>(url);
         }
