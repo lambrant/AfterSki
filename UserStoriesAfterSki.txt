@@ -1,0 +1,7 @@
+User Stories
+
+- Databas, json-koppling
+- Stapeldiagram, åkning per dag/timme
+- Linjediagram, fallhöjd per dag
+- Kombodiagram av de två ovan
+- Åkprognos, ackumulerad åkning. Hur mycket kommer man att hinna åka innan dagen tar slut.
