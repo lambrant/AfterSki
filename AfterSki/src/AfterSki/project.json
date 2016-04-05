@@ -34,7 +34,7 @@
     "ef": "EntityFramework.Commands"
   },
 
-  
+
   "frameworks": {
     "dnx451": { }
   },
