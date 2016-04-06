@@ -8,7 +8,6 @@ using AfterSki.Models;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Newtonsoft.Json;
 using System.Net;
-using System.IO;
 
 namespace AfterSki.Controllers
 {
@@ -21,8 +20,11 @@ namespace AfterSki.Controllers
 
         public  IActionResult About()
         {
-            JsonData rs = new JsonData();
-            rs.getSkiData();
+            JsonData jm = new JsonData();
+            jm.getSkiData();
+            //CreateCSV csv = new CreateCSV();
+            //csv.ListToCsv();
+            //ViewData["Message"] = "Your application description page.";
 
             return View();
         }
