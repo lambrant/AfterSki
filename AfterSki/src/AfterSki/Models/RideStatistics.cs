@@ -153,8 +153,8 @@ namespace AfterSki.Models
         /// <summary>
         /// deserializees the jsondatat from url
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="url"></param>
+        /// <typeparam name = "T" ></ typeparam >
+        /// < param name="url"></param>
         /// <returns></returns>
         private static T jsonSerializer<T>(string url) where T : new()
         {

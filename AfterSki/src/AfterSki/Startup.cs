@@ -92,7 +92,7 @@ namespace AfterSki
                 catch { }
             }
 
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            //app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             app.UseApplicationInsightsExceptionTelemetry();
 
