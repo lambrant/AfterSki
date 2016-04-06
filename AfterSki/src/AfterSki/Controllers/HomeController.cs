@@ -21,7 +21,7 @@ namespace AfterSki.Controllers
 
         public  IActionResult About()
         {
-            RideStatistic rs = new RideStatistic();
+            JsonData rs = new JsonData();
             rs.getSkiData();
 
             return View();
