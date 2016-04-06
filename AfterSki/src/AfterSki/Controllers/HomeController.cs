@@ -8,6 +8,7 @@ using AfterSki.Models;
 using Microsoft.ApplicationInsights.Extensibility.Implementation;
 using Newtonsoft.Json;
 using System.Net;
+using System.IO;
 
 namespace AfterSki.Controllers
 {
@@ -20,9 +21,8 @@ namespace AfterSki.Controllers
 
         public  IActionResult About()
         {
-            RideStatistic jm = new RideStatistic();
-            jm.getSkiData();            
-            //ViewData["Message"] = "Your application description page.";
+            RideStatistic rs = new RideStatistic();
+            rs.getSkiData();
 
             return View();
         }
