@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -165,46 +167,59 @@ namespace AfterSki.Models
         /// <param name="url"></param>
         /// <returns></returns>
 
-        private T jsonSerializer<T>(string url) where T : new()
+        private async Task<T> jsonSerializer<T>(string jsonPath) where T : new()
         {
-            using (var w = new WebClient())
+
+            using (var http = new HttpClient())
             {
                 var json_data = string.Empty;
                 // attempt to download JSON data as a string
                 try
                 {
-                    json_data = w.DownloadString(url);
+                    json_data = await http.GetStringAsync(jsonPath);
                 }
                 catch (Exception) { }
                 // if string with JSON data is not empty, deserialize it to class and return its instance 
                 return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
             }
         }
-        
-        public void getSkiData()
+
+        public async void getSkiData()
         {
             ///<summary>
             ///get json data from url string
             ///and put out datat to list via jsonSerializer
             ///</summary>
-            string url = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
-            var jsData = jsonSerializer<JsonData>(url);
+            string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
+            var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
-        }
-
-        public void ListToCsv()
-        {
-            string path = @"C:\Users\Andreas\Desktop\csvText.csv";
-            var csvToFile = new StringBuilder();
-
-            for (int i = 0; i < rideStatList.Count; i++)
+            var path = @"C:\xml\json.txt";
+            var tw = new StreamWriter(path);
+            foreach (var item in rideStatList.Select(x => x.id + ";" + x.name + ";" + x.liftName + ";" + x.swipeDate + ";" + x.swipeTime + ";" + x.height.ToString()).ToArray())
             {
-                                
+                tw.WriteLine(item.ToString());
             }
-
-            File.WriteAllText(path, csvToFile.ToString());
-
-            string csv = String.Join(",", rideStatList.Select(x => x.ToString()).ToArray());
+            tw.Close();
         }
+
+        //public void ListToCsv()
+        //{
+        //    string path = @"C:\xml\csvText.csv";
+        //    var csvToFile = new StringBuilder();
+        //    string csv = String.Join(",", rideStatList.Select(x => x.ToString().ToArray()));
+        //    var wr = new StreamWriter(path);
+        //    //foreach (var item in rideStatList.Select(x => x.id + x.name + x.liftName + x.height + x.swipeDate + x.swipeTime.ToString()).ToArray())
+        //    //{
+        //    //    wr.WriteLine(item.ToString());
+        //    //}
+        //    ////for (int i = 0; i < rideStatList.Count; i++)
+        //    ////{
+        //    ////    wr.WriteLine(i.ToString());
+        //    ////}
+
+        //    wr.WriteLine(path, csvToFile.ToString());
+        //    wr.Close();
+
+        //}
     }
 }
