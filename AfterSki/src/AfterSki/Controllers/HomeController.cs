@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Dnx.Compilation.CSharp;
 using AfterSki.Models;
+using Microsoft.ApplicationInsights.Extensibility.Implementation;
+using Newtonsoft.Json;
+using System.Net;
 
 namespace AfterSki.Controllers
 {
@@ -11,12 +15,14 @@ namespace AfterSki.Controllers
     {
         public IActionResult Index()
         {
-            return View();            
+            return View();
         }
 
-        public IActionResult About()
+        public  IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            RideStatistic jm = new RideStatistic();
+            jm.getSkiData();            
+            //ViewData["Message"] = "Your application description page.";
 
             return View();
         }
@@ -32,5 +38,8 @@ namespace AfterSki.Controllers
         {
             return View();
         }
+
+       
+
     }
 }
