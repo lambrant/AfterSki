@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using AfterSki.Models;
 
 namespace AfterSki.Controllers
 {
@@ -10,7 +11,7 @@ namespace AfterSki.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return View();            
         }
 
         public IActionResult About()
