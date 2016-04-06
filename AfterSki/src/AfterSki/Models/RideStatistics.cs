@@ -1,20 +1,28 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AfterSki.Models
 {
-    public class RideStatistic
+    public class JsonData
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public DateTime swipeTime { get; set; }
-        public string liftName { get; set; }
-        public int height { get; set; }
-        public string swipeDate { get; set; }
+
+        public List<RideStatistic> rideStatList = new List<RideStatistic>();
+
+        public class RideStatistic
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public DateTime swipeTime { get; set; }
+            public string liftName { get; set; }
+            public int height { get; set; }
+            public string swipeDate { get; set; }
+        }
 
         public class Destination2
         {
@@ -156,9 +164,9 @@ namespace AfterSki.Models
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <returns></returns>
-        private static T jsonSerializer<T>(string url) where T : new()
-        {
 
+        private T jsonSerializer<T>(string url) where T : new()
+        {
             using (var w = new WebClient())
             {
                 var json_data = string.Empty;
@@ -172,7 +180,7 @@ namespace AfterSki.Models
                 return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
             }
         }
-
+        
         public void getSkiData()
         {
             ///<summary>
@@ -180,7 +188,23 @@ namespace AfterSki.Models
             ///and put out datat to list via jsonSerializer
             ///</summary>
             string url = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
-            var jsData = jsonSerializer<RideStatistic>(url);
+            var jsData = jsonSerializer<JsonData>(url);
+            rideStatList = jsData.rideStatistics;
+        }
+
+        public void ListToCsv()
+        {
+            string path = @"C:\Users\Andreas\Desktop\csvText.csv";
+            var csvToFile = new StringBuilder();
+
+            for (int i = 0; i < rideStatList.Count; i++)
+            {
+                                
+            }
+
+            File.WriteAllText(path, csvToFile.ToString());
+
+            string csv = String.Join(",", rideStatList.Select(x => x.ToString()).ToArray());
         }
     }
 }

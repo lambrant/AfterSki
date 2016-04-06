@@ -20,8 +20,10 @@ namespace AfterSki.Controllers
 
         public  IActionResult About()
         {
-            RideStatistic jm = new RideStatistic();
-            jm.getSkiData();            
+            JsonData jm = new JsonData();
+            jm.getSkiData();
+            //CreateCSV csv = new CreateCSV();
+            //csv.ListToCsv();
             //ViewData["Message"] = "Your application description page.";
 
             return View();
