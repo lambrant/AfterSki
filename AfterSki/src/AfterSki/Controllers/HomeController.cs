@@ -22,6 +22,7 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
+            jm.ListToCsv();
             //CreateCSV csv = new CreateCSV();
             //csv.ListToCsv();
             //ViewData["Message"] = "Your application description page.";
