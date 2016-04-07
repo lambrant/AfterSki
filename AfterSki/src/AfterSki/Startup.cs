@@ -18,7 +18,7 @@ namespace AfterSki
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
+            //Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
