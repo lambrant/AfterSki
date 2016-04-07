@@ -1,6 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -194,17 +197,115 @@ namespace AfterSki.Models
 
         public void ListToCsv()
         {
-            string path = @"C:\Users\Andreas\Desktop\csvText.csv";
-            var csvToFile = new StringBuilder();
-
-            for (int i = 0; i < rideStatList.Count; i++)
+            //id, height, liftname, name, swipedate, swipetime
+            using (SqlConnection conn = new SqlConnection("context connection=true"))
             {
-                                
+                SqlCommand comm = new SqlCommand();
+
+                for (int i = 0; i < rideStatistics.Count; i++)
+                {
+                    SqlParameter idDB = new SqlParameter();
+                    idDB.Direction = ParameterDirection.Input;
+                    idDB.ParameterName = "@id";
+                    idDB.SqlDbType = SqlDbType.Int;
+                    idDB.SqlValue = rideStatistics[i].id;
+                    comm.Parameters.Add(idDB);
+                    SqlParameter heightDB = new SqlParameter();
+                    heightDB.Direction = ParameterDirection.Input;
+                    heightDB.ParameterName = "@height";
+                    heightDB.SqlDbType = SqlDbType.Int;
+                    heightDB.SqlValue = rideStatistics[i].height;
+                    comm.Parameters.Add(heightDB);
+                    SqlParameter liftnameDB = new SqlParameter();
+                    liftnameDB.Direction = ParameterDirection.Input;
+                    liftnameDB.ParameterName = "@liftname";
+                    liftnameDB.SqlDbType = SqlDbType.NVarChar;
+                    liftnameDB.SqlValue = rideStatistics[i].liftName;
+                    comm.Parameters.Add(liftnameDB);
+                    SqlParameter nameDB = new SqlParameter();
+                    nameDB.Direction = ParameterDirection.Input;
+                    nameDB.ParameterName = "@name";
+                    nameDB.SqlDbType = SqlDbType.NVarChar;
+                    nameDB.SqlValue = rideStatistics[i].name;
+                    comm.Parameters.Add(nameDB);
+                    SqlParameter swipedateDB = new SqlParameter();
+                    swipedateDB.Direction = ParameterDirection.Input;
+                    swipedateDB.ParameterName = "@swipedate";
+                    swipedateDB.SqlDbType = SqlDbType.NVarChar;
+                    swipedateDB.SqlValue = rideStatList[i].swipeDate;
+                    comm.Parameters.Add(swipedateDB);
+                    SqlParameter swipetimeDB = new SqlParameter();
+                    swipetimeDB.Direction = ParameterDirection.Input;
+                    swipetimeDB.ParameterName = "@swipetime";
+                    swipetimeDB.SqlDbType = SqlDbType.DateTime;
+                    swipetimeDB.SqlValue = rideStatList[i].swipeTime;
+                    comm.Parameters.Add(swipetimeDB);
+                }
+
+                comm.CommandText = "";
+
+                comm.Connection = conn;
+                conn.Open();
+                SqlContext.Pipe.ExecuteAndSend(comm);
+                conn.Close();
+                conn.Dispose();
+                comm.Dispose();
             }
 
-            File.WriteAllText(path, csvToFile.ToString());
+        //    using (SqlConnection conn = new SqlConnection("context connection=true"))
+        //    {
+        //        SqlCommand comm = new SqlCommand();
 
-            string csv = String.Join(",", rideStatList.Select(x => x.ToString()).ToArray());
+        //        int temp;
+        //        bool isNum = int.TryParse(age.ToString(), out temp);
+
+        //        SqlParameter ageParam = new SqlParameter();
+        //        ageParam.Direction = ParameterDirection.Input;
+        //        ageParam.ParameterName = "@Age";
+        //        ageParam.SqlDbType = SqlDbType.NVarChar;
+        //        ageParam.SqlValue = age;
+        //        comm.Parameters.Add(ageParam);
+
+        //        if (age.ToString() == "")
+        //        {
+        //            comm.CommandText = "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
+        //                                "FROM Passenger " +
+        //                                "UNION ALL " +
+        //                                "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
+        //                                "FROM Crew ";
+
+        //            comm.Connection = conn;
+        //            conn.Open();
+        //            //comm.ExecuteNonQuery();
+        //            SqlContext.Pipe.ExecuteAndSend(comm);
+        //            conn.Close();
+        //            conn.Dispose();
+        //            comm.Dispose();
+        //            return 1;
+        //        }
+        //        else if (temp < 0 || temp > 120 || !isNum)
+        //        {
+        //            return 0;
+        //        }
+        //        else
+        //        {
+        //            comm.CommandText = "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
+        //                                "FROM Passenger " +
+        //                                "WHERE Age = @Age UNION ALL " +
+        //                                "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
+        //                                "FROM Crew " +
+        //                                "WHERE Age = @Age;";
+
+        //            comm.Connection = conn;
+        //            conn.Open();
+        //            //comm.ExecuteNonQuery();
+        //            SqlContext.Pipe.ExecuteAndSend(comm);
+        //            conn.Close();
+        //            conn.Dispose();
+        //            comm.Dispose();
+        //            return 1;
+        //        }
+        //    }
         }
     }
 }
