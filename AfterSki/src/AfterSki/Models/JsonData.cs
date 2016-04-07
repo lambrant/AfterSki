@@ -70,7 +70,7 @@ namespace AfterSki.Models
             var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
             DataImport di = new DataImport();
-            di.impData();
+            di.ListToDB();
             //jsonToTxtFile();
         }
         ///< summary >

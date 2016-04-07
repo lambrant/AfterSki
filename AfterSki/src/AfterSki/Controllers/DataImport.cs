@@ -24,7 +24,7 @@ namespace AfterSki.Controllers
         }
 
 
-        public void impData()
+        public void ListToDB()
         {
             dimp = rideStatList;
             SqlConnection conn = dbConnection();
