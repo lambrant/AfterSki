@@ -194,8 +194,7 @@ namespace AfterSki.Models
             var jsData = jsonSerializer<JsonData>(url);
             rideStatList = jsData.rideStatistics;
         }
-
-        [SqlProcedure]
+        
         public void ListToCsv()
         {
             //id, height, liftname, name, swipedate, swipetime
@@ -213,6 +212,7 @@ namespace AfterSki.Models
 
                 comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
                                    "(ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY, " +
+                                   "rideID int, " +
                                    "height int, " +
                                    "liftname nvarchar(50), " +
                                    "name nvarchar(50), " +
@@ -229,7 +229,7 @@ namespace AfterSki.Models
                 {
                     SqlParameter idDB = new SqlParameter();
                     idDB.Direction = ParameterDirection.Input;
-                    idDB.ParameterName = "@id";
+                    idDB.ParameterName = "@rideID";
                     idDB.SqlDbType = SqlDbType.Int;
                     idDB.SqlValue = rideStatList[i].id;
                     comm.Parameters.Add(idDB);
@@ -265,9 +265,9 @@ namespace AfterSki.Models
                     comm.Parameters.Add(swipetimeDB);
 
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
-                                       "(height, liftname, name, swipedate, swipetime) " +
+                                       "(rideID, height, liftname, name, swipedate, swipetime) " +
                                        "VALUES " +
-                                       "(@id, @liftname, @name, @swipedate, @swipetime) ";
+                                       "(@rideID, @height, @liftname, @name, @swipedate, @swipetime) ";
 
                     comm.Connection = conn;
                     conn.Open();
@@ -278,78 +278,6 @@ namespace AfterSki.Models
                     comm.Dispose();
                 }
             }
-
-            //CREATE DATABASE AfterSki
-            //GO
-            //CREATE TABLE AfterSki.dbo.RideStatistic
-            //(ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-            //height int,
-            //liftname nvarchar(50),
-            //name nvarchar(50),
-            //swipedate nvarchar(50),
-            //swipetime datetime
-            //)
-            //GO
-
-            //INSERT INTO AfterSki.dbo.RideStatistic
-            //(height, liftname, name, swipedate, swipetime)
-            //VALUES
-            //(12, 'tranan', 'erik', '2015-12-22', '2012-06-18 10:34:09')
-
-        //    using (SqlConnection conn = new SqlConnection("context connection=true"))
-        //    {
-        //        SqlCommand comm = new SqlCommand();
-
-            //        int temp;
-            //        bool isNum = int.TryParse(age.ToString(), out temp);
-
-            //        SqlParameter ageParam = new SqlParameter();
-            //        ageParam.Direction = ParameterDirection.Input;
-            //        ageParam.ParameterName = "@Age";
-            //        ageParam.SqlDbType = SqlDbType.NVarChar;
-            //        ageParam.SqlValue = age;
-            //        comm.Parameters.Add(ageParam);
-
-            //        if (age.ToString() == "")
-            //        {
-            //            comm.CommandText = "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
-            //                                "FROM Passenger " +
-            //                                "UNION ALL " +
-            //                                "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
-            //                                "FROM Crew ";
-
-            //            comm.Connection = conn;
-            //            conn.Open();
-            //            //comm.ExecuteNonQuery();
-            //            SqlContext.Pipe.ExecuteAndSend(comm);
-            //            conn.Close();
-            //            conn.Dispose();
-            //            comm.Dispose();
-            //            return 1;
-            //        }
-            //        else if (temp < 0 || temp > 120 || !isNum)
-            //        {
-            //            return 0;
-            //        }
-            //        else
-            //        {
-            //            comm.CommandText = "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
-            //                                "FROM Passenger " +
-            //                                "WHERE Age = @Age UNION ALL " +
-            //                                "SELECT COALESCE(COALESCE(Lastname + ', ', '') + Firstname, Lastname) AS FullName, Age " +
-            //                                "FROM Crew " +
-            //                                "WHERE Age = @Age;";
-
-            //            comm.Connection = conn;
-            //            conn.Open();
-            //            //comm.ExecuteNonQuery();
-            //            SqlContext.Pipe.ExecuteAndSend(comm);
-            //            conn.Close();
-            //            conn.Dispose();
-            //            comm.Dispose();
-            //            return 1;
-            //        }
-            //    }
         }
     }
 }
