@@ -195,88 +195,108 @@ namespace AfterSki.Models
             rideStatList = jsData.rideStatistics;
         }
         
-        public void ListToCsv()
+        public void ListToDB()
         {
-            //id, height, liftname, name, swipedate, swipetime
-            using (SqlConnection conn = new SqlConnection("Data Source=LAMBRANT;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            SqlConnection conn = new SqlConnection("Data Source=LAMBRANT;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlCommand comm = new SqlCommand();
+
+            comm.CommandText = "CREATE DATABASE AfterSki";
+
+            comm.Connection = conn;
+            conn.Open();
+            comm.ExecuteNonQuery();
+            conn.Close();
+
+            comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
+                                "(ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY, " +
+                                "rideID int, " +
+                                "height int, " +
+                                "liftname nvarchar(50), " +
+                                "name nvarchar(50), " +
+                                "swipedate nvarchar(50), " +
+                                "swipetime datetime)";
+
+            comm.Connection = conn;
+            conn.Open();
+            comm.ExecuteNonQuery();
+            conn.Close();
+
+            for (int i = 0; i < rideStatList.Count; i++)
             {
-                SqlCommand comm = new SqlCommand();
-
-                comm.CommandText = "CREATE DATABASE AfterSki";
-
-                comm.Connection = conn;
-                conn.Open();
-                //SqlContext.Pipe.ExecuteAndSend(comm);
-                comm.ExecuteNonQuery();
-                conn.Close();
-
-                comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
-                                   "(ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY, " +
-                                   "rideID int, " +
-                                   "height int, " +
-                                   "liftname nvarchar(50), " +
-                                   "name nvarchar(50), " +
-                                   "swipedate nvarchar(50), " +
-                                   "swipetime datetime)";
-
-                comm.Connection = conn;
-                conn.Open();
-                //SqlContext.Pipe.ExecuteAndSend(comm);
-                comm.ExecuteNonQuery();
-                conn.Close();
-
-                for (int i = 0; i < rideStatList.Count; i++)
+                if (conn.ConnectionString == "")
                 {
-                    SqlParameter idDB = new SqlParameter();
-                    idDB.Direction = ParameterDirection.Input;
-                    idDB.ParameterName = "@rideID";
-                    idDB.SqlDbType = SqlDbType.Int;
-                    idDB.SqlValue = rideStatList[i].id;
-                    comm.Parameters.Add(idDB);
-                    SqlParameter heightDB = new SqlParameter();
-                    heightDB.Direction = ParameterDirection.Input;
-                    heightDB.ParameterName = "@height";
-                    heightDB.SqlDbType = SqlDbType.Int;
-                    heightDB.SqlValue = rideStatList[i].height;
-                    comm.Parameters.Add(heightDB);
-                    SqlParameter liftnameDB = new SqlParameter();
-                    liftnameDB.Direction = ParameterDirection.Input;
-                    liftnameDB.ParameterName = "@liftname";
-                    liftnameDB.SqlDbType = SqlDbType.NVarChar;
-                    liftnameDB.SqlValue = rideStatList[i].liftName;
-                    comm.Parameters.Add(liftnameDB);
-                    SqlParameter nameDB = new SqlParameter();
-                    nameDB.Direction = ParameterDirection.Input;
-                    nameDB.ParameterName = "@name";
-                    nameDB.SqlDbType = SqlDbType.NVarChar;
-                    nameDB.SqlValue = rideStatList[i].name;
-                    comm.Parameters.Add(nameDB);
-                    SqlParameter swipedateDB = new SqlParameter();
-                    swipedateDB.Direction = ParameterDirection.Input;
-                    swipedateDB.ParameterName = "@swipedate";
-                    swipedateDB.SqlDbType = SqlDbType.NVarChar;
-                    swipedateDB.SqlValue = rideStatList[i].swipeDate;
-                    comm.Parameters.Add(swipedateDB);
-                    SqlParameter swipetimeDB = new SqlParameter();
-                    swipetimeDB.Direction = ParameterDirection.Input;
-                    swipetimeDB.ParameterName = "@swipetime";
-                    swipetimeDB.SqlDbType = SqlDbType.DateTime;
-                    swipetimeDB.SqlValue = rideStatList[i].swipeTime;
-                    comm.Parameters.Add(swipetimeDB);
-
-                    comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
-                                       "(rideID, height, liftname, name, swipedate, swipetime) " +
-                                       "VALUES " +
-                                       "(@rideID, @height, @liftname, @name, @swipedate, @swipetime) ";
-
-                    comm.Connection = conn;
-                    conn.Open();
-                    //SqlContext.Pipe.ExecuteAndSend(comm);
-                    comm.ExecuteNonQuery();
-                    conn.Close();
-                    conn.Dispose();
-                    comm.Dispose();
+                    conn = new SqlConnection("Data Source=LAMBRANT;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                    comm.Parameters.Clear();
                 }
+                SqlParameter idDB = new SqlParameter();
+                idDB.Direction = ParameterDirection.Input;
+                idDB.ParameterName = "@rideID";
+                idDB.SqlDbType = SqlDbType.Int;
+                idDB.SqlValue = rideStatList[i].id;
+                comm.Parameters.Add(idDB);
+                SqlParameter heightDB = new SqlParameter();
+                heightDB.Direction = ParameterDirection.Input;
+                heightDB.ParameterName = "@height";
+                heightDB.SqlDbType = SqlDbType.Int;
+                heightDB.SqlValue = rideStatList[i].height;
+                comm.Parameters.Add(heightDB);
+                SqlParameter liftnameDB = new SqlParameter();
+                liftnameDB.Direction = ParameterDirection.Input;
+                liftnameDB.ParameterName = "@liftname";
+                liftnameDB.SqlDbType = SqlDbType.NVarChar;
+                if (rideStatList[i].liftName == null)
+                {
+                    liftnameDB.SqlValue = DBNull.Value;
+                }
+                else
+                {
+                    liftnameDB.SqlValue = rideStatList[i].liftName;
+                }                    
+                comm.Parameters.Add(liftnameDB);
+                SqlParameter nameDB = new SqlParameter();
+                nameDB.Direction = ParameterDirection.Input;
+                nameDB.ParameterName = "@name";
+                nameDB.SqlDbType = SqlDbType.NVarChar;
+                if (rideStatList[i].name == null)
+                {
+                    nameDB.SqlValue = DBNull.Value;
+                }
+                else
+                {
+                    nameDB.SqlValue = rideStatList[i].name;
+                }
+                comm.Parameters.Add(nameDB);
+                SqlParameter swipedateDB = new SqlParameter();
+                swipedateDB.Direction = ParameterDirection.Input;
+                swipedateDB.ParameterName = "@swipedate";
+                swipedateDB.SqlDbType = SqlDbType.NVarChar;                    
+                if (rideStatList[i].swipeDate == null)
+                {
+                    swipedateDB.SqlValue = DBNull.Value;
+                }
+                else
+                {
+                    swipedateDB.SqlValue = rideStatList[i].swipeDate;
+                }
+                comm.Parameters.Add(swipedateDB);
+                SqlParameter swipetimeDB = new SqlParameter();
+                swipetimeDB.Direction = ParameterDirection.Input;
+                swipetimeDB.ParameterName = "@swipetime";
+                swipetimeDB.SqlDbType = SqlDbType.DateTime;
+                swipetimeDB.SqlValue = rideStatList[i].swipeTime;
+                comm.Parameters.Add(swipetimeDB);
+
+                comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
+                                    "(rideID, height, liftname, name, swipedate, swipetime) " +
+                                    "VALUES " +
+                                    "(@rideID, @height, @liftname, @name, @swipedate, @swipetime) ";
+
+                comm.Connection = conn;
+                conn.Open();
+                comm.ExecuteNonQuery();
+                conn.Close();
+                conn.Dispose();
+                comm.Dispose();
             }
         }
     }
