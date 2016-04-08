@@ -64,18 +64,34 @@ namespace AfterSki.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
-            modelBuilder.Entity("AfterSki.RideData", b =>
+            modelBuilder.Entity("AfterSki.Models.RideModels.Destination", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("RidesPerDay");
+                    b.Property<string>("name");
 
-                    b.Property<int>("WeekDay");
+                    b.HasKey("id");
+                });
 
-                    b.Property<int>("ridesPerHour");
+            modelBuilder.Entity("AfterSki.Models.RideModels.RideStatistic", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasKey("ID");
+                    b.Property<int?>("destinationid");
+
+                    b.Property<int>("height");
+
+                    b.Property<string>("liftName");
+
+                    b.Property<string>("name");
+
+                    b.Property<string>("swipeDate");
+
+                    b.Property<DateTime>("swipeTime");
+
+                    b.HasKey("id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -158,6 +174,13 @@ namespace AfterSki.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("AfterSki.Models.RideModels.RideStatistic", b =>
+                {
+                    b.HasOne("AfterSki.Models.RideModels.Destination")
+                        .WithMany()
+                        .HasForeignKey("destinationid");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
