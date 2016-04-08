@@ -3,6 +3,10 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using AfterSki.Models.RideModels;
+using System.Collections.Generic;
+using System;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Http.Internal;
 
 namespace AfterSki.Controllers
 {
@@ -15,13 +19,14 @@ namespace AfterSki.Controllers
             _context = context;    
         }
 
-        // GET: RideStatistics
-        public IActionResult Index()
+        //GET: RideStatistics
+        public IActionResult Index(string facility)
         {
+           
             return View(_context.RideStatistic.ToList());
         }
 
-        // GET: RideStatistics/Details/5
+
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -41,6 +46,12 @@ namespace AfterSki.Controllers
         // GET: RideStatistics/Create
         public IActionResult Create()
         {
+            var viewModel = new RideStatistic
+            {
+                swipeTime = System.DateTime.Now,
+
+            };
+
             return View();
         }
 

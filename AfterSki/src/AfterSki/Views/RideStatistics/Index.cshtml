@@ -1,62 +1,75 @@
-@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
 
 @{
     ViewData["Title"] = "Index";
 }
+<div class="page-header">
+    <h1><span class="glyphicon glyphicon-barcode"></span> Datalista över åktillfällen och skidort <small>....so long so far....</small></h1>
+</div>
 
-<h2>Index</h2>
+<div class="navbar navbar-default">
+    <div class="container-fluid">
+        @*add new record to database*@
+            <ul class="nav navbar-nav">
+               <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Välj <span class="caret"></span></a>
+                    <ul class="dropdown-menu">                        
+                        <li><a asp-action="Create">Skapa ny</a></li>
+                    </ul>
+                </li>
+            </ul>
+    </div>
+</div>
+<div class="container-fluid">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.liftName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.height)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.swipeDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.swipeTime)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.liftName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.height)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.swipeDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.swipeTime)
-        </th>
-        <th></th>
-    </tr>
-    
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.liftName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.height)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.swipeDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.swipeTime)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-        </td>
-    </tr>
-}
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.id)
+                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.liftName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.height)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.swipeDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.swipeTime)
+                </td>
+                <td class="tablewidth-250">
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -12,10 +12,10 @@
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="height" class="col-md-2 control-label"></label>
+            <label asp-for="name" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="height" class="form-control" />
-                <span asp-validation-for="height" class="text-danger" />
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -26,12 +26,13 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="name" class="col-md-2 control-label"></label>
+            <label asp-for="height" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger" />
+                <input asp-for="height" class="form-control" />
+                <span asp-validation-for="height" class="text-danger" />
             </div>
-        </div>
+        </div>       
+       
         <div class="form-group">
             <label asp-for="swipeDate" class="col-md-2 control-label"></label>
             <div class="col-md-10">

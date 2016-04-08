@@ -16,7 +16,18 @@ select,
 textarea {
     max-width: 280px;
 }
-
+.tablewidth-100{
+    width: 100px; white-space: normal;
+}
+.tablewidth-150{
+    width: 150px;white-space: normal;
+}
+.tablewidth-200{
+    width: 200px;white-space: normal;
+}
+.tablewidth-350{
+    width: 350px;white-space: normal;
+}
 /* Carousel */
 .carousel-caption {
     z-index: 10 !important;
