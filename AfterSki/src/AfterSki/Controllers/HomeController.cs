@@ -15,12 +15,6 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata()
         {
-           
-            
-            //CreateCSV csv = new CreateCSV();
-            //csv.ListToCsv();
-            //ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
