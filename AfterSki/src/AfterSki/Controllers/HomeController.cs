@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Dnx.Compilation.CSharp;
+﻿using Microsoft.AspNet.Mvc;
 using AfterSki.Models;
-using Microsoft.ApplicationInsights.Extensibility.Implementation;
-using Newtonsoft.Json;
-using System.Net;
 
 namespace AfterSki.Controllers
 {
@@ -18,11 +10,10 @@ namespace AfterSki.Controllers
             return View();
         }
 
-        public  IActionResult About()
+        public IActionResult About()
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
-            jm.ListToDB();
             //CreateCSV csv = new CreateCSV();
             //csv.ListToCsv();
             //ViewData["Message"] = "Your application description page.";
@@ -36,13 +27,9 @@ namespace AfterSki.Controllers
 
             return View();
         }
-
         public IActionResult Error()
         {
             return View();
         }
-
-       
-
     }
 }
