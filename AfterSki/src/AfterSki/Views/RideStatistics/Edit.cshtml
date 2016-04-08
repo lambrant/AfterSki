@@ -1,0 +1,66 @@
+@model AfterSki.Models.RideModels.RideStatistic
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>RideStatistic</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="id" />
+        <div class="form-group">
+            <label asp-for="height" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="height" class="form-control" />
+                <span asp-validation-for="height" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="liftName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="liftName" class="form-control" />
+                <span asp-validation-for="liftName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="swipeDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="swipeDate" class="form-control" />
+                <span asp-validation-for="swipeDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="swipeTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="swipeTime" class="form-control" />
+                <span asp-validation-for="swipeTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,62 @@
+@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.liftName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.swipeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.swipeTime)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.liftName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.swipeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.swipeTime)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+        </td>
+    </tr>
+}
+</table>
