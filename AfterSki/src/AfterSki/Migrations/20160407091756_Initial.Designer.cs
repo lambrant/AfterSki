@@ -8,13 +8,28 @@ using AfterSki.Models;
 namespace AfterSki.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160407091756_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AfterSki.dataArray", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("RidesPerDay");
+
+                    b.Property<int>("WeekDay");
+
+                    b.Property<int>("ridesPerHour");
+
+                    b.HasKey("ID");
+                });
 
             modelBuilder.Entity("AfterSki.Models.ApplicationUser", b =>
                 {
@@ -62,20 +77,6 @@ namespace AfterSki.Migrations
                         .HasAnnotation("Relational:Name", "UserNameIndex");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
-                });
-
-            modelBuilder.Entity("AfterSki.RideData", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("RidesPerDay");
-
-                    b.Property<int>("WeekDay");
-
-                    b.Property<int>("ridesPerHour");
-
-                    b.HasKey("ID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
