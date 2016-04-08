@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AfterSki.Models;
 using AfterSki.Services;
+using AfterSki.Models.RideModels;
 
 namespace AfterSki
 {
@@ -48,8 +49,11 @@ namespace AfterSki
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
-
+                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+            .AddDbContext<RideStatisticDBContext>(options =>
+             {
+                 options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);
+             });
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

@@ -53,7 +53,7 @@ namespace AfterSki.Controllers
                 conn.Close();
                 comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
                                     "(ID int NOT NULL IDENTITY(1, 1) PRIMARY KEY, " +
-                                    "rideID int, " +
+                                    "destinationID int, " +
                                     "height int, " +
                                     "liftname nvarchar(50), " +
                                     "name nvarchar(50), " +
@@ -74,7 +74,7 @@ namespace AfterSki.Controllers
                     }
                     SqlParameter idDB = new SqlParameter();
                     idDB.Direction = ParameterDirection.Input;
-                    idDB.ParameterName = "@rideID";
+                    idDB.ParameterName = "@destinationID";
                     idDB.SqlDbType = SqlDbType.Int;
                     idDB.SqlValue = dimp[i].destination.id;
                     comm.Parameters.Add(idDB);
@@ -135,9 +135,9 @@ namespace AfterSki.Controllers
                     comm.Parameters.Add(swipetimeDB);
 
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
-                                        "(rideID, height, liftname, name, swipedate, swipetime) " +
+                                        "(destinationID, height, liftname, name, swipedate, swipetime) " +
                                         "VALUES " +
-                                        "(@rideID, @height, @liftname, @name, @swipedate, @swipetime) ";
+                                        "(@destinationID, @height, @liftname, @name, @swipedate, @swipetime) ";
 
                     comm.Connection = conn;
                     conn.Open();

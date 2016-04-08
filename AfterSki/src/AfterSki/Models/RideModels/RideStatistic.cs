@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,4 +17,10 @@ namespace AfterSki.Models.RideModels
         public string swipeDate { get; set; }
         public Destination destination { get; set; }
     }
+
+    public class RideStatisticDBContext : DbContext
+    {
+        public DbSet<RideStatistic> RideStatistic { get; set; }
+    }
+
 }
