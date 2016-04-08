@@ -14,7 +14,6 @@ namespace AfterSki.Models
 {
     public class JsonData
     {
-
         public List<RideStatistic> rideStatList = new List<RideStatistic>();
 
         public class RideStatistic
