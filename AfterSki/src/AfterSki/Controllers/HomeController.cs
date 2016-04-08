@@ -8,13 +8,14 @@ namespace AfterSki.Controllers
     {
         public IActionResult Index()
         {
+            JsonData jm = new JsonData();
+            jm.getSkiData();
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Skidata()
         {
-            JsonData jm = new JsonData();
-            jm.getSkiData();
+           
             
             //CreateCSV csv = new CreateCSV();
             //csv.ListToCsv();

@@ -18,7 +18,7 @@ namespace AfterSki.Controllers
         /// List that holds
         /// </summary>
         List<RideStatistic> dimp = new List<RideStatistic>();
-        private static SqlConnection dbConnection()
+        private SqlConnection dbConnection()
         {
             return new SqlConnection("Data Source=localhost;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
