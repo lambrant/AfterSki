@@ -5,29 +5,33 @@
 }
 <div class="container">
     <div class="page-header">
-        <h1><span class="glyphicon glyphicon-barcode"></span> Datalista över åktillfällen och skidort <small>....so long so far....</small></h1>
+        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
     </div>
     @*<div class="navbar navbar-default">*@
     <div class="dropdown navbar-form">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+            Välj:
             <span class="caret"></span>
         </button>
         <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
-            <li class="dropdown-header">Skidort</li>
-            <li><a href="#">Sälen</a></li>
-            <li><a href="#">Trysil</a></li>
-            <li><a href="#">Vemmdalen</a></li>
-            <li><a href="#">Åre</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><img src="~/images/logos/salen.png" /></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><img src="~/images/logos/trysil.png" /></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><img src="~/images/logos/vemdalen.png" /></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#"><img src="~/images/logos/are.png" /></a></li>
+            <li role="separator" class="divider"></li>
             <li role="separator" class="divider"></li>
             <li class="dropdown-header">Skapa ny</li>
-            <li><a asp-action="Create">Lägg till</a></li>
+            <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
         </ul>
     </div>
     @*</div>*@
     <div class="container-fluid">
         <table class="table">
-            <tr>
+            <tr class="modal-header">
                 <th>
                     @Html.DisplayNameFor(model => model.id)
                 </th>
