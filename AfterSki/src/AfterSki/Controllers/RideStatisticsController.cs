@@ -20,10 +20,31 @@ namespace AfterSki.Controllers
         }
 
         //GET: RideStatistics
-        public IActionResult Index(string facility)
+        public IActionResult Index(string searchFacility)
         {
-           
-            return View(_context.RideStatistic.ToList());
+            var TitleQry = from w in _context.RideStatistic
+                           orderby w.name
+                           select w.name;
+
+            /// populates the dropdown
+            var TitleList = new List<string>();
+            TitleList.AddRange(TitleQry.Distinct());
+            ViewData["searchfacility"] = new SelectList(TitleList);
+
+            var facility = from c in _context.RideStatistic
+                          select c;
+
+            if (!String.IsNullOrEmpty(searchFacility))
+            {
+                facility = facility.Where(s => s.name.Contains(searchFacility)); // search form
+            }
+
+            if (!String.IsNullOrEmpty(searchFacility))
+            {
+                facility = facility.Where(x => x.name == searchFacility); // dropdown
+            }
+            return View(facility);
+            //return View(_context.RideStatistic.ToList());
         }
 
 

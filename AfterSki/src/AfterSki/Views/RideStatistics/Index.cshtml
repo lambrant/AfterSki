@@ -7,28 +7,46 @@
     <div class="page-header">
         <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
     </div>
-    @*<div class="navbar navbar-default">*@
-    <div class="dropdown navbar-form">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Välj:
-            <span class="caret"></span>
-        </button>
-        <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><img src="~/images/logos/salen.png" /></a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><img src="~/images/logos/trysil.png" /></a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><img src="~/images/logos/vemdalen.png" /></a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><img src="~/images/logos/are.png" /></a></li>
-            <li role="separator" class="divider"></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Skapa ny</li>
-            <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
-        </ul>
-    </div>
-    @*</div>*@
+    <div class="navbar navbar-default">
+        <div class="dropdown navbar-form">
+            <button class="btn btn-default dropdown-toggle" type="button" aria-valuetext="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Välj:
+                <span class="caret"></span>
+            </button>
+            <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
+                <li role="separator" class="divider"></li>
+                <li><a href="#">
+                    <img src="~/images/logos/salen.png" aria-valuetext="Sälen" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">
+                    <img src="~/images/logos/trysil.png" aria-valuetext="Trysil" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">
+                    <img src="~/images/logos/vemdalen.png" aria-valuetext="Vemdalen" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">
+                    <img src="~/images/logos/are.png" aria-valuetext="Åre" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Skapa ny</li>
+                <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
+                <li>
+            </ul>
+            <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
+                @Html.DropDownList("searchFacility", "All")
+            
+               <button type="submit" class="btn btn-primary">Sök</button>
+            </form>
+        </div>
+    </div> 
     <div class="container-fluid">
         <table class="table">
             <tr class="modal-header">
