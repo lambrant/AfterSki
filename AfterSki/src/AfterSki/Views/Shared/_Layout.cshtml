@@ -8,6 +8,10 @@
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
+            <link href="~/css/owl.carousel.css" rel="stylesheet" />
+            <link href="~/css/owl.transitions.css" rel="stylesheet" />
+            <link href="~/css/main.css" rel="stylesheet" />
+            <link href="~/css/animate.min.css" rel="stylesheet" />
         </environment>
         <environment names="Staging,Production">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -41,11 +45,11 @@
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="body-content">
             @RenderBody()
             <hr />
-            <footer>
-                <p>&copy; 2016 - AfterSki</p>
+            <footer class="container-fluid fadeInUp"  data-wow-duration="300ms" data-wow-delay="300ms">
+                <p >&copy; 2016 - AfterSki</p>
             </footer>
         </div>
 
@@ -53,6 +57,12 @@
             <script src="~/lib/jquery/dist/jquery.js"></script>
             <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
             <script src="~/js/site.js" asp-append-version="true"></script>
+            <script src="~/js/main.js"></script>
+            <script src="~/js/mousescroll.js"></script>
+            <script src="~/js/owl.carousel.min.js"></script>
+            <script src="~/js/wow.min.js"></script>
+            <script src="~/js/jquery.isotope.min.js"></script>
+            <script src="~/js/jquery.prettyphoto.js"></script>
         </environment>
         <environment names="Staging,Production">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"

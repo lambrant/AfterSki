@@ -3,73 +3,82 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="page-header">
-    <h1><span class="glyphicon glyphicon-barcode"></span> Datalista över åktillfällen och skidort <small>....so long so far....</small></h1>
-</div>
-
-<div class="navbar navbar-default">
+<div class="container">
+    <div class="page-header">
+        <h1><span class="glyphicon glyphicon-barcode"></span> Datalista över åktillfällen och skidort <small>....so long so far....</small></h1>
+    </div>
+    @*<div class="navbar navbar-default">*@
+    <div class="dropdown navbar-form">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Dropdown
+            <span class="caret"></span>
+        </button>
+        <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
+            <li class="dropdown-header">Skidort</li>
+            <li><a href="#">Sälen</a></li>
+            <li><a href="#">Trysil</a></li>
+            <li><a href="#">Vemmdalen</a></li>
+            <li><a href="#">Åre</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Skapa ny</li>
+            <li><a asp-action="Create">Lägg till</a></li>
+        </ul>
+    </div>
+    @*</div>*@
     <div class="container-fluid">
-        @*add new record to database*@
-            <ul class="nav navbar-nav">
-               <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Välj <span class="caret"></span></a>
-                    <ul class="dropdown-menu">                        
-                        <li><a asp-action="Create">Skapa ny</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.liftName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.height)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.swipeDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.swipeTime)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.liftName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.height)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.swipeDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.swipeTime)
+                    </td>
+                    <td class="tablewidth-250">
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
     </div>
 </div>
-<div class="container-fluid">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.liftName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.height)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.swipeDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.swipeTime)
-            </th>
-            <th></th>
-        </tr>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(modelItem => item.id)
-                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.liftName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.height)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.swipeDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.swipeTime)
-                </td>
-                <td class="tablewidth-250">
-                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-                </td>
-            </tr>
-        }
-    </table>
-</div>
+
