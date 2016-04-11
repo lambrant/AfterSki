@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AfterSki.Models.RideModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -8,22 +9,22 @@ namespace AfterSki
 {
     public class RideData
     {
-        public int ID { get; set; }
-        public int WeekDay { get; set; }
-        public int RidesPerDay { get; set; }
-        public int ridesPerHour { get; set; }
-
+       
         public static int[] ridesPerHourArray = new int[1];
 
-        public int[] PopulateRidesPerDayArray()
+        public int[] PopulateRidesPerDayArray(string rideDate)
         {
-            RideStatisticsDBContext 
-            rideStatistics rideDataDatabase = new rideStatistics
+            List<RideStatistic> rs = new List<RideStatistic>();
+            RideStatisticDBContext rsdb = new RideStatisticDBContext();
+            var theSwipeDate = rsdb.RideStatistic.Where(u => u.swipeTime.ToString().Contains(rideDate));
+            int[] swipeDateArray = theSwipeDate.Select(x => x.swipeTime).GroupBy(x =>  x.Hour).Select(group=>group.Count()).ToArray();
+            
+            return swipeDateArray;
+           
+           
+            //return rs.SelectheSwipeDate.Contains(rideDate)));(z => z.swipeTime).GroupBy(x => new { x.Day, x.Hour }).Select(x => new RideStatistic { swipeTime = x.Key.Day, swipeTime = x.Key.Hour });
 
-
-
-
-            return null;
+        
         }
         
 
