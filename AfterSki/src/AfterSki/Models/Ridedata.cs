@@ -13,19 +13,30 @@ namespace AfterSki
         public int RidesPerDay { get; set; }
         public int ridesPerHour { get; set; }
 
+        public static int[] ridesPerHourArray = new int[1];
+
+        public int[] PopulateRidesPerDayArray()
+        {
+            RideStatisticsDBContext 
+            rideStatistics rideDataDatabase = new rideStatistics
+
+
+
+
+            return null;
+        }
+        
+
+
+
+        
+
+
     }
 
-    public class RidesPerDay
-    {
-        public int ridesPerDay { get; set; }
-    }
+    
 
-    public class PopulateRidesPerDayArray
-    {
-       
-
-		
-    }
+    
 
 }
 
