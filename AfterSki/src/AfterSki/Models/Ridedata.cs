@@ -18,13 +18,10 @@ namespace AfterSki
             int[] swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x =>  x.Hour).Select(group=>group.Count()).ToArray();
             
             return swipeDateArray;
-           
-           
-            //return rs.SelectheSwipeDate.Contains(rideDate)));(z => z.swipeTime).GroupBy(x => new { x.Day, x.Hour }).Select(x => new RideStatistic { swipeTime = x.Key.Day, swipeTime = x.Key.Hour });
-
-        
+                           
         }
         
+            //return rs.SelectheSwipeDate.Contains(rideDate)));(z => z.swipeTime).GroupBy(x => new { x.Day, x.Hour }).Select(x => new RideStatistic { swipeTime = x.Key.Day, swipeTime = x.Key.Hour });
 
 
 
