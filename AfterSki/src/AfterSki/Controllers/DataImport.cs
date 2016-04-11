@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using static AfterSki.Models.JsonData;
 
 
@@ -15,6 +16,7 @@ namespace AfterSki.Controllers
 
     public class DataImport
     {
+
         public string dbName = "AfterSki";
 
         List<RideStatistic> dimp = new List<RideStatistic>(); // List that holds importdata
@@ -150,25 +152,12 @@ namespace AfterSki.Controllers
                     conn.Dispose();
                     comm.Dispose();
                 }
-                ///<summary>
-                ///Checks if new datat is different than database
-                ///Not functional
-                /// </summary>
-                //using (var db = new RideStatisticDBContext())
-                //{
-                //    // make sure you have the right column/variable used here
-                //    var dbUpdate = db.RideStatistic.ForEachAsync(x => x.id.Equals(dimp));
-
-                //    if (dbUpdate == null) throw new Exception("Invalid id: ");
-
-                //    // this variable is tracked by the db context
-                //    dbUpdate.Status.Equals(true);
-
-                //    db.SaveChanges();
-                //}
-
             }
-            
+            //else
+            //{
+            //    UpdateRecordIfExists uRec = new UpdateRecordIfExists();
+            //    uRec.UpdateDb();
+            //}
         }
     }
 }

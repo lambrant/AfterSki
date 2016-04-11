@@ -30,6 +30,7 @@ namespace AfterSki.Models.RideModels
         [Display(Name = "Åkdag")]
         public string swipeDate { get; set; }
         public Destination destination { get; set; }
+
     }
 
     public class RideStatisticDBContext : DbContext
