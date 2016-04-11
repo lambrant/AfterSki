@@ -19,6 +19,8 @@ namespace AfterSki.Models
         List<RideStatistic> rideDataList = new List<RideStatistic>();
         float heightForSpecificDate;
         double hoursBetween;
+        double hoursToEnd;
+        float heightProg;
         RideStatistic firstTimeOfSwipeOnDate;
         DateTime endOfDay = new DateTime();
         TimeSpan endDay18 = new TimeSpan(18, 00, 00);
@@ -34,10 +36,27 @@ namespace AfterSki.Models
 
             heightForSpecificDate = rideStats.RideStatistic.Where(x => x.swipeTime.Date == 
                                                             ((DateTime)currentDate).Date).Sum(x => x.height);
-            firstTimeOfSwipeOnDate = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
-                            ((DateTime)currentDate).Date).OrderByDescending(x => x.swipeTime).First();
+            try
+            {
+                firstTimeOfSwipeOnDate = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
+                            ((DateTime)currentDate).Date).OrderBy(x => x.swipeTime).First();
+            }
+            catch (Exception)
+            {
+                firstTimeOfSwipeOnDate = new RideStatistic();
+            }
 
             hoursBetween = Math.Abs((firstTimeOfSwipeOnDate.swipeTime - (DateTime)currentDate).TotalHours);
+            endOfDay = ((DateTime)currentDate).Date + endDay18;
+            hoursToEnd = Math.Abs((endOfDay - (DateTime)currentDate).TotalHours);
+
+
+            heightProg = heightForSpecificDate / (float)hoursBetween * (float)hoursToEnd + heightForSpecificDate;
+
+            int a = 1;
+
+            
+            
 
             //for (int i = 0; i < rideDataList.Count; i++)
             //{
