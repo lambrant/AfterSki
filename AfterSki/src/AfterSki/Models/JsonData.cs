@@ -66,9 +66,21 @@ namespace AfterSki.Models
             ///get json data from url string
             ///and put out datat to list via jsonSerializer
             ///</summary>
-            string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
+            ///            
+            
+            ///<summary>
+            ///Testdata for checking update funktion
+            /// </summary>
+            string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=1&seasonId=9";
+
+
+            ///<summary>
+            ///martins data 3206
+            ///</summary>
+            /*string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";*/
             var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
+            
             DataImport di = new DataImport();
             di.ListToDB();
             //jsonToTxtFile();

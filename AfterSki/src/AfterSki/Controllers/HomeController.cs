@@ -2,6 +2,8 @@
 using AfterSki.Models;
 using Microsoft.SqlServer.Server;
 using AfterSki.Models.RideModels;
+using System.Linq;
+
 namespace AfterSki.Controllers
 {
     public class HomeController : Controller
@@ -10,8 +12,7 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
-            RidePrognosis rp = new RidePrognosis();
-            rp.HeightPrognos(new System.DateTime(2016, 01, 05, 14, 20, 00));
+
             return View();
         }
 

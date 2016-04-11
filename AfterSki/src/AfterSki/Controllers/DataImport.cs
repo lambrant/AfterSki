@@ -1,5 +1,7 @@
 ﻿using AfterSki.Models;
 using AfterSki.Models.RideModels;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Internal;
 using Microsoft.Data.Entity.Storage;
 using System;
 using System.Collections.Generic;
@@ -14,21 +16,27 @@ namespace AfterSki.Controllers
     public class DataImport
     {
         public string dbName = "AfterSki";
-        /// <summary>
-        /// List that holds
-        /// </summary>
-        List<RideStatistic> dimp = new List<RideStatistic>();
+
+        List<RideStatistic> dimp = new List<RideStatistic>(); // List that holds importdata
         private SqlConnection dbConnection()
         {
+            ///<summary>
+            ///SQL-Connection method
+            /// </summary>
             return new SqlConnection("Data Source=localhost;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
 
         public void ListToDB()
         {
+
             dimp = rideStatList;
             SqlConnection conn = dbConnection();
             SqlCommand comm = new SqlCommand();
+
+            ///<summary>
+            ///Check if database exists, if skip importfunction
+            /// </summary>
             bool dbExists = false;
             using (var connection = dbConnection())
             {
@@ -45,10 +53,6 @@ namespace AfterSki.Controllers
                 comm.Connection = conn;
                 conn.Open();
 
-                ///<summary
-                ///Todo
-                ///Fix a controll if database exists
-                /// </summary>
                 comm.ExecuteNonQuery();
                 conn.Close();
                 comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
@@ -146,8 +150,25 @@ namespace AfterSki.Controllers
                     conn.Dispose();
                     comm.Dispose();
                 }
-            }
+                ///<summary>
+                ///Checks if new datat is different than database
+                ///Not functional
+                /// </summary>
+                //using (var db = new RideStatisticDBContext())
+                //{
+                //    // make sure you have the right column/variable used here
+                //    var dbUpdate = db.RideStatistic.ForEachAsync(x => x.id.Equals(dimp));
 
+                //    if (dbUpdate == null) throw new Exception("Invalid id: ");
+
+                //    // this variable is tracked by the db context
+                //    dbUpdate.Status.Equals(true);
+
+                //    db.SaveChanges();
+                //}
+
+            }
+            
         }
     }
 }
