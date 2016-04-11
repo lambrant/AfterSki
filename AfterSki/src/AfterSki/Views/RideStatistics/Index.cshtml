@@ -1,0 +1,111 @@
+﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container">
+    <div class="page-header">
+        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
+    </div>
+    <div class="navbar navbar-default">
+        <div class="dropdown navbar-form">
+            <button class="btn btn-default dropdown-toggle" type="button" aria-valuetext="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Välj:
+                <span class="caret"></span>
+            </button>
+            <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="#">
+                        <img src="~/images/logos/salen.png" aria-valuetext="Sälen" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="#">
+                        <img src="~/images/logos/trysil.png" aria-valuetext="Trysil" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="#">
+                        <img src="~/images/logos/vemdalen.png" aria-valuetext="Vemdalen" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                    <a href="#">
+                        <img src="~/images/logos/are.png" aria-valuetext="Åre" />
+                    </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Skapa ny</li>
+                <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
+                <li>
+            </ul>
+
+            <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
+                @*@Html.DropDownList("searchFacility", "All")*@
+                @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                <button type="submit" class="btn btn-primary">Sök</button>
+            </form>
+        </div>
+    </div> 
+    <div class="container-fluid">
+        <table class="table">
+            <tr class="modal-header">
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.liftName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.height)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.swipeDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.swipeTime)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.liftName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.height)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.swipeDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.swipeTime)
+                    </td>
+                    <td class="tablewidth-250">
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+

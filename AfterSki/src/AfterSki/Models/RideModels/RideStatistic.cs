@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Data.Entity;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using static AfterSki.Models.JsonData;
@@ -8,12 +10,35 @@ namespace AfterSki.Models.RideModels
 {
     public class RideStatistic
     {
+        public RideStatistic() { 
+            this.swipeTime = DateTime.Now;
+        }
         public int id { get; set; }
+
+        [Display(Name = "Skidord")]
         public string name { get; set; }
-        public DateTime swipeTime { get; set; }
+
+        [Display(Name = "Liftnamn")]
         public string liftName { get; set; }
+
+        [Display(Name = "Fallhöjd")]
         public int height { get; set; }
+
+        [Display(Name = "Tidsregistrering")]
+        public DateTime swipeTime { get; set; }
+
+        [Display(Name = "Åkdag")]
         public string swipeDate { get; set; }
         public Destination destination { get; set; }
     }
+
+    public class RideStatisticDBContext : DbContext
+    {
+        public DbSet<RideStatistic> RideStatistic { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            options.UseSqlServer("Server=127.0.0.1;Database=AfterSki;Trusted_Connection=True;MultipleActiveResultSets=true");
+        }
+    }
+
 }
