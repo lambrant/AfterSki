@@ -13,6 +13,8 @@ namespace AfterSki.Controllers
             JsonData jm = new JsonData();
             jm.getSkiData();
 
+            //int[] graphArray = RideData.PopulateRidesPerDayArray("Sön, 27 Mar");
+
             return View();
         }
 

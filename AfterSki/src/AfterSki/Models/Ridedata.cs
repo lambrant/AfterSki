@@ -10,14 +10,12 @@ namespace AfterSki
     public class RideData
     {
        
-        public static int[] ridesPerHourArray = new int[1];
-
-        public int[] PopulateRidesPerDayArray(string rideDate)
+        public static int[] PopulateRidesPerDayArray(string rideDate)
         {
             List<RideStatistic> rs = new List<RideStatistic>();
             RideStatisticDBContext rsdb = new RideStatisticDBContext();
-            var theSwipeDate = rsdb.RideStatistic.Where(u => u.swipeTime.ToString().Contains(rideDate));
-            int[] swipeDateArray = theSwipeDate.Select(x => x.swipeTime).GroupBy(x =>  x.Hour).Select(group=>group.Count()).ToArray();
+            rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+            int[] swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x =>  x.Hour).Select(group=>group.Count()).ToArray();
             
             return swipeDateArray;
            
