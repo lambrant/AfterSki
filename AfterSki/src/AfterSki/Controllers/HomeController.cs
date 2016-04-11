@@ -2,6 +2,8 @@
 using AfterSki.Models;
 using Microsoft.SqlServer.Server;
 using AfterSki.Models.RideModels;
+using System.Linq;
+
 namespace AfterSki.Controllers
 {
     public class HomeController : Controller
@@ -10,17 +12,12 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
+
             return View();
         }
 
         public IActionResult Skidata()
         {
-           
-            
-            //CreateCSV csv = new CreateCSV();
-            //csv.ListToCsv();
-            //ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 

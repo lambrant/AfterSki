@@ -3,50 +3,51 @@
 @{
     ViewData["Title"] = "Delete";
 }
+<div class="container">
+    <div class="panel-heading warning alert-danger">
+        <h2><span class="glyphicon glyphicon-alert"></span> Ta bort! <small class="panel-heading warning alert-danger"> Datat kommer att tas bort permanent.</small></h2>
+    </div>
+    <div>
+        <h4>Ta bort data</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.height)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.height)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.liftName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.liftName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.swipeDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.swipeDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.swipeTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.swipeTime)
+            </dd>
+        </dl>
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>RideStatistic</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.height)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.height)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.liftName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.liftName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.swipeDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.swipeDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.swipeTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.swipeTime)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
-        </div>
-    </form>
+        <form asp-action="Delete">
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                <a asp-action="Index">Tillbaka</a>
+            </div>
+        </form>
+    </div>
 </div>
