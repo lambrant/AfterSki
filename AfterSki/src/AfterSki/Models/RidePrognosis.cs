@@ -15,20 +15,35 @@ namespace AfterSki.Models
     {
         RideStatisticDBContext rideStats = new RideStatisticDBContext();
         List<RideStatistic> rideDataList = new List<RideStatistic>();
-        int meters;
+        int metersPerDay;
+        DateTime currentDate = new DateTime();
         
-        public void HeightPrognos(DateTime currentDateTime)
+        public void HeightPrognos()
         {
             rideDataList = rideStats.RideStatistic.ToList();
+            //currentDate = DateTime.Now;
+            currentDate = new DateTime(2016, 03, 27, 12, 30, 00);
 
             for (int i = 0; i < rideDataList.Count; i++)
             {
-                if (rideDataList[i].swipeTime <= currentDateTime)
+                //1011m for the whole day
+
+                int resultDate = rideDataList[i].swipeTime.Date.CompareTo(currentDate.Date);
+
+                if (resultDate == 0)
                 {
-                    meters += rideDataList[i].height;
+                    int resultTime = rideDataList[i].swipeTime.CompareTo(currentDate);
+
+                    if (resultTime == -1)
+                    {
+                        metersPerDay += rideDataList[i].height;
+                    }                    
+                }
+                else
+                {
+                    break;
                 }
             }
-
         }
     }
 }
