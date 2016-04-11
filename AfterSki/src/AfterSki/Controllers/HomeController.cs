@@ -12,7 +12,7 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
-
+            
             return View();
         }
 
