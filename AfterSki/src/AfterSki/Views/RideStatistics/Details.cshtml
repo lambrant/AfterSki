@@ -1,0 +1,50 @@
+﻿@model AfterSki.Models.RideModels.RideStatistic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="page-header">
+        <h1><span class="glyphicon glyphicon-dashboard"></span> Detaljer </h1>
+    </div>
+    <h4>RideStatistic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.height)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.height)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.liftName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.liftName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.swipeDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.swipeDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.swipeTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.swipeTime)
+        </dd>
+    </dl>
+
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.id">Ändra</a> |
+        <a asp-action="Index">Tillbaka</a>
+    </p>
+</div>
