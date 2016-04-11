@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using AfterSki.Models.RideModels;
 
 namespace AfterSki.Models
@@ -31,6 +30,5 @@ namespace AfterSki.Models
             }
 
         }
-
     }
 }
