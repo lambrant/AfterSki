@@ -12,13 +12,17 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
-            
+
             return View();
+
         }
 
         public IActionResult Skidata()
         {
-            return View();
+
+            var graphArray = WriteData.PopulateRidesPerDayArray("Sön, 27 Mar");
+
+            return View(graphArray);
         }
 
         public IActionResult Contact()

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+﻿@model IEnumerable<WriteData.Javaobject>
 @{
     ViewData["Title"] = "Skidata";
 }
@@ -20,21 +20,14 @@
 	window.onload = function () {
 
 		//initial value of dataPoints
-		var dps = [
-		{label: "Fallhöjd", y: 206},
-		{label: "Längd", y: 163},
-		{label: "Antal Åk", y: 154},
-		{label: "Misslyckade Åk", y: 176},
-		{label: "Godkända Åk", y: 184},
-		{label: "Antal Timmar I Skidbacken", y: 122}
-		];
+	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
 
 		var chart = new CanvasJS.Chart("chartContainer",{
 			title: {
 				text: "Martins Statistik"
 			},
 			axisY: {
-				suffix: " C"
+				suffix: ""
 			},
 			legend :{
 				verticalAlign: 'bottom',
@@ -44,52 +37,34 @@
 			{
 				type: "column",
 				bevelEnabled: true,
-				indexLabel: "{y} C",
+				indexLabel: "{y}",
 				dataPoints: dps
 			}
 			]
 		});
 
+        
+        
 
 		var updateInterval = 1000;
 
 
 		var updateChart = function () {
 
-			for (var i = 0; i < dps.length; i++) {
-
-				// generating random variation deltaY
-				var deltaY = Math.round(2 + Math.random() *(-2-2));
-				var yVal = deltaY + dps[i].y > 0 ? dps[i].y + deltaY : 0;
-				var boilerColor;
-
-
-				// color of dataPoint dependent upon y value.
-
-				boilerColor =
-				yVal > 200 ? "#FF2500":
-				yVal >= 170 ? "#FF6000":
-				yVal < 170 ? "#6B8E23 ":
-				null;
-
-
-				// updating the dataPoint
-				dps[i] = {label: "boiler"+(i+1) , y: yVal, color: boilerColor};
-
-			};
+			
 
 			chart.render();
 		};
 
 		updateChart();
 
-		// update chart after specified interval
-		setInterval(function(){updateChart()}, updateInterval);
+		
 
 
 	}
 </script>
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
 
-    
+<div id="chartContainer" style="height: 300px; width: 100%;">
+</div>
 
