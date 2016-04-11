@@ -155,8 +155,8 @@ namespace AfterSki.Controllers
             }
             //else
             //{
-            //    UpdateRecordIfExists uRec = new UpdateRecordIfExists();
-            //    uRec.UpdateDb();
+            //    UpdateRecordIfExists urf = new UpdateRecordIfExists();
+            //    urf.UpdateData();
             //}
         }
     }

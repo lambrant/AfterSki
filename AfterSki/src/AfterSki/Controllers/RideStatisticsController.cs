@@ -8,6 +8,7 @@ using System;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Internal;
 using System.Data;
+using AfterSki.Models;
 
 namespace AfterSki.Controllers
 {
@@ -92,7 +93,7 @@ namespace AfterSki.Controllers
             }
             return View(rideStatistic);
         }
-
+        
         // GET: RideStatistics/Edit/5
         public IActionResult Edit(int? id)
         {
@@ -151,5 +152,26 @@ namespace AfterSki.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //[HttpPost]
+        //public IActionResult FlushData()
+        //{
+        //    using (var db = new RideStatisticDBContext())
+        //    {
+        //        List<RideStatistic> newData = new List<RideStatistic>();
+
+        //        newData = JsonData.rideStatList.ToList();
+        //        foreach (var item in newData.ToDictionary(x => x.destination.name + x.liftName + x.height + x.swipeDate + x.swipeTime)) ;
+
+        //        using (var context = new RideStatisticDBContext())
+        //        {
+        //            //context.Entry(newData).State = EntityState.Modified;
+
+        //            context.RemoveRange(newData);
+        //            context.SaveChanges();
+        //        }
+        //    }
+        //    return View();
+        //}
     }
 }
