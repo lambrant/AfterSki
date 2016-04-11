@@ -5,11 +5,9 @@ using AfterSki.Models.RideModels;
 
 namespace AfterSki.Models
 {
-    //Call HeightPrognos when a button is pressed, create a DateTime variabel that
-    //gets the current DateTime for when the button was pressed and send that 
-    //variabel as an inparameter for the HeightPrognos function.
-    //Present the data as numbers, current height and how much the skier can 
-    //expect to reach at the end of the day.
+    //Add two buttons that shows the current height and the prognosis height
+    //based on which closing time. If user presses closing 16.30, calculate 
+    //based on that. If user presses closing at 18.00 calculate based on that.
 
     //end of day 16.30 or/and 18.00
 
@@ -50,44 +48,8 @@ namespace AfterSki.Models
             endOfDay = ((DateTime)currentDate).Date + endDay18;
             hoursToEnd = Math.Abs((endOfDay - (DateTime)currentDate).TotalHours);
 
-
             heightProg = heightForSpecificDate / (float)hoursBetween * (float)hoursToEnd + heightForSpecificDate;
-
-            int a = 1;
-
             
-            
-
-            //for (int i = 0; i < rideDataList.Count; i++)
-            //{
-            //    
-            //
-            //   int resultDate = rideDataList[i].swipeTime.Date.CompareTo(((DateTime)currentDate).Date);
-            //
-            //    if (resultDate == 0)
-            //    {
-            //        int resultTime = rideDataList[i].swipeTime.CompareTo((DateTime)currentDate);
-            //        
-            //        currentHeightInMeters += rideDataList[i].height;
-            //
-            //        
-            //
-            //        if (resultTime == -1)
-            //        {
-            //            if (correctDate)
-            //            {
-            //                timeOfSwipe = rideDataList[i].swipeTime;
-            //                hoursBetween = (timeOfSwipe - (DateTime)currentDate).TotalHours;
-            //                endOfDay = rideDataList[i].swipeTime.Date + endDay18;
-            //
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        break;
-            //    }
-            //}
         }
     }
 }
