@@ -153,11 +153,11 @@ namespace AfterSki.Controllers
                     comm.Dispose();
                 }
             }
-            //else
-            //{
-            //    UpdateRecordIfExists urf = new UpdateRecordIfExists();
-            //    urf.UpdateData();
-            //}
+            else
+            {
+                UpdateRecordIfExists urf = new UpdateRecordIfExists();
+                urf.UpdateData();
+            }
         }
     }
 }

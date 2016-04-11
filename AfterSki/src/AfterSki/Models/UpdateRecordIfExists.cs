@@ -18,18 +18,30 @@ namespace AfterSki.Models
         /// </summary>
         public void UpdateData()
         {
-            List<RideStatistic> newData = new List<RideStatistic>();
-            newData = JsonData.rideStatList.ToList();
+            List<RideStatistic> rsData = new List<RideStatistic>();
+            //var newData = JsonData.rideStatList.ToList();
+            for (int i = 0; i < JsonData.rideStatList.Count; i++)
+            {
+                rsData.Add(new RideStatistic
+                {
+                    name = JsonData.rideStatList[i].destination.name,
+                    liftName = JsonData.rideStatList[i].liftName,
+                    height = JsonData.rideStatList[i].height,
+                    swipeDate = JsonData.rideStatList[i].swipeDate,
+                    swipeTime = JsonData.rideStatList[i].swipeTime
+                });
+            }
+            
             using (var dbFlush = new RideStatisticDBContext())
             {
                 using (var db = new RideStatisticDBContext())
                 {
-                    foreach (var item in newData.ToDictionary(x => x.name + x.liftName + x.height + x.swipeDate + x.swipeTime)) ;
+                    foreach (var item in rsData.ToDictionary(x => x.name + x.liftName + x.height + x.swipeDate + x.swipeTime)) ;
                     using (var context = new RideStatisticDBContext())
                     {
                         //context.Entry(newData).State = EntityState.Modified;
 
-                        context.RideStatistic.AddRange(newData);
+                        context.RideStatistic.AddRange(rsData);
                         context.SaveChanges();
                     }
                 }
