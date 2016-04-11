@@ -13,7 +13,7 @@ namespace AfterSki.Controllers
 
     public class DataImport
     {
-        public string dbName = "AfterSki";
+        private string dbName = "AfterSki";
         /// <summary>
         /// List that holds
         /// </summary>

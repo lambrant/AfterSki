@@ -1,11 +1,4 @@
-﻿var ctx = document.getElementById("canvasId").getContext("2d");
-
-var graph = new BarGraph(ctx);
-graph.margin = 2;
-graph.width = 450;
-graph.height = 150;
-graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-graph.update([20, 5, 3, 30, 4, 2, 2]);
+﻿
 
 //Js kod...
 
