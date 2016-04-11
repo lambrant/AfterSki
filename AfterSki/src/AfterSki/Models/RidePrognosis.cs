@@ -11,24 +11,36 @@ namespace AfterSki.Models
     //Present the data as numbers, current height and how much the skier can 
     //expect to reach at the end of the day.
 
+    //end of day 16.30 or/and 18.00
+
     public class RidePrognosis
     {
         RideStatisticDBContext rideStats = new RideStatisticDBContext();
         List<RideStatistic> rideDataList = new List<RideStatistic>();
-        int metersPerDay;
-        DateTime currentDate = new DateTime();
+        int currentHeightInMeters;
+        double hoursBetween;
+        int accumulatedHeightInMeters;
+        bool correctDate = true;
+        DateTime currentDate = new DateTime(2016, 03, 27, 10, 30, 00);
+        DateTime timeOfSwipe = new DateTime();
+        DateTime endOfDay = new DateTime();
         
         public void HeightPrognos()
         {
             rideDataList = rideStats.RideStatistic.ToList();
-            //currentDate = DateTime.Now;
-            currentDate = new DateTime(2016, 03, 27, 12, 30, 00);
+            currentDate = new DateTime();
 
             for (int i = 0; i < rideDataList.Count; i++)
             {
-                //1011m for the whole day
-
                 int resultDate = rideDataList[i].swipeTime.Date.CompareTo(currentDate.Date);
+
+                if (correctDate)
+                {
+                    timeOfSwipe = rideDataList[i].swipeTime;
+                    hoursBetween = (timeOfSwipe - currentDate).TotalHours;
+                    endOfDay = rideDataList[i].swipeTime;
+                    correctDate = false;
+                }
 
                 if (resultDate == 0)
                 {
@@ -36,8 +48,8 @@ namespace AfterSki.Models
 
                     if (resultTime == -1)
                     {
-                        metersPerDay += rideDataList[i].height;
-                    }                    
+                        currentHeightInMeters += rideDataList[i].height;
+                    }
                 }
                 else
                 {
