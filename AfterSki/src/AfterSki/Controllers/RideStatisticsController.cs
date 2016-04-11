@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Internal;
+using System.Data;
 
 namespace AfterSki.Controllers
 {
@@ -15,6 +16,7 @@ namespace AfterSki.Controllers
         private RideStatisticDBContext _context;
 
         public RideStatisticsController(RideStatisticDBContext context)
+
         {
             _context = context;    
         }
@@ -43,10 +45,11 @@ namespace AfterSki.Controllers
             {
                 facility = facility.Where(x => x.name == searchFacility); // dropdown
             }
+
+           
             return View(facility);
             //return View(_context.RideStatistic.ToList());
         }
-
 
         public IActionResult Details(int? id)
         {
