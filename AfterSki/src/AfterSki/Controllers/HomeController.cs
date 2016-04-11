@@ -14,7 +14,8 @@ namespace AfterSki.Controllers
             JsonData jm = new JsonData();
             jm.getSkiData();
             RidePrognosis rp = new RidePrognosis();
-            rp.HeightPrognos(new DateTime(2016, 03, 25, 13, 50, 00));
+            rp.HeightPrognos();// new DateTime(2016, 03, 26, 11, 20, 00));
+                        
             return View();
         }
 
