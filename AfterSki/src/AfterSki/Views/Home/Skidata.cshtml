@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+﻿@model IEnumerable<WriteData.Javaobject>
 @{
     ViewData["Title"] = "Skidata";
 }
@@ -6,5 +6,65 @@
     <div class="page-header">
         <h1><span class="glyphicon glyphicon-barcode"></span> Grafer <small>....so long so far....</small></h1>
     </div>
+</div>
+
+
+@{
+    ViewData["Title"] = "Contact";
+}
+
+
+
+
+<script type="text/javascript">
+	window.onload = function () {
+
+		//initial value of dataPoints
+	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
+
+		var chart = new CanvasJS.Chart("chartContainer",{
+			title: {
+				text: "Martins Statistik"
+			},
+			axisY: {
+				suffix: ""
+			},
+			legend :{
+				verticalAlign: 'bottom',
+				horizontalAlign: "center"
+			},
+			data: [
+			{
+				type: "column",
+				bevelEnabled: true,
+				indexLabel: "{y}",
+				dataPoints: dps
+			}
+			]
+		});
+
+        
+        
+
+		var updateInterval = 1000;
+
+
+		var updateChart = function () {
+
+			
+
+			chart.render();
+		};
+
+		updateChart();
+
+		
+
+
+	}
+</script>
+<script type="text/javascript" src="~/js/canvasjs.min.js"></script>
+
+<div id="chartContainer" style="height: 300px; width: 100%;">
 </div>
 

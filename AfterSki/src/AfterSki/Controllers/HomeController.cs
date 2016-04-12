@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNet.Mvc;
 using AfterSki.Models;
+using Microsoft.SqlServer.Server;
 using AfterSki.Models.RideModels;
 using System.Linq;
-using System.Collections.Generic;
-
 
 namespace AfterSki.Controllers
 {
@@ -15,12 +14,15 @@ namespace AfterSki.Controllers
             jm.getSkiData();
 
             return View();
+
         }
 
         public IActionResult Skidata()
         {
 
-            return View();
+            var graphArray = WriteData.PopulateRidesPerDayArray("Sön, 27 Mar");
+
+            return View(graphArray);
         }
 
         public IActionResult Contact()
@@ -33,6 +35,5 @@ namespace AfterSki.Controllers
         {
             return View();
         }
-
     }
 }

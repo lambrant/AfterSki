@@ -11,3 +11,6 @@
 /// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/jquery-validation/dist/jquery.validate.js" />
 /// <reference path="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" />
+/// <reference path="../newfolder/JavaScript.js" />
+/// <reference path="js/canvasjs.min.js" />
+/// <reference path="js/javascript.js" />
