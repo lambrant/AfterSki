@@ -13,7 +13,7 @@ namespace AfterSki.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            int a = 1;
+            int w = 1;
             return View();
         }
     }

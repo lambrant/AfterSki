@@ -13,14 +13,19 @@ namespace AfterSki.Controllers
         {
             JsonData jm = new JsonData();
             jm.getSkiData();
-            RidePrognosis rp = new RidePrognosis();
-            rp.HeightPrognos(new DateTime(2016, 03, 26, 13, 20, 00));
-                        
             return View();
         }
 
         public IActionResult Skidata()
         {
+            RidePrognosis rp = new RidePrognosis();
+            rp.HeightPrognos(new DateTime(2016, 03, 26, 13, 20, 00));
+
+            if (true)
+            {
+
+            }
+
             return View();
         }
 
