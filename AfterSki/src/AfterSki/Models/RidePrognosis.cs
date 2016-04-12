@@ -9,7 +9,7 @@ namespace AfterSki.Models
     //based on which closing time. If user presses closing 16.30, calculate 
     //based on that. If user presses closing at 18.00 calculate based on that.
 
-    //end of day 16.30 or/and 18.00
+    //What happends if the skier checks his prognosis before the day starts?
 
     public class RidePrognosis
     {
@@ -47,12 +47,16 @@ namespace AfterSki.Models
             heightForSpecificDateAndTime = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
                                                             ((DateTime)currentDate).Date).Sum(x => x.height);
 
-            hoursBetween = (firstTimeOfSwipeOnDate.swipeTime - (DateTime)currentDate).TotalHours;
+            hoursBetween = ((DateTime)currentDate - firstTimeOfSwipeOnDate.swipeTime).TotalHours;
 
             //If the day ends at 18.00----------------------------------------------------------------
             endOfDay18 = ((DateTime)currentDate).Date + endDay18;
             hoursToEnd18 = (endOfDay18 - (DateTime)currentDate).TotalHours;
             if (hoursBetween < 0 || hoursToEnd18 < 0)
+            {
+                heightProg18 = 0;
+            }
+            else
             {
                 heightProg18 = heightForSpecificDateAndTime / (float)hoursBetween *
                                            (float)hoursToEnd18 + heightForSpecificDateAndTime;
@@ -62,10 +66,13 @@ namespace AfterSki.Models
             hoursToEnd1630 = (endOfDay1630 - (DateTime)currentDate).TotalHours;
             if (hoursBetween < 0 || hoursToEnd1630 < 0)
             {
+                heightProg1630 = 0;
+            }
+            else
+            {
                 heightProg1630 = heightForSpecificDateAndTime / (float)hoursBetween *
                                             (float)hoursToEnd1630 + heightForSpecificDateAndTime;
             }
-            
         }
     }
 }
