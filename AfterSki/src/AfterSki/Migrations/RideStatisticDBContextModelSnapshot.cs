@@ -4,6 +4,7 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using AfterSki.Models.RideModels;
+using AfterSki.Models;
 
 namespace AfterSki.Migrations
 {

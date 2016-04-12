@@ -1,13 +1,10 @@
 ﻿using AfterSki.Models;
 using AfterSki.Models.RideModels;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Internal;
-using Microsoft.Data.Entity.Storage;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using static AfterSki.Models.JsonData;
 
 
@@ -20,6 +17,8 @@ namespace AfterSki.Controllers
         public string dbName = "AfterSki";
 
         List<RideStatistic> dimp = new List<RideStatistic>(); // List that holds importdata
+
+
         private SqlConnection dbConnection()
         {
             ///<summary>
@@ -64,7 +63,7 @@ namespace AfterSki.Controllers
                                     "liftname nvarchar(50), " +
                                     "name nvarchar(50), " +
                                     "swipedate nvarchar(50), " +
-                                    "swipetime datetime)";
+                                    "swipetime datetime )";
 
                 comm.Connection = conn;
                 conn.Open();
@@ -133,12 +132,16 @@ namespace AfterSki.Controllers
                         swipedateDB.SqlValue = dimp[i].swipeDate;
                     }
                     comm.Parameters.Add(swipedateDB);
+
                     SqlParameter swipetimeDB = new SqlParameter();
                     swipetimeDB.Direction = ParameterDirection.Input;
                     swipetimeDB.ParameterName = "@swipetime";
                     swipetimeDB.SqlDbType = SqlDbType.DateTime;
                     swipetimeDB.SqlValue = dimp[i].swipeTime;
                     comm.Parameters.Add(swipetimeDB);
+
+
+
 
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
                                         "(destinationID, height, liftname, name, swipedate, swipetime) " +
@@ -153,11 +156,19 @@ namespace AfterSki.Controllers
                     comm.Dispose();
                 }
             }
-            else
-            {
-                UpdateRecordIfExists urf = new UpdateRecordIfExists();
-                urf.UpdateData();
-            }
+            //else
+            //{
+
+            //    var newData = new RideStatistic();
+            //    using (var context = new RideStatisticDBContext())
+            //    {
+            //        context.Entry(newData).State = newData.id == 0 ?
+            //                           EntityState.Added :
+            //                           EntityState.Modified;
+
+            //        context.SaveChanges();
+            //    }
+            //}
         }
     }
 }

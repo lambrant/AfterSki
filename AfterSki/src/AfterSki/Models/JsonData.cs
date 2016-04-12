@@ -67,7 +67,7 @@ namespace AfterSki.Models
             ///<summary>
             ///Testdata for checking update funktion
             /// </summary>
-            ///string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=1&seasonId=9";
+            //string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=1&seasonId=9";
 
 
             ///<summary>

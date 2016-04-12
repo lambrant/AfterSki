@@ -47,7 +47,7 @@ namespace AfterSki.Controllers
                 facility = facility.Where(x => x.name == searchFacility); // dropdown
             }
 
-           
+
             return View(facility);
             //return View(_context.RideStatistic.ToList());
         }
@@ -153,25 +153,5 @@ namespace AfterSki.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpPost]
-        //public IActionResult FlushData()
-        //{
-        //    using (var db = new RideStatisticDBContext())
-        //    {
-        //        List<RideStatistic> newData = new List<RideStatistic>();
-
-        //        newData = JsonData.rideStatList.ToList();
-        //        foreach (var item in newData.ToDictionary(x => x.destination.name + x.liftName + x.height + x.swipeDate + x.swipeTime)) ;
-
-        //        using (var context = new RideStatisticDBContext())
-        //        {
-        //            //context.Entry(newData).State = EntityState.Modified;
-
-        //            context.RemoveRange(newData);
-        //            context.SaveChanges();
-        //        }
-        //    }
-        //    return View();
-        //}
     }
 }

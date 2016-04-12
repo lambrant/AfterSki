@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNet.Mvc;
 using AfterSki.Models;
-using Microsoft.SqlServer.Server;
 using AfterSki.Models.RideModels;
 using System.Linq;
+using System.Collections.Generic;
+
 
 namespace AfterSki.Controllers
 {
@@ -18,6 +19,7 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata()
         {
+
             return View();
         }
 
@@ -31,5 +33,6 @@ namespace AfterSki.Controllers
         {
             return View();
         }
+
     }
 }

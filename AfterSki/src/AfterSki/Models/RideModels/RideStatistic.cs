@@ -10,9 +10,6 @@ namespace AfterSki.Models.RideModels
 {
     public class RideStatistic
     {
-        public RideStatistic() { 
-            this.swipeTime = DateTime.Now;
-        }
         public int id { get; set; }
 
         [Display(Name = "Skidord")]
@@ -33,13 +30,5 @@ namespace AfterSki.Models.RideModels
 
     }
 
-    public class RideStatisticDBContext : DbContext
-    {
-        public DbSet<RideStatistic> RideStatistic { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseSqlServer("Server=127.0.0.1;Database=AfterSki;Trusted_Connection=True;MultipleActiveResultSets=true");
-        }
-    }
 
 }
