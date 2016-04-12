@@ -20,7 +20,7 @@ namespace AfterSki.Controllers
         public IActionResult Skidata()
         {
 
-            var graphArray = WriteData.PopulateRidesPerDayArray("Sön, 27 Mar");
+            var graphArray = WriteData.PopulateRidesPerDayArray("Lör, 26 Mar");
 
             return View(graphArray);
         }
