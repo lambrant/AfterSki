@@ -5,6 +5,7 @@ using AfterSki.Models.RideModels;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc.Rendering;
+using System;
 
 namespace AfterSki.Controllers
 {
@@ -21,15 +22,27 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata(string dropdownDates)
         {
+            ///<summary>
+            ///Instansiates DContext to access the database
+            /// </summary>
             RideStatisticDBContext db = new RideStatisticDBContext();
 
+            ///<summary>
+            ///Gets all the days in the database
+            /// </summary>
             var dateQRY = from d in db.RideStatistic
                        orderby d.swipeDate
                        select d.swipeDate;
 
+            ///<summary>
+            ///Creates a list of all the dates
+            /// </summary>
             var dateList = new List<string>();
             dateList.AddRange(dateQRY.Distinct());
 
+            ///<summary>
+            ///Puts all dates to a dropdown/Selectlist
+            /// </summary>
             var rides = from d in db.RideStatistic
                         select d;
             ViewData["dropdownDates"] = new SelectList(dateList);
@@ -44,9 +57,16 @@ namespace AfterSki.Controllers
             //    rides = rides.Where(r => r.swipeDate == dropdownDates);
             //}
 
-            var graphArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+            var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+            ///<sumamry>
+            ///Calls the javascript that creates the chart 
+            ///from date selected in the dropdown
+            ///and puts the data corresponding to chosen date from dropdown 
+            /// 
+            /// </sumamry>
+            var graphDateArray = WriteData.PopulateRidesPerDateArray(dropdownDates);
 
-            return View(graphArray);
+            return View(graphDayArray);
         }
 
         public IActionResult Contact()

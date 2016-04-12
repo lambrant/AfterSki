@@ -9,23 +9,29 @@
 		//initial value of dataPoints
 	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
 
-		var chart = new CanvasJS.Chart("chartContainer",{
-			title: { text: "Martins Statistik" },
-			axisY: { suffix: ""	},
-			legend :{
-				verticalAlign: 'bottom',
-				horizontalAlign: "center"
+	    var chart = new CanvasJS.Chart("chartContainer",{
+	        animationEnabled: true,
+	        title: { 
+	            text: "Martins Statistik" 
+	        },
+			axisX:{
+			    title: "Datum",
+			    labelFontSize: 20,
+			    labelFontColor: "dimGrey"
 			},
+			axisX: {
+			    labelAngle: -30
+			},
+			dataPointMaxWidth: 15,
 			data: [
 			{
-				type: "line",
-				bevelEnabled: true,
-				indexLabel: "{y}",
-				dataPoints: dps
+			    type: "column",
+			    indexLabel: "{y}",
+			    dataPoints: dps , label: "{x}"   
 			}
 			]
+
 		});
-		var updateInterval = 1000;
 		var updateChart = function () {
 		    chart.render();
 		};
@@ -35,21 +41,20 @@
 
 	}
 </script>
-<script type="text/javascript" src="~/js/canvasjs.min.js"></script>
 <div class="container">
     <div class="page-header">
         <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
     </div>
     <div class="navbar navbar-default">
         <div class="dropdown navbar-form">
-            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
-                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Hämta graf</button>
+            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="post">
+                @*@Html.DropDownList("searchFacility", "All")*@
+                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                <button type="submit" class="btn btn-primary">Hämta data till</button>
             </form>
         </div>
     </div>
     <hr />
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 </div>
 
