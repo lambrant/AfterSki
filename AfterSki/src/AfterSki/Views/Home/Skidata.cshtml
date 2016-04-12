@@ -2,19 +2,6 @@
 @{
     ViewData["Title"] = "Skidata";
 }
-<div class="container">
-    <div class="page-header">
-        <h1><span class="glyphicon glyphicon-barcode"></span> Grafer <small>....so long so far....</small></h1>
-    </div>
-</div>
-
-
-@{
-    ViewData["Title"] = "Contact";
-}
-
-
-
 
 <script type="text/javascript">
 	window.onload = function () {
@@ -23,50 +10,46 @@
 	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
 
 		var chart = new CanvasJS.Chart("chartContainer",{
-			title: {
-				text: "Martins Statistik"
-			},
-			axisY: {
-				suffix: ""
-			},
+			title: { text: "Martins Statistik" },
+			axisY: { suffix: ""	},
 			legend :{
 				verticalAlign: 'bottom',
 				horizontalAlign: "center"
 			},
 			data: [
 			{
-				type: "column",
+				type: "line",
 				bevelEnabled: true,
 				indexLabel: "{y}",
 				dataPoints: dps
-               
 			}
 			]
 		});
-
-
-        
-        
-
 		var updateInterval = 1000;
-
-
 		var updateChart = function () {
-
-			
-
-			chart.render();
+		    chart.render();
 		};
 
 		updateChart();
-
-		
 
 
 	}
 </script>
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
-
-<div id="chartContainer" style="height: 300px; width: 100%;">
+<div class="container">
+    <div class="page-header">
+        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
+    </div>
+    <div class="navbar navbar-default">
+        <div class="dropdown navbar-form">
+            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
+                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                <button type="submit" class="btn btn-primary">Hämta graf</button>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+    </div>
 </div>
 

@@ -18,6 +18,7 @@ namespace AfterSki.Models
             List<RideStatistic> rs = new List<RideStatistic>();
             RideStatisticDBContext rsdb = new RideStatisticDBContext();
             rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+
             var swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).Select(group =>
             new Javaobject{ y = group.Count() })
             .ToArray();
