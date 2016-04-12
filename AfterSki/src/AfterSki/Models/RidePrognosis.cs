@@ -13,18 +13,18 @@ namespace AfterSki.Models
 
     public class RidePrognosis
     {
-        //float heightForSpecificDate;
-        //float heightProg;
-        public float heightProg { get; set; }
+        public float heightProg18 { get; set; }
+        public float heightProg1630 { get; set; }
         public float heightForSpecificDateAndTime { get; set; }
         double hoursBetween;
-        double hoursToEnd;
+        double hoursToEnd18;
+        double hoursToEnd1630;
         RideStatisticDBContext rideStats = new RideStatisticDBContext();
-        List<RideStatistic> rideDataList = new List<RideStatistic>();
         RideStatistic firstTimeOfSwipeOnDate;
-        DateTime endOfDay = new DateTime();
+        DateTime endOfDay18 = new DateTime();
         TimeSpan endDay18 = new TimeSpan(18, 00, 00);
-        //TimeSpan endDay1630 = new TimeSpan(16, 30, 00);
+        DateTime endOfDay1630 = new DateTime();
+        TimeSpan endDay1630 = new TimeSpan(16, 30, 00);
 
         public void HeightPrognos(DateTime? currentDate = null)
         {
@@ -39,7 +39,8 @@ namespace AfterSki.Models
             if (firstTimeOfSwipeOnDate == null)
             {
                 heightForSpecificDateAndTime = 0;
-                heightProg = 0;
+                heightProg18 = 0;
+                heightProg1630 = 0;
                 return;
             }
 
@@ -47,14 +48,24 @@ namespace AfterSki.Models
                                                             ((DateTime)currentDate).Date).Sum(x => x.height);
 
             hoursBetween = (firstTimeOfSwipeOnDate.swipeTime - (DateTime)currentDate).TotalHours;
-            endOfDay = ((DateTime)currentDate).Date + endDay18;
-            hoursToEnd = (endOfDay - (DateTime)currentDate).TotalHours;
 
-            if (hoursBetween < 0 || hoursToEnd < 0)
+            //If the day ends at 18.00----------------------------------------------------------------
+            endOfDay18 = ((DateTime)currentDate).Date + endDay18;
+            hoursToEnd18 = (endOfDay18 - (DateTime)currentDate).TotalHours;
+            if (hoursBetween < 0 || hoursToEnd18 < 0)
             {
-                heightProg = heightForSpecificDateAndTime / (float)hoursBetween *
-                                           (float)hoursToEnd + heightForSpecificDateAndTime;
+                heightProg18 = heightForSpecificDateAndTime / (float)hoursBetween *
+                                           (float)hoursToEnd18 + heightForSpecificDateAndTime;
             }
+            //If the day ends at 16.30-----------------------------------------------------------------
+            endOfDay1630 = ((DateTime)currentDate).Date + endDay1630;
+            hoursToEnd1630 = (endOfDay1630 - (DateTime)currentDate).TotalHours;
+            if (hoursBetween < 0 || hoursToEnd1630 < 0)
+            {
+                heightProg1630 = heightForSpecificDateAndTime / (float)hoursBetween *
+                                            (float)hoursToEnd1630 + heightForSpecificDateAndTime;
+            }
+            
         }
     }
 }
