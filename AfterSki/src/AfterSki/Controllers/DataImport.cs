@@ -1,6 +1,6 @@
 ﻿using AfterSki.Models;
 using AfterSki.Models.RideModels;
-using Microsoft.Data.Entity.Storage;
+using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,22 +13,31 @@ namespace AfterSki.Controllers
 
     public class DataImport
     {
+
         public string dbName = "AfterSki";
-        /// <summary>
-        /// List that holds
-        /// </summary>
-        List<RideStatistic> dimp = new List<RideStatistic>();
+
+        List<RideStatistic> dimp = new List<RideStatistic>(); // List that holds importdata
+
+
         private SqlConnection dbConnection()
         {
+            ///<summary>
+            ///SQL-Connection method
+            /// </summary>
             return new SqlConnection("Data Source=localhost;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
 
         public void ListToDB()
         {
+
             dimp = rideStatList;
             SqlConnection conn = dbConnection();
             SqlCommand comm = new SqlCommand();
+
+            ///<summary>
+            ///Check if database exists, if skip importfunction
+            /// </summary>
             bool dbExists = false;
             using (var connection = dbConnection())
             {
@@ -45,10 +54,6 @@ namespace AfterSki.Controllers
                 comm.Connection = conn;
                 conn.Open();
 
-                ///<summary
-                ///Todo
-                ///Fix a controll if database exists
-                /// </summary>
                 comm.ExecuteNonQuery();
                 conn.Close();
                 comm.CommandText = "CREATE TABLE AfterSki.dbo.RideStatistic " +
@@ -58,7 +63,7 @@ namespace AfterSki.Controllers
                                     "liftname nvarchar(50), " +
                                     "name nvarchar(50), " +
                                     "swipedate nvarchar(50), " +
-                                    "swipetime datetime)";
+                                    "swipetime datetime )";
 
                 comm.Connection = conn;
                 conn.Open();
@@ -127,12 +132,16 @@ namespace AfterSki.Controllers
                         swipedateDB.SqlValue = dimp[i].swipeDate;
                     }
                     comm.Parameters.Add(swipedateDB);
+
                     SqlParameter swipetimeDB = new SqlParameter();
                     swipetimeDB.Direction = ParameterDirection.Input;
                     swipetimeDB.ParameterName = "@swipetime";
                     swipetimeDB.SqlDbType = SqlDbType.DateTime;
                     swipetimeDB.SqlValue = dimp[i].swipeTime;
                     comm.Parameters.Add(swipetimeDB);
+
+
+
 
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
                                         "(destinationID, height, liftname, name, swipedate, swipetime) " +
@@ -147,7 +156,19 @@ namespace AfterSki.Controllers
                     comm.Dispose();
                 }
             }
+            //else
+            //{
 
+            //    var newData = new RideStatistic();
+            //    using (var context = new RideStatisticDBContext())
+            //    {
+            //        context.Entry(newData).State = newData.id == 0 ?
+            //                           EntityState.Added :
+            //                           EntityState.Modified;
+
+            //        context.SaveChanges();
+            //    }
+            //}
         }
     }
 }

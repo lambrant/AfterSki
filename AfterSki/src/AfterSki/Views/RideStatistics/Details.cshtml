@@ -1,12 +1,13 @@
-@model AfterSki.Models.RideModels.RideStatistic
+﻿@model AfterSki.Models.RideModels.RideStatistic
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
+<div class="container">
+    <div class="page-header">
+        <h1><span class="glyphicon glyphicon-dashboard"></span> Detaljer </h1>
+    </div>
     <h4>RideStatistic</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -41,8 +42,9 @@
             @Html.DisplayFor(model => model.swipeTime)
         </dd>
     </dl>
+
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.id">Ändra</a> |
+        <a asp-action="Index">Tillbaka</a>
+    </p>
 </div>
-<p>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</p>
