@@ -45,6 +45,7 @@ namespace AfterSki.Controllers
             //}
 
             var graphArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+            //var fallingArray = FallingData.FallingHeightPerDay();
 
             return View(graphArray);
         }
