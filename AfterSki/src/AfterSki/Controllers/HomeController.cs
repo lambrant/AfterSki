@@ -5,6 +5,7 @@ using AfterSki.Models.RideModels;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc.Rendering;
+using System;
 
 namespace AfterSki.Controllers
 {
@@ -48,7 +49,7 @@ namespace AfterSki.Controllers
 
             return View(graphArray);
         }
-
+        
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

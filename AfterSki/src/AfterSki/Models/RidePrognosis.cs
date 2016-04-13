@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AfterSki.Models.RideModels;
+using System.Threading.Tasks;
 
 namespace AfterSki.Models
 {
@@ -16,7 +17,7 @@ namespace AfterSki.Models
         DateTime endOfDay = new DateTime();
         TimeSpan endTime = new TimeSpan();
 
-        public void HeightPrognos(string radioBtnValue, DateTime? currentDate = null)
+        public async Task HeightPrognos(string radioBtnValue, DateTime? currentDate = null)
         {
             if (currentDate == null)
             {

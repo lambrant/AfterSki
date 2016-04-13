@@ -1,0 +1,39 @@
+﻿@model AfterSki.Models.RidePrognosis
+
+<div>
+    Get a prognosis over how much height to get at the end of the day.
+    <div>
+        Choose which one of the closing times that is correct for today:
+    </div>
+    <div>
+        <div>
+            <form asp-controller="Home" asp-action="Skidata" method="post">
+                <div>
+                    Closing at 16.30:
+                    <input type="radio" checked="checked" value="16:30" name="radioBtnValue" />
+                </div>
+                <div>
+                    Closing at 18.00:
+                    <input type="radio" value="18:00" name="radioBtnValue" />
+                </div>
+                <div>
+                    <button type="submit">Calculate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            Current height:
+                <div>
+                    @Model.heightForSpecificDateAndTime
+                </div>
+                <div>
+                    Prognosed height:
+                <div>
+                    @Model.heightProg
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
