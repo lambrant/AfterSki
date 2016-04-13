@@ -14,6 +14,7 @@ namespace AfterSki.Models
     public class JsonData
 
     {
+
         public static List<RideStatistic> rideStatList = new List<RideStatistic>();
         /// <summary>
         /// list data from jsonurl on rideStatus
@@ -45,7 +46,6 @@ namespace AfterSki.Models
 
         private async Task<T> jsonSerializer<T>(string jsonPath) where T : new()
         {
-
             using (var http = new HttpClient())
             {
                 var json_data = string.Empty;
@@ -62,25 +62,27 @@ namespace AfterSki.Models
 
         public async void getSkiData()
         {
-            ///<summary>
-            ///get json data from url string
-            ///and put out datat to list via jsonSerializer
-            ///</summary>
-            ///            
-            
+
+
             ///<summary>
             ///Testdata for checking update funktion
             /// </summary>
-            ///string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=1&seasonId=9";
+            //string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=1&seasonId=9";
 
 
             ///<summary>
             ///martins data 3206
             ///</summary>
-            string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
-            var jsData = await jsonSerializer<JsonData>(jsonPath);
-            rideStatList = jsData.rideStatistics;
+
+           string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
             
+            
+            ///<summary>
+            ///get json data from url string
+            ///and put out datat to list via jsonSerializer
+            ///</summary>
+            var jsData = await jsonSerializer<JsonData>(jsonPath);
+            rideStatList = jsData.rideStatistics;            
             DataImport di = new DataImport();
             di.ListToDB();
             //jsonToTxtFile();

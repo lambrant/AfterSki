@@ -8,6 +8,7 @@ using System;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Internal;
 using System.Data;
+using AfterSki.Models;
 
 namespace AfterSki.Controllers
 {
@@ -46,7 +47,7 @@ namespace AfterSki.Controllers
                 facility = facility.Where(x => x.name == searchFacility); // dropdown
             }
 
-           
+
             return View(facility);
             //return View(_context.RideStatistic.ToList());
         }
@@ -92,7 +93,7 @@ namespace AfterSki.Controllers
             }
             return View(rideStatistic);
         }
-
+        
         // GET: RideStatistics/Edit/5
         public IActionResult Edit(int? id)
         {
@@ -151,5 +152,6 @@ namespace AfterSki.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
     }
 }
