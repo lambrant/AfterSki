@@ -19,28 +19,30 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata()
         {
-            return View();
+            RidePrognosis rpv = new RidePrognosis();
+
+            return View(rpv);
         }
 
         [HttpPost]
         public IActionResult Skidata(string radioBtnValue)
         {
-            RidePrognosisVM rpvm = new RidePrognosisVM();
+            RidePrognosis rpv = new RidePrognosis();
 
             if (radioBtnValue == "1630")
             {
-                rpvm.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
+                rpv.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
             }
             else if (radioBtnValue == "1800")
             {
-                rpvm.HeightPrognos("1800", new DateTime(2016, 03, 26, 13, 20, 00));
+                rpv.HeightPrognos("1800", new DateTime(2016, 03, 26, 13, 20, 00));
             }
             else
             {
-                rpvm.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
+                rpv.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
             }
 
-            return View();
+            return View(rpv);
         }
 
         public IActionResult Contact()

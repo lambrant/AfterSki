@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AfterSki.ViewModels.RidePrognosisVM>
+﻿@model AfterSki.Models.RidePrognosis
 @{
     ViewData["Title"] = "Skidata";
 }
@@ -16,30 +16,37 @@
         <div>
             (Default is 16.30.)
         </div>
-        <div>            
-            <form asp-controller="Home" asp-action="Skidata" method="post">
-                <div>
-                    Closing at 16.30: 
-                    <input type="radio" value="1630" name="closing" />
-                </div>
-                <div>
-                    Closing at 18.00: 
-                    <input type="radio" value="1800" name="closing" />
-                </div>
-                <div>
-                    <button type="submit">Calculate</button>
-                </div>                
-            </form>
+        <div>
+            <div>
+                <form asp-controller="Home" asp-action="Skidata" method="post">
+                    <div>
+                        Closing at 16.30:
+                        <input type="radio" value="1630" name="closing" />
+                    </div>
+                    <div>
+                        Closing at 18.00:
+                        <input type="radio" value="1800" name="closing" />
+                    </div>
+                    <div>
+                        <button type="submit">Calculate</button>
+                    </div>
+                </form>
+            </div>            
         </div>
         <div>
             <div>
                 Current height:
                 <div>
-                    @* show if closing at 18 was chosen from the dropdown/radiobutton *@
+                    @Model.heightForSpecificDateAndTime
+                </div>
+                <div>
                     Prognosed height:
-                    <div></div>
-                    @* otherwise show this for 1630 *@
-                    <div></div>
+                    <div>
+                        @Model.heightProg1630
+                    </div>                    
+                    <div>
+                        @Model.heightProg18
+                    </div>
                 </div>
             </div>            
         </div>
