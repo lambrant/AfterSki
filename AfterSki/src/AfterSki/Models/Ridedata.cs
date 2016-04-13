@@ -1,4 +1,5 @@
-﻿using AfterSki.Models.RideModels;
+﻿using AfterSki.Models;
+using AfterSki.Models.RideModels;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
