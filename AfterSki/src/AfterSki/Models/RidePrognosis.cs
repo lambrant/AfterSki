@@ -10,14 +10,11 @@ namespace AfterSki.Models
         public float heightProg { get; set; }
         public float heightForSpecificDateAndTime { get; set; }
         double hoursBetween;
-        double hoursToEnd18;
-        double hoursToEnd1630;
+        double hoursToEndOfDay;
         RideStatisticDBContext rideStats = new RideStatisticDBContext();
         RideStatistic firstTimeOfSwipeOnDate;
-        DateTime endOfDay18 = new DateTime();
-        TimeSpan endDay18 = new TimeSpan(18, 00, 00);
-        DateTime endOfDay1630 = new DateTime();
-        TimeSpan endDay1630 = new TimeSpan(16, 30, 00);
+        DateTime endOfDay = new DateTime();
+        TimeSpan endTime = new TimeSpan();
 
         public void HeightPrognos(string radioBtnValue, DateTime? currentDate = null)
         {
@@ -25,6 +22,8 @@ namespace AfterSki.Models
             {
                 currentDate = DateTime.Now;
             }
+
+            ConvertStringToTimeSpan(radioBtnValue);
 
             firstTimeOfSwipeOnDate = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
                         ((DateTime)currentDate).Date).OrderBy(x => x.swipeTime).FirstOrDefault();
@@ -41,36 +40,22 @@ namespace AfterSki.Models
 
             hoursBetween = ((DateTime)currentDate - firstTimeOfSwipeOnDate.swipeTime).TotalHours;
 
-            if (radioBtnValue == "1630")
+            endOfDay = ((DateTime)currentDate).Date + endTime;
+            hoursToEndOfDay = (endOfDay - (DateTime)currentDate).TotalHours;
+            if (hoursBetween < 0 || hoursToEndOfDay < 0)
             {
-                //If the day ends at 16.30-----------------------------------------------------------------
-                endOfDay1630 = ((DateTime)currentDate).Date + endDay1630;
-                hoursToEnd1630 = (endOfDay1630 - (DateTime)currentDate).TotalHours;
-                if (hoursBetween < 0 || hoursToEnd1630 < 0)
-                {
-                    heightProg = 0;
-                }
-                else
-                {
-                    heightProg = heightForSpecificDateAndTime / (float)hoursBetween *
-                                                (float)hoursToEnd1630 + heightForSpecificDateAndTime;
-                }
+                heightProg = 0;
             }
-            else if (radioBtnValue == "1800")
+            else
             {
-                //If the day ends at 18.00----------------------------------------------------------------
-                endOfDay18 = ((DateTime)currentDate).Date + endDay18;
-                hoursToEnd18 = (endOfDay18 - (DateTime)currentDate).TotalHours;
-                if (hoursBetween < 0 || hoursToEnd18 < 0)
-                {
-                    heightProg = 0;
-                }
-                else
-                {
-                    heightProg = heightForSpecificDateAndTime / (float)hoursBetween *
-                                               (float)hoursToEnd18 + heightForSpecificDateAndTime;
-                }
+                heightProg = heightForSpecificDateAndTime / (float)hoursBetween *
+                                                (float)hoursToEndOfDay + heightForSpecificDateAndTime;
             }
+        }
+
+        public void ConvertStringToTimeSpan(string radioBtnConvert)
+        {
+            endTime = TimeSpan.Parse(radioBtnConvert);            
         }
     }
 }
