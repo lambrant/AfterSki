@@ -37,10 +37,6 @@ namespace AfterSki.Controllers
             {
                 rpv.HeightPrognos("1800", new DateTime(2016, 03, 26, 13, 20, 00));
             }
-            else
-            {
-                rpv.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
-            }
 
             return View(rpv);
         }

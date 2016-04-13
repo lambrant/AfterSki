@@ -14,18 +14,15 @@
             Choose which one of the closing times that is correct for today:
         </div>
         <div>
-            (Default is 16.30.)
-        </div>
-        <div>
             <div>
                 <form asp-controller="Home" asp-action="Skidata" method="post">
                     <div>
                         Closing at 16.30:
-                        <input type="radio" value="1630" name="closing" />
+                        <input type="radio" checked="checked" value="1630" name="radioBtnValue" />
                     </div>
                     <div>
                         Closing at 18.00:
-                        <input type="radio" value="1800" name="closing" />
+                        <input type="radio" value="1800" name="radioBtnValue" />
                     </div>
                     <div>
                         <button type="submit">Calculate</button>
@@ -42,10 +39,7 @@
                 <div>
                     Prognosed height:
                     <div>
-                        @Model.heightProg1630
-                    </div>                    
-                    <div>
-                        @Model.heightProg18
+                        @Model.heightProg
                     </div>
                 </div>
             </div>            
