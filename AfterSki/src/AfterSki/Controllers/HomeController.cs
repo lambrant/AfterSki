@@ -4,6 +4,7 @@ using Microsoft.SqlServer.Server;
 using AfterSki.Models.RideModels;
 using System.Linq;
 using System;
+using AfterSki.ViewModels;
 
 namespace AfterSki.Controllers
 {
@@ -18,12 +19,25 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata()
         {
-            RidePrognosis rp = new RidePrognosis();
-            rp.HeightPrognos(new DateTime(2016, 03, 26, 13, 20, 00));
+            return View();
+        }
 
-            if (true)
+        [HttpPost]
+        public IActionResult Skidata(string radioBtnValue)
+        {
+            RidePrognosisVM rpvm = new RidePrognosisVM();
+
+            if (radioBtnValue == "1630")
             {
-
+                rpvm.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
+            }
+            else if (radioBtnValue == "1800")
+            {
+                rpvm.HeightPrognos("1800", new DateTime(2016, 03, 26, 13, 20, 00));
+            }
+            else
+            {
+                rpvm.HeightPrognos("1630", new DateTime(2016, 03, 26, 13, 20, 00));
             }
 
             return View();

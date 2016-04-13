@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AfterSki.Models.RidePrognosis>
+﻿@model IEnumerable<AfterSki.ViewModels.RidePrognosisVM>
 @{
     ViewData["Title"] = "Skidata";
 }
@@ -14,24 +14,34 @@
             Choose which one of the closing times that is correct for today:
         </div>
         <div>
-            @* Add either a dropdownlist or radiobuttons with the alternatives of 
-            1630 or 1800 as closing times. The alternative should go as value for the 
-            display of data. further down *@
+            (Default is 16.30.)
+        </div>
+        <div>            
+            <form asp-controller="Home" asp-action="Skidata" method="post">
+                <div>
+                    Closing at 16.30: 
+                    <input type="radio" value="1630" name="closing" />
+                </div>
+                <div>
+                    Closing at 18.00: 
+                    <input type="radio" value="1800" name="closing" />
+                </div>
+                <div>
+                    <button type="submit">Calculate</button>
+                </div>                
+            </form>
         </div>
         <div>
-            <a asp-action="Skidata" >Calculate</a>
-        </div>
-        <div>
-            @* Doesn't feel right at all with elementAt(0), and it doesn't work. Don't get the value *@
-            Current height:
-            <div>@Html.DisplayNameFor(m => m.ElementAt(0).heightForSpecificDateAndTime);</div>
             <div>
-                @* show if closing at 18 was chosen from the dropdown/radiobutton *@
-                Prognosed height:
-                <div>@Html.DisplayNameFor(m => m.ElementAt(0).heightProg18);</div>
-                @* otherwise show this for 1630 *@
-                <div>@Html.DisplayNameFor(m => m.ElementAt(0).heightProg1630);</div>
-            </div>
+                Current height:
+                <div>
+                    @* show if closing at 18 was chosen from the dropdown/radiobutton *@
+                    Prognosed height:
+                    <div></div>
+                    @* otherwise show this for 1630 *@
+                    <div></div>
+                </div>
+            </div>            
         </div>
      </div>
     @* End of calculations for the height prognosis------------------------------------------ *@
