@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNet.Mvc;
 using AfterSki.Models;
-using Microsoft.SqlServer.Server;
-using AfterSki.Models.RideModels;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc.Rendering;
@@ -11,8 +9,13 @@ namespace AfterSki.Controllers
 {
     public class HomeController : Controller
     {
+        ///<summary>
+        ///Instansiates DContext to access the database
+        /// </summary>
+        RideStatisticDBContext db = new RideStatisticDBContext();
         public IActionResult Index()
         {
+
             JsonData jm = new JsonData();
             jm.getSkiData();
 
@@ -22,11 +25,6 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata(string dropdownDates)
         {
-            ///<summary>
-            ///Instansiates DContext to access the database
-            /// </summary>
-            RideStatisticDBContext db = new RideStatisticDBContext();
-
             ///<summary>
             ///Gets all the days in the database
             /// </summary>
@@ -48,15 +46,8 @@ namespace AfterSki.Controllers
             ViewData["dropdownDates"] = new SelectList(dateList);
             if (!string.IsNullOrEmpty(dropdownDates))
             {
-
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
-
             }
-            //if (!string.IsNullOrEmpty(dropdownDates))
-            //{
-            //    rides = rides.Where(r => r.swipeDate == dropdownDates);
-            //}
-
             var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
             ///<sumamry>
             ///Calls the javascript that creates the chart 
@@ -74,6 +65,33 @@ namespace AfterSki.Controllers
 
             return View();
         }
+
+
+        public IActionResult VerticalSum(string sumDay)
+        {
+            var dateQRY = from w in db.RideStatistic
+                           orderby w.swipeDate
+                           select w.swipeDate;
+
+            /// populates the dropdown
+            var HeightList = new List<string>();
+            HeightList.AddRange(dateQRY.Distinct());
+
+            var height = from c in db.RideStatistic
+                         select c;
+            ViewData["sumDay"] = new SelectList(HeightList);
+            if (!String.IsNullOrEmpty(sumDay))
+            {
+                height = height.Where(s => s.swipeDate.Contains(sumDay)); // search form
+            }
+
+
+            var graphSumVerticalArray = VerticalAccPerDay.VerticalSumPerDay(sumDay);
+
+            return View(graphSumVerticalArray);
+        }
+
+
         public IActionResult Error()
         {
             return View();

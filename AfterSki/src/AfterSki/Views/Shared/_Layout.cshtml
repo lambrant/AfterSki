@@ -4,9 +4,8 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - AfterSki</title>
-
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <environment names="Development">
-
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
             <link href="~/css/owl.carousel.css" rel="stylesheet" />
@@ -63,12 +62,16 @@
             <script src="~/js/jquery.isotope.min.js"></script>
             <script src="~/js/jquery.prettyphoto.js"></script>
             <script src="~/js/canvasjs.min.js"></script>
+            <script src="~/js/site.js"></script>
+
         </environment>
         <environment names="Staging,Production">
             <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
                     asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                     asp-fallback-test="window.jQuery">
             </script>
+
+
             <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
                     asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                     asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">

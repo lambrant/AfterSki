@@ -141,9 +141,6 @@ namespace AfterSki.Controllers
                     swipetimeDB.SqlValue = dimp[i].swipeTime;
                     comm.Parameters.Add(swipetimeDB);
 
-
-
-
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
                                         "(destinationID, height, liftname, name, swipedate, swipetime) " +
                                         "VALUES " +
