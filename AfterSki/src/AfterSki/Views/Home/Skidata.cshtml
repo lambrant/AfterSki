@@ -52,9 +52,15 @@
     <hr />
     <div id="chartContainer" style="height: 300px; width: 100%;">
     </div>
-
-    @await Component.InvokeAsync(nameof(RideProgViewComp), );
-   
+    
+    @if (Context.Request.HasFormContentType)
+    {
+        await Component.InvokeAsync(nameof(RideProg), Context.Request.Form["radioBtnValue"]);
+    }
+    else
+    {
+        await Component.InvokeAsync(nameof(RideProg), "16:30");
+    }
 </div>
 
 
