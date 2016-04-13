@@ -12,13 +12,14 @@
 		var chart = new CanvasJS.Chart("chartContainer",{
 			title: { text: "Martins Statistik" },
 			axisY: { suffix: ""	},
+            axisX: { suffix: ":00"},
 			legend :{
 				verticalAlign: 'bottom',
 				horizontalAlign: "center"
 			},
 			data: [
 			{
-				type: "line",
+				type: "column",
 				bevelEnabled: true,
 				indexLabel: "{y}",
 				dataPoints: dps
@@ -52,4 +53,5 @@
     <div id="chartContainer" style="height: 300px; width: 100%;">
     </div>
 </div>
+
 
