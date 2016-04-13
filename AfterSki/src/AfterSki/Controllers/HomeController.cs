@@ -64,7 +64,6 @@ namespace AfterSki.Controllers
             ///and puts the data corresponding to chosen date from dropdown 
             /// 
             /// </sumamry>
-            var graphDateArray = WriteData.PopulateRidesPerDateArray(dropdownDates);
 
             return View(graphDayArray);
         }

@@ -5,13 +5,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using static AfterSki.Models.JsonData;
 
 
 namespace AfterSki.Controllers
 {
 
-    public class DataImport
+    public class DataImport: RideStatistic
     {
 
         public string dbName = "AfterSki";
@@ -156,19 +157,11 @@ namespace AfterSki.Controllers
                     comm.Dispose();
                 }
             }
-            //else
-            //{
-
-            //    var newData = new RideStatistic();
-            //    using (var context = new RideStatisticDBContext())
-            //    {
-            //        context.Entry(newData).State = newData.id == 0 ?
-            //                           EntityState.Added :
-            //                           EntityState.Modified;
-
-            //        context.SaveChanges();
-            //    }
-            //}
+            else
+            {
+                UpdateRecordIfExists u = new UpdateRecordIfExists();
+                u.UpdateData();
+            }
         }
     }
 }
