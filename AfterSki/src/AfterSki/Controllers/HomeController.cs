@@ -12,7 +12,7 @@ namespace AfterSki.Controllers
         ///<summary>
         ///Instansiates DContext to access the database
         /// </summary>
-        RideStatisticDBContext db = new RideStatisticDBContext();
+
         public IActionResult Index()
         {
 
@@ -25,6 +25,7 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata(string dropdownDates)
         {
+            RideStatisticDBContext db = new RideStatisticDBContext();
             ///<summary>
             ///Gets all the days in the database
             /// </summary>
@@ -67,8 +68,9 @@ namespace AfterSki.Controllers
         }
 
 
-        public IActionResult VerticalSum(string sumDay)
+        public ActionResult VerticalSum(string sumDay)
         {
+            RideStatisticDBContext db = new RideStatisticDBContext();
             var dateQRY = from w in db.RideStatistic
                            orderby w.swipeDate
                            select w.swipeDate;
@@ -84,7 +86,6 @@ namespace AfterSki.Controllers
             {
                 height = height.Where(s => s.swipeDate.Contains(sumDay)); // search form
             }
-
 
             var graphSumVerticalArray = VerticalAccPerDay.VerticalSumPerDay(sumDay);
 
