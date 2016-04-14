@@ -20,12 +20,12 @@ namespace AfterSki.Models
             rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
             var swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).Select(group =>
-            new Javaobject{ y = group.Count() })
+            new Javaobject { y = group.Count() })
             .ToArray();
-        
 
+            //var swipeDA = rs.Select(u => u.swipeTime).GroupBy(u => u.TimeOfDay)
+            
             return swipeDateArray;
-
         }
     }
 }

@@ -4,6 +4,7 @@
 }
 
 <script type="text/javascript">
+    
 	window.onload = function () {
 
 		//initial value of dataPoints
@@ -11,9 +12,9 @@
 
 		var chart = new CanvasJS.Chart("chartContainer",{
 			title: { text: "Martins Statistik" },
-			axisY: { suffix: ""	},
+			axisY: { suffix: " fall"	},
 			legend :{
-				verticalAlign: 'bottom',
+				verticalAlign: 'test',
 				horizontalAlign: "center"
 			},
 			data: [
@@ -51,5 +52,13 @@
     <hr />
     <div id="chartContainer" style="height: 300px; width: 100%;">
     </div>
+</div>
+<div>@*
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(modelItem => item.y);
+        @Html.DisplayFor(modelItem => item.);
+
+    }*@
 </div>
 

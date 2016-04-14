@@ -59,5 +59,9 @@ namespace AfterSki.Controllers
         {
             return View();
         }
+        public IActionResult VerticalDrop()
+        {
+            return View();
+        }
     }
 }
