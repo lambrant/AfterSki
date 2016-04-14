@@ -1,10 +1,18 @@
 ﻿using AfterSki.Models.RideModels;
 using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Infrastructure;
 
 namespace AfterSki.Models
 {
     public class RideStatisticDBContext : DbContext
     {
+        public RideStatisticDBContext()
+        {
+
+        }
+        public RideStatisticDBContext(DbContextOptions options)  
+            : base(options) { }
+
         public DbSet<RideStatistic> RideStatistic { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

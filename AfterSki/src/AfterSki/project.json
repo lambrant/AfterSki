@@ -8,6 +8,7 @@
   "dependencies": {
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.InMemory": "7.0.0-rc1-final",
     "Microsoft.ApplicationInsights.AspNet": "1.0.0-rc1",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
@@ -28,12 +29,15 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
     "System.Collections.Immutable": "1.1.37",
     "System.Linq": "4.0.1-beta-23516",
-    "System.Runtime": "4.0.21-beta-23516"
+    "System.Runtime": "4.0.21-beta-23516",
+    "xunit.runner.dnx": "2.1.0-rc1-build204",
+    "xunit": "2.2.0-beta1-build3239"
   },
 
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
+    "ef": "EntityFramework.Commands",
+    "test": "xunit.runner.dnx"
   },
 
   "frameworks": {

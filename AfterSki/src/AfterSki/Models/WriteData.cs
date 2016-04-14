@@ -11,6 +11,7 @@ namespace AfterSki.Models
         public class Javaobject
         {
             public int y { get; set; }
+            public string label { get; set; }
         }
 
         public static IEnumerable<Javaobject> PopulateRidesPerDayArray(string rideDate)
@@ -19,13 +20,13 @@ namespace AfterSki.Models
             RideStatisticDBContext rsdb = new RideStatisticDBContext();
             rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
-            var swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).Select(group =>
-            new Javaobject { y = group.Count() })
+            var swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy( x => x.Key).Select(group =>
+            new Javaobject{ y = group.Count(),label = group.Key.ToString() })
             .ToArray();
-
-            //var swipeDA = rs.Select(u => u.swipeTime).GroupBy(u => u.TimeOfDay)
-            
+        
+        
             return swipeDateArray;
+
         }
     }
 }

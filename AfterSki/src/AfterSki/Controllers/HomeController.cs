@@ -10,6 +10,13 @@ namespace AfterSki.Controllers
 {
     public class HomeController : Controller
     {
+        private RideStatisticDBContext _context;
+
+        public HomeController(RideStatisticDBContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             JsonData jm = new JsonData();
@@ -21,16 +28,16 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata(string dropdownDates)
         {
-            RideStatisticDBContext db = new RideStatisticDBContext();
+           // RideStatisticDBContext db = new RideStatisticDBContext();
 
-            var dateQRY = from d in db.RideStatistic
+            var dateQRY = from d in _context.RideStatistic
                        orderby d.swipeDate
                        select d.swipeDate;
 
             var dateList = new List<string>();
             dateList.AddRange(dateQRY.Distinct());
 
-            var rides = from d in db.RideStatistic
+            var rides = from d in _context.RideStatistic
                         select d;
             ViewData["dropdownDates"] = new SelectList(dateList);
             if (!string.IsNullOrEmpty(dropdownDates))
@@ -45,6 +52,7 @@ namespace AfterSki.Controllers
             //}
 
             var graphArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+            //var fallingArray = FallingData.FallingHeightPerDay();
 
             return View(graphArray);
         }
