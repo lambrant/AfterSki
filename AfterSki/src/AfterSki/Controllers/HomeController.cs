@@ -64,7 +64,7 @@ namespace AfterSki.Controllers
 
             return View(graphDayArray);
         }
-
+        
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
