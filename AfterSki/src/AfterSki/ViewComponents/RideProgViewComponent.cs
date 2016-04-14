@@ -13,7 +13,6 @@ namespace AfterSki.ViewComponents
 
             if (radioBtnValue != "")
                 await rpv.HeightPrognos(radioBtnValue, new DateTime(2016, 03, 26, 13, 20, 00));
-            //string radioBtnValue = HttpContext.Request.Form["radioBtnValue"];
             
             return View(rpv);
         }
