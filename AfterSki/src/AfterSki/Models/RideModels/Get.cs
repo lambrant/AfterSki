@@ -7,8 +7,8 @@ namespace AfterSki.Models.RideModels
 {
     public class GetData
     {
-        RideStatisticDBContext MyStats = new RideStatisticDBContext();
-        List<RideStatistic> MyList = new List<RideStatistic>();
+        //RideStatisticDBContext MyStats = new RideStatisticDBContext();
+        //List<RideStatistic> MyList = new List<RideStatistic>();
 
 
 
