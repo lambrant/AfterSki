@@ -44,33 +44,7 @@
 
 <!-- START SCRIPT FOR LINECHART VERTICAL DROPSUM -->
 
-<script type="text/javascript">
-    google.charts.load('current', {'packages':['line']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-            var jsonData = $.ajax({
-                url: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string),
-                dataType: "json",
-                async: false
-            }).responseText;
-
-        var data = new google.visualization.arrayToDataTable(jsonData); 
-        var options = {
-            chart: {
-                title: 'Accumulerad fallhöjd',
-                subtitle: 'Per timma och dag'
-            },
-            width: 100,
-            height: 500
-        };
-
-        var chart = new google.charts.Line(document.getElementById('linechart_material'));
-        chart.draw(data, options);
-    }
-</script>
-<!-- END SCRIPT FOR LINECHART VERTICAL DROPSUM -->
-    <!-- START chart for total rides per hour-->
+<!-- START chart for total rides per hour-->
 <section id="column">
     <div class="container">
         <div class="page-header">
@@ -98,25 +72,6 @@
 </section>
 <!-- END chart for total rides per hour-->
 <!--######################################-->
-<!-- START chart for  vertical per hour-->
-<section id="vertical">
-    <div class="container">
-        <div class="page-header">
-            <h2>....Just a nother graph....</h2>
-        </div>
-        <div class="navbar navbar-default">
-            <div class="dropdown navbar-form">
-                <form class="navbar-form navbar-right" asp-controller="Home" asp-action="VerticalSum" method="post">
-                    @Html.DropDownList("sumDay", (SelectList)ViewBag.sumDay, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                    <button type="submit" class="btn btn-primary">Visa graf</button>
-                </form>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div id="linechart_material" style="width: 100%; height: 500px"></div>
-        </div>
-    </div>
-</section>
+
 
 

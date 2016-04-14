@@ -11,7 +11,13 @@ namespace AfterSki.Models
 {
     public class UpdateRecordIfExists
     {
+        private RideStatisticDBContext _context;
 
+        public UpdateRecordIfExists(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
         ///<summary>
         ///Checks if new datat is different than database
         ///Functional.
@@ -19,7 +25,7 @@ namespace AfterSki.Models
         /// </summary>
         public void UpdateData()
         {
-            using (var context = new RideStatisticDBContext())
+            using (_context = new RideStatisticDBContext())
             {
                 for (int i = 0; i < rideStatList.Count; i++)
                 {
@@ -36,17 +42,15 @@ namespace AfterSki.Models
                     ///Check the date in swipeTime in database 
                     ///and compare it to the jsonstring swipeTimedata
                     ///If not exists add to database
+                    ///Can be more effective by getting the newest post in database and compare it with
+                    ///the new swipeTime in jsonString from url
                     /// </summary>
-                    if (!context.RideStatistic.Where(x => x.swipeTime == newData.swipeTime).Any())
+                    if (!_context.RideStatistic.Where(x => x.swipeTime == newData.swipeTime).Any())
                     {
-                        context.Attach(newData);
-                    }
-                    else
-                    {
-                        return;
+                        _context.Attach(newData);
                     }
                 }
-                context.SaveChanges();
+                _context.SaveChanges();
             }
         }
     }

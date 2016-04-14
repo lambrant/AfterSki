@@ -46,8 +46,6 @@ namespace AfterSki.Controllers
             {
                 facility = facility.Where(x => x.name == searchFacility); // dropdown
             }
-
-
             return View(facility);
             //return View(_context.RideStatistic.ToList());
         }

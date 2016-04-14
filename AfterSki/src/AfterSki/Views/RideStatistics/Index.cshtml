@@ -46,7 +46,6 @@
                 <li>
             </ul>
             <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
-                @*@Html.DropDownList("searchFacility", "All")*@
                 @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
                 <button type="submit" class="btn btn-primary">Sök</button>
             </form>

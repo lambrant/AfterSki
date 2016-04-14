@@ -48,8 +48,12 @@ namespace AfterSki
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+                //.AddDbContext<ApplicationDbContext>(options =>
+                //    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+
+            ///<summary>
+            ///RideStatisticDBContext crates a connection to database
+            /// </summary>
             .AddDbContext<RideStatisticDBContext>(options =>
              {
                  options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);

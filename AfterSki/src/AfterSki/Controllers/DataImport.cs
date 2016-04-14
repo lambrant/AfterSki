@@ -14,6 +14,13 @@ namespace AfterSki.Controllers
 
     public class DataImport: RideStatistic
     {
+        private RideStatisticDBContext _context;
+
+        public DataImport(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
 
         public string dbName = "AfterSki";
 
@@ -31,8 +38,7 @@ namespace AfterSki.Controllers
 
         public void ListToDB()
         {
-
-            dimp = rideStatList;
+            dimp = rideStatList.ToList();
             SqlConnection conn = dbConnection();
             SqlCommand comm = new SqlCommand();
 
@@ -156,7 +162,7 @@ namespace AfterSki.Controllers
             }
             else
             {
-                UpdateRecordIfExists u = new UpdateRecordIfExists();
+                UpdateRecordIfExists u = new UpdateRecordIfExists(_context);
                 u.UpdateData();
             }
         }
