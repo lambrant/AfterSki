@@ -63,6 +63,9 @@ h1 {
   margin: .67em 0;
   font-size: 2em;
 }
+.huge {
+    font-size: 2em;
+}
 mark {
   color: #000;
   background: #ff0;
@@ -1082,7 +1085,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Corbel, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
@@ -4972,7 +4975,36 @@ a.label:focus {
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
-  background-color: #777;
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+
+.badge-success {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #337ab7;
+  border-radius: 10px;
+}
+.badge-prog {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #ff6a00;
   border-radius: 10px;
 }
 .badge:empty {
@@ -6439,7 +6471,7 @@ button.close {
 }
 .carousel-indicators {
   position: absolute;
-  bottom: 10px;
+  bottom: 1px;
   left: 50%;
   z-index: 15;
   width: 60%;
@@ -6474,7 +6506,7 @@ button.close {
   z-index: 10;
   padding-top: 20px;
   padding-bottom: 20px;
-  color: #fff;
+  color: #337ab7;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }

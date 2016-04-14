@@ -47,7 +47,7 @@
             </ul>
             <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
                 @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Sök</button>
+                <button type="submit" class="btn btn-primary glyphicon glyphicon-check text-capitalize">Sök</button>
             </form>
         </div>
     </div>
@@ -96,7 +96,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.swipeTime)
                     </td>
-
                     <td class="tablewidth-250">
                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.id">Details</a> |
@@ -104,7 +103,7 @@
                     </td>
                 </tr>
             }
-        </table>
+        </table> 
     </div>
 </div>
 

@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@ViewData["Title"] - AfterSki</title>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <environment names="Development">
             <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
             <link rel="stylesheet" href="~/css/site.css" />
@@ -12,12 +11,15 @@
             <link href="~/css/owl.transitions.css" rel="stylesheet" />
             <link href="~/css/main.css" rel="stylesheet" />
             <link href="~/css/animate.min.css" rel="stylesheet" />
+            <link href="~/css/site.css" rel="stylesheet" />
+            <link href="~/css/font-awesome.css" rel="stylesheet" />
         </environment>
         <environment names="Staging,Production">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
                   asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
                   asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
             <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
         </environment>
         @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
     </head>
@@ -62,7 +64,7 @@
             <script src="~/js/jquery.isotope.min.js"></script>
             <script src="~/js/jquery.prettyphoto.js"></script>
             <script src="~/js/canvasjs.min.js"></script>
-            <script src="~/js/site.js"></script>
+            <script src="~/js/carousel.js"></script>
 
         </environment>
         <environment names="Staging,Production">

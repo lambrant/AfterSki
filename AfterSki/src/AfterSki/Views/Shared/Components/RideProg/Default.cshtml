@@ -1,90 +1,140 @@
 ﻿@model AfterSki.Models.RidePrognosis
-@*<div>
-    <div>
-        <div>
-            Current height:
-                <div>
-                    @Model.heightForSpecificDateAndTime
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div id="myCarousel" class="owl-controls" data-ride="carousel" data-interval="6000">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <span class="badge-success">Total meters</span><div class="huge">@Model.heightForSpecificDateAndTime m</div>
+                                <span class="badge-prog">Prog. meters</span><div class="huge">@Model.heightProg1530 m</div>
+                                <div><span class="badge">End of day at 15:30</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <div>
-                    Prognosed height:
-                <div>
-                    @Model.heightProg1530
+                <div class="item">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <span class="badge-success">Total meters</span><div class="huge">@Model.heightForSpecificDateAndTime m</div>
+                                <span class="badge-prog">Prog. meters</span><div class="huge">@Model.heightProg1630 m</div>
+                                <div><span class="badge">End of day at 16:30</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
-                <div>
-                    @Model.heightProg1630
-                </div>
-                <div>
-                    @Model.heightProg1800
+                <div class="item">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <span class="badge-success">Total meters</span><div class="huge">@Model.heightForSpecificDateAndTime m</div>
+                                <span class="badge-prog">Prog. meters</span><div class="huge">@Model.heightProg1800 m</div>
+                                <div><span class="badge">End of day at 18:00</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</div>*@
-<section id="main-slider">
-    <div class="owl-carousel">
-        <div @*class="item"*@>
-            <div>
-                <div>
+</div>
+
+        @*<section id="main-slider">
+                <div class="panel panel-default">
                     <div>
                         <div>
                             <div>
-                                <div class="RideProgText">
-                                    End of day at 15:30.
+                                <div>
                                     <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
                                         <div>
-                                            Prognosed height: @Model.heightProg1530 meters
+                                            <div class="RideProgText">
+                                                End of day at 15:30.
+                                                <div>
+                                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                                    <div>
+                                                        Prognosed height: @Model.heightProg1530 meters
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                                                                
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.item-->
-        <div @*class="item"*@>
-            <div>
-                <div>
-                    <div>
+                    </div><!--/.item-->
+                    <div @*class="item" >
                         <div>
                             <div>
-                                <div class="RideProgText">
-                                    End of day at 16:30.
+                                <div>
                                     <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
                                         <div>
-                                            Prognosed height: @Model.heightProg1630 meters
+                                            <div class="RideProgText">
+                                                End of day at 16:30.
+                                                <div>
+                                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                                    <div>
+                                                        Prognosed height: @Model.heightProg1630 meters
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                                 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.item-->
-        <div @*class="item"*@>
-            <div>
-                <div>
-                    <div>
+                    </div><!--/.item-->
+                    <div @*class="item" >
                         <div>
                             <div>
-                                <div class="RideProgText">
-                                    End of day at 18:00.
+                                <div>
                                     <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
                                         <div>
-                                            Prognosed height: @Model.heightProg1800 meters
+                                            <div class="RideProgText">
+                                                End of day at 18:00.
+                                                <div>
+                                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                                    <div>
+                                                        Prognosed height: @Model.heightProg1800 meters
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div> 
-                                </div>                                
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.item-->
-    </div><!--/.owl-carousel-->
-</section>
+                    </div><!--/.item-->
+                </div><!--/.owl-carousel-->
+            </section>*@
