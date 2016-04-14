@@ -1,27 +1,5 @@
 ﻿@model AfterSki.Models.RidePrognosis
-
-<div>
-    Get a prognosis over how much height to get at the end of the day.
-    <div>
-        Choose which one of the closing times that is correct for today:
-    </div>
-    <div>
-        <div>
-            <form asp-controller="Home" asp-action="Skidata" method="post">
-                <div>
-                    Closing at 16.30:
-                    <input type="radio" checked="checked" value="16:30" name="radioBtnValue" />
-                </div>
-                <div>
-                    Closing at 18.00:
-                    <input type="radio" value="18:00" name="radioBtnValue" />
-                </div>
-                <div>
-                    <button type="submit">Calculate</button>
-                </div>
-            </form>
-        </div>
-    </div>
+@*<div>
     <div>
         <div>
             Current height:
@@ -31,9 +9,76 @@
                 <div>
                     Prognosed height:
                 <div>
-                    @Model.heightProg
+                    @Model.heightProg1530
+                </div>
+                <div>
+                    @Model.heightProg1630
+                </div>
+                <div>
+                    @Model.heightProg1800
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div>*@
+<section id="main-slider">
+    <div class="owl-carousel">
+        <div class="item">
+            <div class="slider-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content text-right">
+                                End of day at 15:30.
+                                <div>
+                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                    <div>
+                                        Prognosed height: @Model.heightProg1530 meters
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.item-->
+        <div class="item">
+            <div class="slider-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content text-right">
+                                End of day at 16:30.
+                                <div>
+                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                    <div>
+                                        Prognosed height: @Model.heightProg1630 meters
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.item-->
+        <div class="item">
+            <div class="slider-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content text-right">
+                                End of day at 18:00.
+                                <div>
+                                    Current height: @Model.heightForSpecificDateAndTime meters
+                                    <div>
+                                        Prognosed height: @Model.heightProg1800 meters
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.item-->
+    </div><!--/.owl-carousel-->
+</section>

@@ -53,7 +53,8 @@
     <div id="chartContainer" style="height: 300px; width: 100%;">
     </div>
     
-    @await Component.InvokeAsync(nameof(RideProg), Context.Request.HasFormContentType ? Context.Request.Form["radioBtnValue"].DefaultIfEmpty("16:30").First() : "")
+    @await Component.InvokeAsync(nameof(RideProg), "16:30")
+    @*@await Component.InvokeAsync(nameof(RideProg), Context.Request.HasFormContentType ? Context.Request.Form["radioBtnValue"].DefaultIfEmpty("16:30").First() : "")*@
 
 </div>
 

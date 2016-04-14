@@ -11,20 +11,9 @@ namespace AfterSki.ViewComponents
         {
             RidePrognosis rpv = new RidePrognosis();
 
-            if (radioBtnValue != "")
-                await rpv.HeightPrognos(radioBtnValue, new DateTime(2016, 03, 26, 13, 20, 00));
+            await rpv.HeightPrognos(radioBtnValue, new DateTime(2016, 03, 26, 13, 20, 00));
             
             return View(rpv);
         }
-
-
-        //[HttpPost]
-        //public IActionResult Skidata(string radioBtnValue)
-        //{
-        //    RidePrognosis rpv = new RidePrognosis();
-        //    rpv.HeightPrognos(radioBtnValue, new DateTime(2016, 03, 26, 13, 20, 00));
-        //
-        //    return View(rpv);
-        //}
     }
 }
