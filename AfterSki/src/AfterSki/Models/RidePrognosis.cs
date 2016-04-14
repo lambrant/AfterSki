@@ -8,13 +8,20 @@ namespace AfterSki.Models
 {
     public class RidePrognosis
     {
+        private RideStatisticDBContext _context;
+
+        public RidePrognosis(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
         public float heightProg1530 { get; set; }
         public float heightProg1630 { get; set; }
         public float heightProg1800 { get; set; }
         public float heightForSpecificDateAndTime { get; set; }
         double hoursBetween;
         double hoursToEndOfDay;
-        RideStatisticDBContext rideStats = new RideStatisticDBContext();
+        //RideStatisticDBContext rideStats = new RideStatisticDBContext();
         RideStatistic firstTimeOfSwipeOnDate;
         DateTime endOfDay1530 = new DateTime();
         TimeSpan endTime1530 = new TimeSpan(15, 30, 00);
@@ -30,7 +37,7 @@ namespace AfterSki.Models
                 currentDate = DateTime.Now;
             }
             
-            firstTimeOfSwipeOnDate = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
+            firstTimeOfSwipeOnDate = _context.RideStatistic.Where(x => x.swipeTime.Date ==
                         ((DateTime)currentDate).Date).OrderBy(x => x.swipeTime).FirstOrDefault();
 
             if (firstTimeOfSwipeOnDate == null)
@@ -42,7 +49,7 @@ namespace AfterSki.Models
                 return;
             }
 
-            heightForSpecificDateAndTime = rideStats.RideStatistic.Where(x => x.swipeTime.Date ==
+            heightForSpecificDateAndTime = _context.RideStatistic.Where(x => x.swipeTime.Date ==
                                                             ((DateTime)currentDate).Date).Sum(x => x.height);
 
             hoursBetween = ((DateTime)currentDate - firstTimeOfSwipeOnDate.swipeTime).TotalHours;

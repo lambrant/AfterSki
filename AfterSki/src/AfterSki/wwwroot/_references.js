@@ -1,6 +1,5 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../gulpfile.js" />
-/// <reference path="../newfolder/JavaScript.js" />
 /// <reference path="js/canvasjs.min.js" />
 /// <reference path="js/javascript.js" />
 /// <reference path="js/jquery.isotope.min.js" />

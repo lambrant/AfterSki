@@ -5,11 +5,11 @@
 
 <script type="text/javascript">
 	window.onload = function () {
-
 		//initial value of dataPoints
 	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
 
-		var chart = new CanvasJS.Chart("chartContainer",{
+	    var chart = new CanvasJS.Chart("chartContainer",{
+	        animationEnabled: true,
 			title: { text: "Martins Statistik" },
 			axisY: { suffix: ""	},
             axisX: { suffix: ":00"},
@@ -19,8 +19,9 @@
 			},
 			data: [
 			{
+
 				type: "column",
-				bevelEnabled: true,
+				bevelEnabled: false,
 				indexLabel: "{y}",
 				dataPoints: dps
 			}
@@ -32,8 +33,6 @@
 		};
 
 		updateChart();
-
-
 	}
 </script>
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
