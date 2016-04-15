@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <div class="container">
     <div class="page-header">
         <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
@@ -45,18 +46,17 @@
                 <li>
             </ul>
             <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
-                @*@Html.DropDownList("searchFacility", "All")*@
                 @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
                 <button type="submit" class="btn btn-primary">Sök</button>
             </form>
         </div>
-    </div> 
+    </div>
     <div class="container-fluid">
         <table class="table">
             <tr class="modal-header">
-                <th>
-                    @Html.DisplayNameFor(model => model.id)
-                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.id)
+                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.name)
                 </th>
@@ -78,9 +78,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.name)
                     </td>
@@ -96,8 +96,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.swipeTime)
                     </td>
-                    
-                   
+
                     <td class="tablewidth-250">
                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.id">Details</a> |
