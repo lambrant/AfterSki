@@ -10,7 +10,7 @@
 
 	    var chart = new CanvasJS.Chart("chartContainer",{
 	        animationEnabled: true,
-			title: { text: "Martins Statistik" },
+			title: { text: "Antal åk/timma" },
 			axisY: { suffix: ""	},
             axisX: { suffix: ":00"},
 			legend :{
@@ -19,7 +19,6 @@
 			},
 			data: [
 			{
-
 				type: "column",
 				bevelEnabled: false,
 				indexLabel: "{y}",
@@ -31,7 +30,6 @@
 		var updateChart = function () {
 		    chart.render();
 		};
-
 		updateChart();
 	}
 </script>
@@ -55,52 +53,68 @@
             </form>
         </div>
     </div>
-
+</div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-body">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Panel title</h4>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-comments fa-5x"></i>
                     </div>
-                    <div class="panel-body">
-                        <div class="features-item center-block">
-                            @await Component.InvokeAsync(nameof(RideProg), "16:30")
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="panel panel-body">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Panel title</h4>
-                    </div>
-                    <div class="panel-body">
-                        <div class="features-item center-block">
-                            @await Component.InvokeAsync(nameof(RideProg), "16:30")
-                        </div>
+                    <div class="col-xs-9 owl-item text-right">
+                        <span class="badge-success">Total meters</span><div class="huge"></div>
+                        <span class="badge-prog">Prog. meters</span><div class="huge"></div>
+                        <div><span class="badge">End of day at 15:30</span></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="panel panel-body">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Panel title</h4>
-                    </div>
-                    <div class="panel-body">
-                        <div class="features-item center-block">
-                            @await Component.InvokeAsync(nameof(RideProg), "16:30")
-                        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-body">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Panel title</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="features-item center-block">
+                        @await Component.InvokeAsync(nameof(RideProg), "12:00")
                     </div>
                 </div>
             </div>
         </div>
-
-        <hr />
-        <div id="chartContainer" style="height: 300px; width: 100%;">
+        <div class="col-lg-4">
+            <div class="panel panel-body">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Panel title</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="features-item center-block">
+                        @await Component.InvokeAsync(nameof(RideProg), "14:30")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-body">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Panel title</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="features-item center-block">
+                        @await Component.InvokeAsync(nameof(RideProg), "16:30")
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>   
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div id="chartContainer" style="height: 300px; width: 100%;">
+            </div>
+        </div>
+    </div>
+</section>
     
 
 

@@ -10,10 +10,6 @@
     </div>
     <div class="navbar navbar-default">
         <div class="dropdown navbar-form">
-            <button class="btn btn-default dropdown-toggle" type="button" aria-valuetext="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Välj:
-                <span class="caret"></span>
-            </button>
             <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
                 <li role="separator" class="divider"></li>
                 <li>
@@ -42,8 +38,10 @@
                 <li role="separator" class="divider"></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Skapa ny</li>
-                <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
-                <li>
+                <li><a asp-action="Create">
+                    <span class="glyphicon glyphicon-edit">
+                    </span> Lägg Till </a>
+                </li>
             </ul>
             <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
                 @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
