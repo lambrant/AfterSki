@@ -13,7 +13,7 @@
         var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
 
         var chart = new CanvasJS.Chart("chartContainer",{
-            title: { text: "Martins Åk/Timme Statistik" },
+            title: { text: "Martins Åk/Timmen Statistik" },
             axisY: { suffix: ""	},
             axisX: { suffix: ":00"},
             legend :{
@@ -50,11 +50,11 @@
     {
         theme: "theme3",
         title:{
-            text: "Martins Fallhöjd/Timme Statistik"
+            text: "Martins Fallhöjd/Timmen Statistik"
         },
         animationEnabled: true,
         axisX: {
-            valueFormatString: "MMM",
+            valueFormatString: "DDD",
             interval:1,
             intervalType: "month"
         

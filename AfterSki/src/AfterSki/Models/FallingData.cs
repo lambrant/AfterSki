@@ -17,8 +17,8 @@ namespace AfterSki.Models
         public static IEnumerable<FallData> FallingHeightPerDay(string rideDate)
         {
             List<RideStatistic> fd = new List<RideStatistic>();
-            RideStatisticDBContext rsdb = new RideStatisticDBContext();
-            fd = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+            RideStatisticDBContext fddb = new RideStatisticDBContext();
+            fd = fddb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
             var swipeDateArray = fd.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
             new FallData { y = group.Count(), label = group.Key.ToString() })
