@@ -1,90 +1,39 @@
 ﻿@model AfterSki.Models.RidePrognosis
-@*<div>
-    <div>
-        <div>
-            Current height:
-                <div>
-                    @Model.heightForSpecificDateAndTime
-                </div>
-                <div>
-                    Prognosed height:
-                <div>
-                    @Model.heightProg1530
-                </div>
-                <div>
-                    @Model.heightProg1630
-                </div>
-                <div>
-                    @Model.heightProg1800
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
+
 <section id="main-slider">
     <div class="owl-carousel">
-        <div @*class="item"*@>
-            <div>
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <u><strong>End of day at 15:30.</strong></u>
                 <div>
+                    Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.
                     <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 15:30.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1530 meters
-                                        </div>
-                                    </div>
-                                </div>                                                                
-                            </div>
-                        </div>
+                        If you keep it up your height will be <u><em>@Model.heightProg1530</em></u> meters at the end of the day!
                     </div>
                 </div>
-            </div>
-        </div><!--/.item-->
-        <div @*class="item"*@>
-            <div>
+            </div>            
+        </div> 
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <u><strong>End of day at 16:30.</strong></u>
                 <div>
+                    Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.
                     <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 16:30.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1630 meters
-                                        </div>
-                                    </div>
-                                </div>                                 
-                            </div>
-                        </div>
+                        If you keep it up your height will be <u><em>@Model.heightProg1630</em></u> meters at the end of the day!
                     </div>
                 </div>
-            </div>
-        </div><!--/.item-->
-        <div @*class="item"*@>
-            <div>
+            </div>            
+        </div>
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <h2><u><strong>End of day at 18:00.</strong></u></h2>
                 <div>
+                    <p>Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.</p>
                     <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 18:00.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1800 meters
-                                        </div>
-                                    </div> 
-                                </div>                                
-                            </div>
-                        </div>
+                        <p>If you keep it up your height will be <u><em>@Model.heightProg1800</em></u> meters at the end of the day!</p>
                     </div>
                 </div>
-            </div>
-        </div><!--/.item-->
+            </div>            
+        </div>
     </div><!--/.owl-carousel-->
 </section>
