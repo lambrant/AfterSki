@@ -14,7 +14,7 @@ namespace AfterSki.Models
     public class JsonData
     {
         public static List<RideStatistic> rideStatList = new List<RideStatistic>();
-
+        public static List<ActiveSeason> activeSeasonList = new List<ActiveSeason>();
         /// <summary>
         /// list data from jsonurl on rideStatus
         /// </summary>
@@ -77,7 +77,8 @@ namespace AfterSki.Models
             ///and put out datat to list via jsonSerializer
             ///</summary>
             var jsData = await jsonSerializer<JsonData>(jsonPath);
-            rideStatList = jsData.rideStatistics;            
+            rideStatList = jsData.rideStatistics;
+            activeSeasonList = jsData.activeSeasons;    
         }
     }
 }

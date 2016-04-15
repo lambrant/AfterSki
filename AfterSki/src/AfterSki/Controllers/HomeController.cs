@@ -35,8 +35,8 @@ namespace AfterSki.Controllers
             ///Gets all the days in the database
             /// </summary>
             var dateQRY = from d in _context.RideStatistic
-                       orderby d.swipeDate
-                       select d.swipeDate;
+                          orderby d.swipeDate
+                          select d.swipeDate;
 
             ///<summary>
             ///Creates a list of all the dates

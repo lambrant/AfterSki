@@ -12,7 +12,7 @@ using static AfterSki.Models.JsonData;
 namespace AfterSki.Controllers
 {
 
-    public class DataImport : RideStatistic
+    public class DataImport
     {
         private RideStatisticDBContext _context;
 

@@ -26,22 +26,29 @@
     <body>
         <nav class="navbar navbar-default navbar-fixed-top ">
             <div class="container">
-                <div class="navbar-btn">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">AfterSki</a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbar-collaps">
-                    <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="Skidata">Åkdata</a></li>
-                        <li><a asp-controller="RideStatistics" asp-action="Index">Stats</a></li>
-                    </ul>
-                    @*@await Html.PartialAsync("_LoginPartial")*@
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="navbar-btn">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a asp-controller="Home" asp-action="Index" class="navbar-brand">AfterSki</a>
+                        </div>
+                        <div class="navbar-collapse collapse" id="navbar-collaps">
+
+                            <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li><a asp-controller="Home" asp-action="Skidata">Åkdata</a></li>
+                                <li><a asp-controller="RideStatistics" asp-action="Index">Stats</a></li>
+                            </ul>
+
+                            @*@await Html.PartialAsync("_LoginPartial")*@
+                        </div>
+                    </div>
+                    <div class="col-md-4 right">@Component.Invoke(nameof(TotalCount))</div>
                 </div>
             </div>
         </nav>
