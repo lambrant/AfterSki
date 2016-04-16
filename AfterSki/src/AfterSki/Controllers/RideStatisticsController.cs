@@ -42,10 +42,10 @@ namespace AfterSki.Controllers
                 facility = facility.Where(s => s.name.Contains(searchFacility));
             }
 
-            if (!String.IsNullOrEmpty(searchFacility))
-            {
-                facility = facility.Where(x => x.name == searchFacility);
-            }
+            //if (!String.IsNullOrEmpty(searchFacility))
+            //{
+            //    facility = facility.Where(x => x.name == searchFacility);
+            //}
             return View(facility);
 
         }

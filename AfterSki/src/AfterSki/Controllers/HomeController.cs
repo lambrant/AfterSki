@@ -35,7 +35,7 @@ namespace AfterSki.Controllers
             ///Gets all the days in the database
             /// </summary>
             var dateQRY = from d in _context.RideStatistic
-                          orderby d.swipeDate
+                          orderby d.swipeTime.Date
                           select d.swipeDate;
 
             ///<summary>
@@ -55,6 +55,7 @@ namespace AfterSki.Controllers
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
             }
             var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+
             ///<sumamry>
             ///Calls the javascript that creates the chart 
             ///from date selected in the dropdown

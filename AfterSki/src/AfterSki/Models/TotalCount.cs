@@ -18,7 +18,7 @@ namespace AfterSki.Models
         public int totalMeters { get; set; }
         public int totalRides { get; set; }
         public string dayTime { get; set; }
-        public int season { get; set; }
+        //public int season { get; set; }
 
         public void InvokeGetCount()
         {
@@ -26,8 +26,14 @@ namespace AfterSki.Models
             totalRides = _context.RideStatistic.Count();
             var lastDate = _context.RideStatistic.OrderBy(f => f.swipeTime).Select(x => x.swipeTime).Last();
             dayTime = lastDate.ToString();
-            var nowSeason = JsonData.activeSeasonList.ToList().OrderBy(o => o.seasonId).Select(s => s.seasonId).Last();
-            season = nowSeason;
+            //int nowSeason = 0;
+            //if (JsonData.activeSeasonList.ToList().Equals(null))
+            //{
+            //    nowSeason = 0;
+            //    return;
+            //}
+            //nowSeason = JsonData.activeSeasonList.ToList().OrderBy(o => o.seasonId).Select(s => s.seasonId).Last();
+            //season = nowSeason;
         }
     }
 }

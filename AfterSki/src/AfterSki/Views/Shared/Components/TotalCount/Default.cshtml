@@ -1,13 +1,12 @@
 ﻿@model AfterSki.Models.GetCount
-<div class="col-xs-9">
+    <div class="col-xs-9">
     <div>
-        <small>Latest Ride:</small> <div class="badge text-right">@Model.dayTime</div>
+        <span><i class="fa fa-calendar-o"></i><small> Latest Ride: </small></span> <span class="badge text-right">@Model.dayTime</span>
     </div>
     <div>
-        <small>Total Meters Season @Model.season:</small><div class="badge-success text-right"> @Model.totalMeters</div>
+        <span><i class="fa fa-area-chart"></i><small> Total Meters This Season @*@Model.season*@: </small></span><span class="badge-success text-right"> @Model.totalMeters</span>
     </div>
     <div>
-        <small>Total Rides Season @Model.season:</small><div class="badge-prog text-right"> @Model.totalRides</div>
+        <span><i class="fa fa-check-circle"></i><small> Total Rides This Season @*@Model.season*@: </small></span><span class="badge-prog text-right"> @Model.totalRides </span>
     </div>
-
 </div>

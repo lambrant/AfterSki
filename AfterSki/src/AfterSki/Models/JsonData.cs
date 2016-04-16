@@ -70,7 +70,7 @@ namespace AfterSki.Models
             ///martins data 3206
             ///</summary>
 
-           string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
+            string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
             
             ///<summary>
             ///get json data from url string
@@ -78,7 +78,6 @@ namespace AfterSki.Models
             ///</summary>
             var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
-            activeSeasonList = jsData.activeSeasons;    
         }
     }
 }
