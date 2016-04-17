@@ -12,7 +12,7 @@
             <link href="~/css/main.css" rel="stylesheet" />
             <link href="~/css/animate.min.css" rel="stylesheet" />
             <link href="~/css/site.css" rel="stylesheet" />
-            <link href="~/css/font-awesome.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         </environment>
         <environment names="Staging,Production">
             <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
@@ -48,7 +48,6 @@
                             @*@await Html.PartialAsync("_LoginPartial")*@
                         </div>
                     </div>
-                    <div class="col-md-4 right">@Component.Invoke(nameof(TotalCount))</div><!--Inserts a partial view of TotalCount-->
                 </div>
             </div>
         </nav>

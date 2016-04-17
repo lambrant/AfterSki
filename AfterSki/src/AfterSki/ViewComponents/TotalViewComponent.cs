@@ -18,8 +18,8 @@ namespace AfterSki.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            GetCount gc = new GetCount(_context);
-            gc.InvokeGetCount();
+            StatsCounter gc = new StatsCounter(_context);
+            gc.TotalCount();
             return View(gc);
         }
     }

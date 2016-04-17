@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc.Rendering;
 using System;
+using AfterSki.ViewComponents;
+using System.Threading.Tasks;
 
 namespace AfterSki.Controllers
 {
@@ -29,7 +31,7 @@ namespace AfterSki.Controllers
             return View();
         }
 
-        public IActionResult Skidata(string dropdownDates)
+        public IActionResult Skidata(string dropdownDates, string season)
         {
             ///<summary>
             ///Gets all the days in the database
@@ -56,16 +58,9 @@ namespace AfterSki.Controllers
             }
             var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
 
-            ///<sumamry>
-            ///Calls the javascript that creates the chart 
-            ///from date selected in the dropdown
-            ///and puts the data corresponding to chosen date from dropdown 
-            /// 
-            /// </sumamry>
-
             return View(graphDayArray);
         }
-        
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

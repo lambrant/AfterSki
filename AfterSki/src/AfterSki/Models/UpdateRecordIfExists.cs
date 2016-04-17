@@ -19,7 +19,7 @@ namespace AfterSki.Models
             _context = context;
         }
         ///<summary>
-        ///Checks if new datat is different than database
+        ///Checks if new data is different than database
         ///Functional.
         ///To do: Make it more effective
         /// </summary>

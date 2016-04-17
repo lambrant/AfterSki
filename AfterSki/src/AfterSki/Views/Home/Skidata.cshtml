@@ -41,6 +41,7 @@
             <div class="features-icon">
                 <h2><img src="~/images/logos/myskistarlogo.png" /> <small>...so long so far..</small></h2>
             </div>
+            <div class="col-md-4 right">@await Component.InvokeAsync(nameof(TotalCount))</div><!--Inserts a partial view of TotalCount-->
         </div><!--/.row-->
     </div><!--/.container-->
 </section><!--/#services-->

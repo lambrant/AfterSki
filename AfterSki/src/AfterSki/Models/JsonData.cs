@@ -78,6 +78,8 @@ namespace AfterSki.Models
             ///</summary>
             var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
+            activeSeasonList = jsData.activeSeasons;
+
         }
     }
 }
