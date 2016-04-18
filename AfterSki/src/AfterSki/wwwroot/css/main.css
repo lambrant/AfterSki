@@ -17,10 +17,18 @@ Author URL:
     text-align: center;
     background-image: url('../images/rideprogcarousel.jpg');
     min-height: 120px;
+    font-weight: bold;
 }
-.RideProgHighlight h2 p {
+.RideProgHighlight h3 {
     display: inline;
-    background-color: darkslategrey;
+    font-weight: bold;
+    background-color: rgba(20, 20, 20, 0.65);
+    color: darkorange;
+}
+.RideProgHighlight p {
+    display: inline;
+    font-weight: bold;
+    background-color: rgba(20, 20, 20, 0.65);
     color: darkorange;
 }
 
