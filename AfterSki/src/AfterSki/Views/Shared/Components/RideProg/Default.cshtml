@@ -1,68 +1,42 @@
 ﻿@model AfterSki.Models.RidePrognosis
+
 <section id="main-slider">
     <div class="owl-carousel">
-        <div @*class="item" *@>
-            <div>
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <h3><strong><u>End of day at 15:30.</u></strong></h3>
                 <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 15:30.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1530 meters
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.
+                        <br />
+                        If you keep it up your height will be <u><em>@Model.heightProg1530</em></u> meters at the end of the day!
+                    </p>
                 </div>
-            </div>
-        </div><!--/.item-->>
-        <div @*class="item" *@>
-            <div>
+            </div>            
+        </div> 
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <h3><strong><u>End of day at 16:30.</u></strong></h3>
                 <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 16:30.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1630 meters
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.
+                        <br />
+                        If you keep it up your height will be <u><em>@Model.heightProg1630</em></u> meters at the end of the day!
+                    </p>
                 </div>
-            </div>
-        </div><!--/.item-->
-        <div @*class="item" *@>
-            <div>
+            </div>            
+        </div>
+        <div class="RideProgText">
+            <div class="RideProgHighlight">
+                <h3><strong><u>End of day at 18:00.</u></strong></h3>
                 <div>
-                    <div>
-                        <div>
-                            <div>
-                                <div class="RideProgText">
-                                    End of day at 18:00.
-                                    <div>
-                                        Current height: @Model.heightForSpecificDateAndTime meters
-                                        <div>
-                                            Prognosed height: @Model.heightProg1800 meters
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <p>
+                        Your current height is: <u><em>@Model.heightForSpecificDateAndTime</em></u> meters.
+                        <br />
+                        If you keep it up your height will be <u><em>@Model.heightProg1800</em></u> meters at the end of the day!
+                    </p>
                 </div>
-            </div>
-        </div><!--/.item-->
+            </div>            
+        </div>
     </div><!--/.owl-carousel-->
 </section>

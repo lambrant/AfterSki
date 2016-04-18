@@ -10,7 +10,7 @@
 
 	    var chart = new CanvasJS.Chart("chartContainer",{
 	        animationEnabled: true,
-			title: { text: "Antal åk/timma" },
+			title: { text: "Martins Statistik" },
 			axisY: { suffix: ""	},
             axisX: { suffix: ":00"},
 			legend :{
@@ -19,6 +19,7 @@
 			},
 			data: [
 			{
+                
 				type: "column",
 				bevelEnabled: false,
 				indexLabel: "{y}",
@@ -30,22 +31,15 @@
 		var updateChart = function () {
 		    chart.render();
 		};
+
 		updateChart();
 	}
 </script>
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
-
-<section id="features">
-    <div class="container">
-        <div class="row">
-            <div class="features-icon">
-                <h2><img src="~/images/logos/myskistarlogo.png" /> <small>...so long so far..</small></h2>
-            </div>
-            <div class="col-md-4 right">@await Component.InvokeAsync(nameof(TotalCount))</div><!--Inserts a partial view of TotalCount-->
-        </div><!--/.row-->
-    </div><!--/.container-->
-</section><!--/#services-->
 <div class="container">
+    <div class="page-header">
+        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
+    </div>
     <div class="navbar navbar-default">
         <div class="dropdown navbar-form">
             <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
@@ -54,47 +48,12 @@
             </form>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        @*<div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-comments fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 owl-item text-right">
-                        <span class="badge-success">Total meters</span><div class="huge"></div>
-                        <span class="badge-prog">Prog. meters</span><div class="huge"></div>
-                        <div><span class="badge">End of day at 15:30</span></div>
-                    </div>
-                </div>
-            </div>*@
-        <div class="col-lg-4">
-            <div class="panel panel-body">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Panel title</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="features-item center-block">
-                        @await Component.InvokeAsync(nameof(RideProg), "16:30")
-                    </div>
-                </div>
-            </div>
-        </div>
+    <hr />
+    <div id="chartContainer" style="height: 300px; width: 100%;">
     </div>
-</div>
-
-<section>
-    <div class="container">
-        <div class="row">
-            <div id="chartContainer" style="height: 300px; width: 100%;">
-            </div>
-        </div>
-    </div>
-</section>
-
     
+    @await Component.InvokeAsync(nameof(RideProg), "16:30")
 
-
+</div>
 
 
