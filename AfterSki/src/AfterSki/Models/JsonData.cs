@@ -13,12 +13,12 @@ namespace AfterSki.Models
 {
     public class JsonData
     {
-        public static List<RideStatistic> rideStatList = new List<RideStatistic>();
+        public static List<RideModels.RideStatistic> rideStatList = new List<RideModels.RideStatistic>();
         public static List<ActiveSeason> activeSeasonList = new List<ActiveSeason>();
         /// <summary>
         /// list data from jsonurl on rideStatus
         /// </summary>
-        public List<RideStatistic> rideStatistics { get; set; }
+        public List<RideModels.RideStatistic> rideStatistics { get; set; }
         /// <summary>
         /// list datat from jsonurl on visitedDestinations
         /// </summary>

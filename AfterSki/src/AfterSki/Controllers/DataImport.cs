@@ -24,7 +24,7 @@ namespace AfterSki.Controllers
 
         public string dbName = "AfterSki";
 
-        List<RideStatistic> dimp = new List<RideStatistic>(); // List that holds importdata
+        List<Models.RideModels.RideStatistic> dimp = new List<Models.RideModels.RideStatistic>(); // List that holds importdata
 
 
         private SqlConnection dbConnection()

@@ -29,7 +29,7 @@ namespace AfterSki.Models
             {
                 for (int i = 0; i < rideStatList.Count; i++)
                 {
-                    var newData = new RideStatistic
+                    var newData = new RideModels.RideStatistic
                     {
                         name = rideStatList[i].destination.name,
                         liftName = rideStatList[i].liftName,

@@ -53,7 +53,7 @@ namespace AfterSki.Controllers
                 return HttpNotFound();
             }
 
-            RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
+            Models.RideModels.RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
             if (rideStatistic == null)
             {
                 return HttpNotFound();
@@ -65,7 +65,7 @@ namespace AfterSki.Controllers
         // GET: RideStatistics/Create
         public IActionResult Create()
         {
-            var viewModel = new RideStatistic
+            var viewModel = new Models.RideModels.RideStatistic
             {
                 swipeTime = System.DateTime.Now,
 
@@ -77,7 +77,7 @@ namespace AfterSki.Controllers
         // POST: RideStatistics/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(RideStatistic rideStatistic)
+        public IActionResult Create(Models.RideModels.RideStatistic rideStatistic)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace AfterSki.Controllers
                 return HttpNotFound();
             }
 
-            RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
+            Models.RideModels.RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
             if (rideStatistic == null)
             {
                 return HttpNotFound();
@@ -107,7 +107,7 @@ namespace AfterSki.Controllers
         // POST: RideStatistics/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(RideStatistic rideStatistic)
+        public IActionResult Edit(Models.RideModels.RideStatistic rideStatistic)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace AfterSki.Controllers
                 return HttpNotFound();
             }
 
-            RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
+            Models.RideModels.RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
             if (rideStatistic == null)
             {
                 return HttpNotFound();
@@ -141,7 +141,7 @@ namespace AfterSki.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
+            Models.RideModels.RideStatistic rideStatistic = _context.RideStatistic.Single(m => m.id == id);
             _context.RideStatistic.Remove(rideStatistic);
             _context.SaveChanges();
             return RedirectToAction("Index");

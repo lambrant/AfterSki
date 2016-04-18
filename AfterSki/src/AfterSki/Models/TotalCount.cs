@@ -17,10 +17,6 @@ namespace AfterSki.Models
             _context = context;
         }
 
-        public StatsCounter() : base()
-        {
-        }
-
         public string season { get; set; }
         public string totalMeters { get; set; }
         public string totalRides { get; set; }
@@ -29,7 +25,7 @@ namespace AfterSki.Models
         public void TotalCount()
         {
 
-            List<RideStatistic> countList = new List<RideStatistic>();
+            List<RideModels.RideStatistic> countList = new List<RideModels.RideStatistic>();
             List<ActiveSeason> seasonList = new List<ActiveSeason>();
             string error = "Error collecting data";
             countList = _context.RideStatistic.ToList();
@@ -58,8 +54,7 @@ namespace AfterSki.Models
                               .Last();
                 dayTime = getdate.ToString();
 
-                var streak = countList.Select(x => x.height)
-                    .Max();
+                var streak = "bajs";
                 mostEffecticeHour = streak.ToString();
 
             }
