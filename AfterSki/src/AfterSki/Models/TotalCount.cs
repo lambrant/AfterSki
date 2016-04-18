@@ -31,7 +31,7 @@ namespace AfterSki.Models
 
             List<RideStatistic> countList = new List<RideStatistic>();
             List<ActiveSeason> seasonList = new List<ActiveSeason>();
-            string error = "Error connecting to database";
+            string error = "Error collecting data";
             countList = _context.RideStatistic.ToList();
             seasonList = JsonData.activeSeasonList.ToList();
 

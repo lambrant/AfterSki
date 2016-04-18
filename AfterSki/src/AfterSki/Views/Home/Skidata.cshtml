@@ -40,6 +40,8 @@
     <div class="page-header">
         <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
     </div>
+    <div>@Component.Invoke(nameof(TotalCount))</div>
+    <hr />
     <div class="navbar navbar-default">
         <div class="dropdown navbar-form">
             <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">

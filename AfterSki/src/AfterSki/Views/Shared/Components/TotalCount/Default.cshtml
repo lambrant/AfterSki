@@ -1,18 +1,20 @@
 ﻿@model AfterSki.Models.StatsCounter
-<div class="row">
-    <div>
-        <span><i class="fa fa-calendar-o text-right"></i><small> Active Season: </small></span><span class="badge text-right">@Model.season</span>
-    </div>
-    <div>
-        <span><i class="fa fa-calendar text-right"></i><small> Latest Ride: </small></span><span class="badge text-right">@Model.dayTime</span>
-    </div>
-    <div>
-        <span><i class="fa fa-area-chart text-right"></i><small> Total Meters @*@Model.season*@: </small></span><span class="badge-success text-right"> @Model.totalMeters</span>
-    </div>
-    <div>
-        <span><i class="fa fa-bicycle text-right"></i><small> Total Rides @*@Model.season*@: </small></span><span class="badge-prog text-right"> @Model.totalRides </span>
-    </div>
-    <div>
-        <span><i class="fa fa-check-circle text-left"></i><small> Most Efficient Hour @*@Model.season*@: </small></span><span class="badge-prog text-right"> @Model.mostEffecticeHour </span>
+<div class="container">
+    <div class="row">
+        <div>
+            <span><i class="fa fa-calendar-o text-right"></i><small> Active Season: </small></span><span class="badge text-right">@Model.season</span>
+        </div>
+        <div>
+            <span><i class="fa fa-calendar text-right"></i><small> Latest Ride: </small></span><span class="badge text-right">@Model.dayTime</span>
+        </div>
+        <div>
+            <span><i class="fa fa-area-chart text-right"></i><small> Total Meters @*@Model.season*@: </small></span><span class="badge-success text-right"> @Model.totalMeters</span>
+        </div>
+        <div>
+            <span><i class="fa fa-bicycle text-right"></i><small> Total Rides @*@Model.season*@: </small></span><span class="badge-prog text-right"> @Model.totalRides </span>
+        </div>
+        <div>
+            <span><i class="fa fa-check-circle text-left"></i><small> Most Efficient Hour @*@Model.season*@: </small></span><span class="badge-prog text-right"> @Model.mostEffecticeHour </span>
+        </div>
     </div>
 </div>
