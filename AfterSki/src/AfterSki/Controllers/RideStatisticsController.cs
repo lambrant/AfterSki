@@ -43,7 +43,6 @@ namespace AfterSki.Controllers
             }
 
             return View(facility);
-
         }
 
         public IActionResult Details(int? id)

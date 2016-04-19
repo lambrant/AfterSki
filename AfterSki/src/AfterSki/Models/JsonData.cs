@@ -13,12 +13,14 @@ namespace AfterSki.Models
 {
     public class JsonData
     {
-        public static List<RideModels.RideStatistic> rideStatList = new List<RideModels.RideStatistic>();
-        public static List<ActiveSeason> activeSeasonList = new List<ActiveSeason>();
+        private RideStatisticDBContext _context = new RideStatisticDBContext();
+
+        public static List<RideStatistic> rideStatList = new List<RideStatistic>();
+
         /// <summary>
         /// list data from jsonurl on rideStatus
         /// </summary>
-        public List<RideModels.RideStatistic> rideStatistics { get; set; }
+        public List<RideStatistic> rideStatistics { get; set; }
         /// <summary>
         /// list datat from jsonurl on visitedDestinations
         /// </summary>
@@ -43,7 +45,7 @@ namespace AfterSki.Models
         /// <param name="url"></param>
         /// <returns></returns>
 
-        private  async Task<T> jsonSerializer <T>(string jsonPath)  where T :  new()
+        private async Task<T> jsonSerializer<T>(string jsonPath) where T : new()
         {
             using (var http = new HttpClient())
             {
@@ -55,7 +57,7 @@ namespace AfterSki.Models
                 }
                 catch (Exception) { }
                 // if string with JSON data is not empty, deserialize it to class and return its instance 
-                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data): new T();
+                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
             }
         }
 
@@ -71,15 +73,16 @@ namespace AfterSki.Models
             ///</summary>
 
             string jsonPath = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=9";
-            
+
             ///<summary>
             ///get json data from url string
             ///and put out datat to list via jsonSerializer
             ///</summary>
             var jsData = await jsonSerializer<JsonData>(jsonPath);
             rideStatList = jsData.rideStatistics;
-            activeSeasonList = jsData.activeSeasons;
 
+            DataImport di = new DataImport(_context);
+            di.ListToDB();
         }
     }
 }

@@ -23,11 +23,7 @@ namespace AfterSki.Controllers
         /// </summary>
 
         public IActionResult Index()
-        {
-            JsonData jm = new JsonData();
-            jm.getSkiData();
-            DataImport di = new DataImport(_context);
-            di.ListToDB();
+        {            
             return View();
         }
 
