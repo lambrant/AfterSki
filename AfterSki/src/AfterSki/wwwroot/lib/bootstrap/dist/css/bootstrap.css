@@ -4978,7 +4978,20 @@ a.label:focus {
   background-color: #d1d1d1;
   border-radius: 10px;
 }
-
+.badge-active {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #9d1e1f;
+  border-radius: 10px;
+}
 .badge-success {
   display: inline-block;
   min-width: 10px;
