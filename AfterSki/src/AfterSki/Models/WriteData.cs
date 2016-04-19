@@ -68,8 +68,6 @@ namespace AfterSki.Models
             }).ToArray();
 
 
-           
-
             int acu = 0;
 
             foreach (var place in fallDateArray)
