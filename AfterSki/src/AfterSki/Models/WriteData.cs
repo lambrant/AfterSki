@@ -57,21 +57,17 @@ namespace AfterSki.Models
 
             new FallingDataObject
             {
-
                 label = groupObject.Key.ToString(),
                 //temp = groupObject.Sum(u => u.height),
                 y = groupObject.Sum(u => u.height)
 
             }).ToArray();
-
-            for (int i = 0; i < ld.Count; i++)
+            
+            int temcAccu = 0;
+            foreach (var item in fallDateArray)
             {
-                if (i != 0)
-                {
-                    FallingDataObject fdo = new FallingDataObject();
-                    fdo.y = ld[i].height = ld[i].height + ld[i - 1].height;
-
-                }
+                temcAccu += item.y;
+                item.y = temcAccu;
             }
 
 
