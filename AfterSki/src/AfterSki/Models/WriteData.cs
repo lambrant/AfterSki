@@ -9,11 +9,11 @@ namespace AfterSki.Models
     public class WriteData
     {
 
-        
-        public IEnumerable<Javaobject> swipeDateArray{ get; set; }
+
+        public IEnumerable<Javaobject> swipeDateArray { get; set; }
 
         public IEnumerable<FallingDataObject> fallDateArray { get; set; }
-        
+
 
         public class Javaobject
         {
@@ -25,7 +25,7 @@ namespace AfterSki.Models
         {
             public int y { get; set; }
             public string label { get; set; }
-            public int temp { get;  set; }
+            public int temp { get; set; }
         }
 
 
@@ -70,12 +70,8 @@ namespace AfterSki.Models
                 {
                     FallingDataObject fdo = new FallingDataObject();
                     fdo.y = ld[i].height = ld[i].height + ld[i - 1].height;
-                    
+
                 }
-                                
-
-                
-
             }
 
 
