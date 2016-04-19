@@ -49,16 +49,17 @@ namespace AfterSki.Test
             // Create test subject
             _controller = new HomeController(_context);
         }
-        
+
         [Fact]
         public void testFallhöjden()
         {
-            //FallingData fallingdata = new FallingData();
+            FallingData fallingdata = new FallingData(_context);
 
-            //IEnumerable <FallingData.FallData> xOchY = FallingData.FallingHeightPerDay("Sön, 20 mar");
-            
+            IEnumerable<FallingData.FallData> fallHeightArray = fallingdata.FallingHeightPerDay("Sön, 20 mar");
 
-            //Assert.True(xOchY.Select() == 472);
+
+            Assert.True(fallHeightArray.Count() == 1);
+            Assert.True(fallHeightArray.First().y == 472);
 
 
         }
