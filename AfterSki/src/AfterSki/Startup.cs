@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using AfterSki.Models;
 using AfterSki.Services;
 using AfterSki.Models.RideModels;
+using AfterSki.Controllers;
 
 namespace AfterSki
 {
@@ -19,6 +20,9 @@ namespace AfterSki
     {
         public Startup(IHostingEnvironment env)
         {
+            JsonData jm = new JsonData();
+            jm.getSkiData();
+
             //Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
