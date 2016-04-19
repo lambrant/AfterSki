@@ -11,8 +11,8 @@
 	    var chart = new CanvasJS.Chart("chartContainer",{
 	        animationEnabled: true,
 	        animationDuration: 2000,
-			title: { text: "Martins Statistik" },
-			axisY: { suffix: ""	},
+			title: { text: "Fallhöjd / Timme" },
+			axisY: { suffix: " M"	},
             axisX: { suffix: ":00"},
 			legend :{
 				verticalAlign: 'bottom',
@@ -38,13 +38,13 @@
 		updateChart();
 
 
-		var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.fallDateArray) as string);
+		var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.fallDateArray) as string);	   	    
 
 		var chart = new CanvasJS.Chart("chartContainer2",
     {
         theme: "theme2",
         title:{
-            text: "Fallhöjd / Timme"
+            text: "Sammanlagd Fallhöjd / Timme"
         },
         animationEnabled: true,
         animationDuration: 2000,
@@ -56,7 +56,8 @@
         
         },
         axisY:{
-            includeZero: false
+            includeZero: false,
+            suffix: " M"
         
         },
         data: [
@@ -82,7 +83,7 @@
         animationEnabled: true,
         animationDuration: 2000,
         title:{
-            text: "A Combination Column Chart"
+            text: "A Combination Chart"
       
         },   
         data: [{        

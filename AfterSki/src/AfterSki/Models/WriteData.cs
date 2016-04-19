@@ -13,6 +13,8 @@ namespace AfterSki.Models
         public IEnumerable<Javaobject> swipeDateArray{ get; set; }
 
         public IEnumerable<FallingDataObject> fallDateArray { get; set; }
+
+        
         
 
         public class Javaobject
@@ -48,10 +50,10 @@ namespace AfterSki.Models
             RideStatisticDBContext lddb = new RideStatisticDBContext();
             ld = lddb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
-            for (int i = 0; i < ld.Count; i++)
-            {
-                int intHeight = ld.Select(u => u.height).Sum();
-            }
+            //for (int i = 0; i < ld.Count; i++)
+            //{
+            //    int intHeight = ld.Select(u => u.height).Sum();
+            //}
 
             fallDateArray = ld.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(groupObject =>
 
@@ -62,37 +64,37 @@ namespace AfterSki.Models
                 //temp = groupObject.Sum(u => u.height),
                 y = groupObject.Sum(u => u.height)
 
+                
             }).ToArray();
 
-            for (int i = 0; i < ld.Count; i++)
+
+           
+
+            int acu = 0;
+
+            foreach (var place in fallDateArray)
             {
-                if (i != 0)
-                {
-                    FallingDataObject fdo = new FallingDataObject();
-                    fdo.y = ld[i].height = ld[i].height + ld[i - 1].height;
-                    
-                }
-                                
+                acu += place.y;
+                place.y = acu;
+            }
 
                 
 
+
+
+
+
+
+
+                // fallDateArray = ds.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
+                //new FallingDataObject { y = group.Count(), label = group.Key.ToString() })
+                // .ToArray();
+
+
+
+
+
+
             }
-
-
-
-
-
-
-
-            // fallDateArray = ds.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
-            //new FallingDataObject { y = group.Count(), label = group.Key.ToString() })
-            // .ToArray();
-
-
-
-
-
-
-        }
     }
 }
