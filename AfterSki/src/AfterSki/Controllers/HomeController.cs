@@ -54,15 +54,30 @@ namespace AfterSki.Controllers
             {
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
             }
-            var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
+            //var graphDayArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
             ///<sumamry>
             ///Calls the javascript that creates the chart 
             ///from date selected in the dropdown
             ///and puts the data corresponding to chosen date from dropdown 
             /// 
             /// </sumamry>
+            /// 
 
-            return View(graphDayArray);
+            WriteData Instance = new WriteData();
+            Instance.PopulateRidesPerDayArray(dropdownDates);
+            
+
+
+
+
+
+
+
+
+
+
+
+            return View(Instance);
         }
         
         public IActionResult Contact()
