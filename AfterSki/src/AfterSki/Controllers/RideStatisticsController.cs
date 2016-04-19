@@ -39,17 +39,15 @@ namespace AfterSki.Controllers
 
             if (!String.IsNullOrEmpty(searchFacility))
             {
-                facility = facility.Where(s => s.name.Contains(searchFacility)); // search form
+                facility = facility.Where(s => s.name.Contains(searchFacility));
             }
 
             if (!String.IsNullOrEmpty(searchFacility))
             {
-                facility = facility.Where(x => x.name == searchFacility); // dropdown
+                facility = facility.Where(x => x.name == searchFacility);
             }
-
-
             return View(facility);
-            //return View(_context.RideStatistic.ToList());
+
         }
 
         public IActionResult Details(int? id)

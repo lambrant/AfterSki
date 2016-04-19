@@ -8,6 +8,17 @@ Author URL:
 /*************************
 *******Typography******
 */
+
+
+/*RidePrognosis carousel*/
+
+.RideProgText {
+    color: red;
+    font-size: larger;
+}
+
+/*End RidePrognosis carousel*/
+
 #main-slider {
   overflow: hidden;
 }

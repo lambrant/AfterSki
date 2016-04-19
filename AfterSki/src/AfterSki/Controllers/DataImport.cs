@@ -5,14 +5,22 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using static AfterSki.Models.JsonData;
 
 
 namespace AfterSki.Controllers
 {
 
-    public class DataImport
+    public class DataImport: RideStatistic
     {
+        private RideStatisticDBContext _context;
+
+        public DataImport(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
 
         public string dbName = "AfterSki";
 
@@ -30,8 +38,7 @@ namespace AfterSki.Controllers
 
         public void ListToDB()
         {
-
-            dimp = rideStatList;
+            dimp = rideStatList.ToList();
             SqlConnection conn = dbConnection();
             SqlCommand comm = new SqlCommand();
 
@@ -140,9 +147,6 @@ namespace AfterSki.Controllers
                     swipetimeDB.SqlValue = dimp[i].swipeTime;
                     comm.Parameters.Add(swipetimeDB);
 
-
-
-
                     comm.CommandText = "INSERT INTO AfterSki.dbo.RideStatistic " +
                                         "(destinationID, height, liftname, name, swipedate, swipetime) " +
                                         "VALUES " +
@@ -156,19 +160,11 @@ namespace AfterSki.Controllers
                     comm.Dispose();
                 }
             }
-            //else
-            //{
-
-            //    var newData = new RideStatistic();
-            //    using (var context = new RideStatisticDBContext())
-            //    {
-            //        context.Entry(newData).State = newData.id == 0 ?
-            //                           EntityState.Added :
-            //                           EntityState.Modified;
-
-            //        context.SaveChanges();
-            //    }
-            //}
+            else
+            {
+                UpdateRecordIfExists u = new UpdateRecordIfExists(_context);
+                u.UpdateData();
+            }
         }
     }
 }
