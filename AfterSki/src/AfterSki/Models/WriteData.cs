@@ -9,11 +9,16 @@ namespace AfterSki.Models
     public class WriteData
     {
 
+        private RideStatisticDBContext _context;
+
+        public WriteData(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
 
         public IEnumerable<Javaobject> swipeDateArray { get; set; }
-
         public IEnumerable<FallingDataObject> fallDateArray { get; set; }
-
 
         public class Javaobject
         {
@@ -28,13 +33,11 @@ namespace AfterSki.Models
             public int temp { get; set; }
         }
 
-
-
         public void PopulateRidesPerDayArray(string rideDate)
         {
             List<RideStatistic> ds = new List<RideStatistic>();
-            RideStatisticDBContext dsdb = new RideStatisticDBContext();
-            ds = dsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+            //RideStatisticDBContext dsdb = new RideStatisticDBContext();
+            ds = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
             swipeDateArray = ds.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(groupObject => new Javaobject
             {
@@ -43,10 +46,9 @@ namespace AfterSki.Models
 
             }).ToArray();
 
-
             List<RideStatistic> ld = new List<RideStatistic>();
-            RideStatisticDBContext lddb = new RideStatisticDBContext();
-            ld = lddb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+            //RideStatisticDBContext lddb = new RideStatisticDBContext();
+            ld = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
             for (int i = 0; i < ld.Count; i++)
             {
@@ -70,21 +72,9 @@ namespace AfterSki.Models
                 item.y = temcAccu;
             }
 
-
-
-
-
-
-
             // fallDateArray = ds.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
             //new FallingDataObject { y = group.Count(), label = group.Key.ToString() })
             // .ToArray();
-
-
-
-
-
-
         }
     }
 }

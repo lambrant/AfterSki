@@ -13,7 +13,7 @@ namespace AfterSki.Models
 {
     public class JsonData
     {
-        private RideStatisticDBContext _context = new RideStatisticDBContext();
+        public RideStatisticDBContext _context;        
 
         public static List<RideStatistic> rideStatList = new List<RideStatistic>();
         public static List<ActiveSeason> activeSeasonList = new List<ActiveSeason>();

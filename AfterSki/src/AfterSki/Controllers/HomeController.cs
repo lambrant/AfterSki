@@ -52,7 +52,7 @@ namespace AfterSki.Controllers
             {
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
             }
-            WriteData Instance = new WriteData();
+            WriteData Instance = new WriteData(_context);
             Instance.PopulateRidesPerDayArray(dropdownDates);
             return View(Instance);
         }
