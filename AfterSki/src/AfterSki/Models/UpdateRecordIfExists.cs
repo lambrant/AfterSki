@@ -19,7 +19,7 @@ namespace AfterSki.Models
             _context = context;
         }
         ///<summary>
-        ///Checks if new datat is different than database
+        ///Checks if new data is different than database
         ///Functional.
         ///To do: Make it more effective
         /// </summary>
@@ -29,7 +29,7 @@ namespace AfterSki.Models
             {
                 for (int i = 0; i < rideStatList.Count; i++)
                 {
-                    var newData = new RideStatistic
+                    var newData = new RideModels.RideStatistic
                     {
                         name = rideStatList[i].destination.name,
                         liftName = rideStatList[i].liftName,

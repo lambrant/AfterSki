@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using AfterSki.Models;
 using AfterSki.Services;
 using AfterSki.Models.RideModels;
+using AfterSki.Controllers;
 
 namespace AfterSki
 {
@@ -19,6 +20,9 @@ namespace AfterSki
     {
         public Startup(IHostingEnvironment env)
         {
+            JsonData jm = new JsonData();
+            jm.getSkiData();
+
             //Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
@@ -67,6 +71,7 @@ namespace AfterSki
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
