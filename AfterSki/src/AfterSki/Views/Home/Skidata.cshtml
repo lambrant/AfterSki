@@ -38,24 +38,22 @@
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
 <div class="container">
     <div class="page-header">
-        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
-    </div>
-    <div>@Component.Invoke(nameof(TotalCount))</div>
-    <hr />
-    <div class="navbar navbar-default">
-        <div class="dropdown navbar-form">
-            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
-                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Hämta graf</button>
-            </form>
+        <h1><img src="~/images/logos/myskistarlogo.png" /></h1>
+        <div>@Component.Invoke(nameof(TotalCount))</div>
+        <hr />
+        <div class="navbar navbar-default">
+            <div class="dropdown navbar-form">
+                <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
+                    @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                    <button type="submit" class="btn btn-primary">Hämta graf</button>
+                </form>
+            </div>
         </div>
+        <hr />
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+        </div>
+        @await Component.InvokeAsync(nameof(RideProg), "16:30")
     </div>
-    <hr />
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
-
-    @await Component.InvokeAsync(nameof(RideProg), "16:30")
-
 </div>
 
 
