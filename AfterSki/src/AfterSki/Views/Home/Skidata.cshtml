@@ -7,6 +7,7 @@
 	window.onload = function () {
 		//initial value of dataPoints
 	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.swipeDateArray) as string);
+	    
 
 	    var chart = new CanvasJS.Chart("chartContainer",{
 	        animationEnabled: true,
@@ -39,6 +40,7 @@
 
 
 		var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.fallDateArray) as string);
+	   
 
 		var chart = new CanvasJS.Chart("chartContainer2",
     {

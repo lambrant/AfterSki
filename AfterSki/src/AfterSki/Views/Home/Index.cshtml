@@ -132,6 +132,24 @@
                         </div>
                     </a>
                 </div>
+                <div class="row">
+                    <div>
+                    <h2>Bargraph</h2>
+                    <canvas id="canvasId"></canvas>
+                    @section scripts{
+                        <script>
+                            var ctx = document.getElementById("canvasId").getContext("2d");
+
+                            var graph = new BarGraph(ctx);
+                            graph.margin = 2;
+                            graph.width = 450;
+                            graph.height = 150;
+                            graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                            graph.update([20, 70, 25, 30, 45, 2, 50]);
+                        </script>}
+                    </div>
+                </div>
+
             </div>
         </div><!--/.row-->
     </div><!--/.container-->

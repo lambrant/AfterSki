@@ -1,32 +1,85 @@
-﻿using AfterSki.Models.RideModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using AfterSki.Models.RideModels;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace AfterSki.Models
-{
-    public class FallingData
-    {
-        //public class FallData
-        //{
-        //    public int y { get; set; }
-        //    public string label { get; set; }
+//namespace AfterSki.Models
+//{
+//    public class FallingData
+//    {
+//        private RideStatisticDBContext _context;
 
-        //}
-        //public static IEnumerable<FallData> FallingHeightPerDay(string rideDate)
-        //{
-        //    List<RideStatistic> fd = new List<RideStatistic>();
-        //    RideStatisticDBContext fddb = new RideStatisticDBContext();
-        //    fd = fddb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+//        public FallingData(RideStatisticDBContext context)
+//        {
+//            _context = context;
+//        }
+//        public class FallData
+//        {
+//            public int y { get; set; }
+//            //public string label { get; set; }
 
-        //    var swipeDateArray = fd.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
-        //    new FallData { y = group.Count(), label = group.Key.ToString() })
-        //    .ToArray();
+//        }
+//        public class fallHeightDataPerHour
+//        {
+//            public int key { get; set; }
+//            public int fallHeight { get; set; }
+//        }
+//        public IEnumerable<FallData> FallHeightSumPerHour(string rideDate)
+//        {
+
+//            // List<RideStatistic> fd;
+
+//            var fd = _context.RideStatistic.Where(u => u.swipeDate.Equals(rideDate));
+            
+//            //gruppera ihop swipetimes med dess heights efter swipedate och sen summera ihop heights
+
+//            //var fallHeightArray = fd.Sum(x => x.height);            
+//            var fallHeightArray = fd.GroupBy(x => x.swipeTime.Hour).Select(groupObject => new FallData
+//            {
+//                y = groupObject.Sum(u => u.height)
+//            });
+
+//            //FallData myFallData = new FallData();
+//            //myFallData.y = fallHeightArray.Select(z => z.fallHeight);
+//            //myFallData.label = fallHeightArray.Select(i => i.key.ToString())
+//            //groupObject.Sum(u => u.height));
+//            //fallHeightArray.Sum(u => u.)
+
+//            return fallHeightArray;
+//        }
 
 
-        //    return swipeDateArray;
+//        //public IEnumerable<FallData> FallingHeightPerDay(IEnumerable<fallHeightDataPerHour> sumObject)
+//        //{
+//        //    FallData myFallData = new FallData();
 
-        //}
-    }
-}
+
+//        //    List<RideStatistic> fd;
+
+//        //    fd = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+
+//        //    //gruppera ihop swipetimes med dess heights efter swipedate och sen summera ihop heights
+
+//        //    //var fallHeightArray = fd.Sum(x => x.height);            
+//        //    var fallHeightArray = fd.GroupBy(x => x.swipeTime.Hour).Select(groupObject => groupObject.Sum(u => u.height));
+//        //    //fallHeightArray.Sum(u => u.)
+
+//        //    //.OrderBy(x => x.Key); 
+
+//        //    /*var swipeDA = fd.Select(u => new { u.swipeDate, u.height }).GroupBy(u => u.swipeDate).OrderBy(u => u.Key).Select(group =>
+//        //    new FallData { x = group.Count(), label = group.Key.ToString() }).ToArray();
+
+//        //    */
+
+//        //    //.Select(group =>
+//        //    //new FallData { y = group.Count(), label = group.Key.ToString() })
+//        //    //.ToArray();
+//        //    //int[] intArray = new int[1];
+//        //    //intArray[0] = fallHeightArray;
+
+//        //    return null;//fallHeightArray;
+
+//        //}
+//    }
+//}

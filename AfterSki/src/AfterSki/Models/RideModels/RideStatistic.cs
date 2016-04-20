@@ -12,7 +12,7 @@ namespace AfterSki.Models.RideModels
     {
         public int id { get; set; }
 
-        [Display(Name = "Skidord")]
+        [Display(Name = "Skidort")]
         public string name { get; set; }
 
         [Display(Name = "Liftnamn")]
