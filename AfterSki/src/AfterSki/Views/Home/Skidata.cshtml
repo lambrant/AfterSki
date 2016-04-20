@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WriteData.Javaobject>
+﻿@model AfterSki.ViewModels.SkidataViewModel
 @{
     ViewData["Title"] = "Skidata";
 }
@@ -8,13 +8,11 @@
 
 //--------------------------------------------Diagram1--------------------------------------------------------//
         //Diagram 1, Check how many times he skied /hour
-
-        //initial value of dataPoints
-        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
+        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph1) as string);
 
         var chart = new CanvasJS.Chart("chartContainer",{
             title: { text: "Martins Åk/Timme Statistik" },
-            axisY: { suffix: ""	},
+            axisY: { suffix: " Åk"	},
             axisX: { suffix: ":00"},
             legend :{
                 verticalAlign: 'bottom',
@@ -27,14 +25,7 @@
 			    indexLabel: "{y}",
 			    dataPoints: dps
 			}
-
-
-
-            ]
-
-        });
-
-   
+            ]});
         var updateChart = function () {
             chart.render();
         };
@@ -43,96 +34,46 @@
 //--------------------------------------------Diagram2--------------------------------------------------------//
 
         //Diagram 2, Check the sum amount of falling length /hour
-
-        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model) as string);
-
+        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph2) as string);
         var chart2 = new CanvasJS.Chart("chartContainer2",
-    {
+        {
         theme: "theme3",
-        title:{
-            text: "Martins Fallhöjd/Timme Statistik"
-        },
-        animationEnabled: true,
-        axisX: {
-            valueFormatString: "MMM",
-            interval:1,
-            intervalType: "month"
-        
-        },
-        axisY:{
-            includeZero: false
-        
-        },
+        title: { text: "Martins Fallhöjd/Timme Statistik" },
+        axisY: { suffix: " M"	},
+        axisX: { suffix: ":00"},
         data: [
-        {        
+        {
             type: "line",
-            //lineThickness: 3,        
-            dataPoints: [
-            { x: new Date(2012, 00, 1), y: 450 },
-            { x: new Date(2012, 01, 1), y: 414},
-            { x: new Date(2012, 02, 1), y: 520, indexLabel: "highest",markerColor: "red", markerType: "triangle"},
-            { x: new Date(2012, 03, 1), y: 460 },
-            { x: new Date(2012, 04, 1), y: 450 },
-            { x: new Date(2012, 05, 1), y: 500 },
-            { x: new Date(2012, 06, 1), y: 480 },
-            { x: new Date(2012, 07, 1), y: 480 },
-            { x: new Date(2012, 08, 1), y: 410 , indexLabel: "lowest",markerColor: "DarkSlateGrey", markerType: "cross"},
-            { x: new Date(2012, 09, 1), y: 500 },
-            { x: new Date(2012, 10, 1), y: 480 },
-            { x: new Date(2012, 11, 1), y: 510 }
-        
-            ]
+            bevelEnabled: true,
+            indexLabel: "{y}",
+            dataPoints: dps
         }
-      
-      
-        ]
-    });
+        ]});
         var updateChart3 = function () {
             chart2.render();
         };
-
         updateChart3();
-
 
 //--------------------------------------------Diagram3--------------------------------------------------------//
             // TBA
-
+        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph1) as string);
+        var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph2) as string);
             var chart4 = new CanvasJS.Chart("chartContainer3",
             {
                 title:{
-                    text: "To Be Announced"
-      
-                },   
-                data: [{        
-                    type: "column",
-                    dataPoints: [
-                    { x: 10, y: 171 },
-                    { x: 20, y: 155},
-                    { x: 30, y: 150 },
-                    { x: 40, y: 165 },
-                    { x: 50, y: 195 },
-                    { x: 60, y: 168 },
-                    { x: 70, y: 128 },
-                    { x: 80, y: 134 },
-                    { x: 90, y: 114}
-                    ]
+                    text: "wombo combo"
                 },
-                {        
-                    type: "line",
-                    dataPoints: [
-                    { x: 10, y: 71 },
-                    { x: 20, y: 55},
-                    { x: 30, y: 50 },
-                    { x: 40, y: 65 },
-                    { x: 50, y: 95 },
-                    { x: 60, y: 68 },
-                    { x: 70, y: 28 },
-                    { x: 80, y: 34 },
-                    { x: 90, y: 14}
-                    ]
+                data: [{
+                    type: 'column',
+                    dataPoints: dps
                 }
-        
-                ]
+                ],
+                data: [
+                {
+                    type: 'line',
+                    dataPoints: dps1
+                }
+            ]
             });
 
             var updateChart4 = function () {
@@ -142,7 +83,7 @@
             updateChart4();
 
         }
-    
+
 </script>
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
 <div class="container">
@@ -156,6 +97,7 @@
                 <button type="submit" class="btn btn-primary">Hämta graf</button>
             </form>
         </div>
+    </div>
     </div>
     <hr />
     <br />

@@ -18,22 +18,24 @@ namespace AfterSki.Models
         {
             public int y { get; set; }
             public string label { get; set; }
-
+            public int x { get; set; }
         }
-        public static IEnumerable<FallData> FallingHeightPerDay(string rideDate)
-        {
-            List<RideStatistic> fd = new List<RideStatistic>();
+        public static List<RideStatistic> fd = new List<RideStatistic>();
+        //public static IEnumerable<FallData> FallingProperty(string rideDate)
+        //{
+        //    var swipeDA = fd.Select(u => new { u.swipeDate, u.height }).GroupBy(u => u.swipeDate).OrderBy(u => u.Key).Select(group =>
+        //    new FallData { x = group.Count(), label = group.Key.ToString() }).ToArray();
 
-            //_context.Database
-            //fd = RideStatisticDBContext..RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+        //    return swipeDA;
+        //}
+        //public static IEnumerable<FallData> FallingHeightPerDay(string rideDate)
+        //{
+        //    var swipeDateArray = fd.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
+        //    new FallData { y = group.Count(), label = group.Key.ToString() })
+        //    .ToArray();
 
-            var swipeDateArray = fd.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
-            new FallData { y = group.Count(), label = group.Key.ToString() })
-            .ToArray();
-
-
-            return swipeDateArray;
-
-        }
+        //    return swipeDateArray;
+        //}
+        
     }
 }

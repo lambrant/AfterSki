@@ -28,34 +28,22 @@ namespace AfterSki.Controllers
 
         public IActionResult Skidata(string dropdownDates)
         {
-           // RideStatisticDBContext db = new RideStatisticDBContext();
-
-            var dateQRY = from d in _context.RideStatistic
-                       orderby d.swipeDate
-                       select d.swipeDate;
+            var dateQRY = from d in _context.RideStatistic orderby d.swipeDate select d.swipeDate;
 
             var dateList = new List<string>();
             dateList.AddRange(dateQRY.Distinct());
 
-            var rides = from d in _context.RideStatistic
-                        select d;
+            var rides = from d in _context.RideStatistic select d;
             ViewData["dropdownDates"] = new SelectList(dateList);
             if (!string.IsNullOrEmpty(dropdownDates))
             {
-
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
-
             }
-            //if (!string.IsNullOrEmpty(dropdownDates))
-            //{
-            //    rides = rides.Where(r => r.swipeDate == dropdownDates);
-            //}
-
             var graphArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
-            //var fallingArray = FallingData.FallingHeightPerDay();
 
             return View(graphArray);
         }
+
 
         public IActionResult Contact()
         {

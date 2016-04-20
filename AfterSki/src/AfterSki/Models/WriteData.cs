@@ -14,20 +14,23 @@ namespace AfterSki.Models
             public string label { get; set; }
         }
 
-        public static IEnumerable<Javaobject> PopulateRidesPerDayArray(string rideDate)
+        public static List<RideStatistic> rs = new List<RideStatistic>();
+        public static RideStatisticDBContext rsdb = new RideStatisticDBContext();
+        public static AfterSki.ViewModels.SkidataViewModel PopulateRidesPerDayArray(string rideDate)
         {
-            List<RideStatistic> rs = new List<RideStatistic>();
-            RideStatisticDBContext rsdb = new RideStatisticDBContext();
             rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
-            var swipeDateArray = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy( x => x.Key).Select(group =>
+            var A = new ViewModels.SkidataViewModel();
+
+            A.graph1 = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy( x => x.Key).Select(group =>
             new Javaobject{ y = group.Count(),label = group.Key.ToString() })
             .ToArray();
-        
-        
-            return swipeDateArray;
 
+            A.graph2 = rs.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(group =>
+            new Javaobject { y = group.Sum(i => i.height), label = group.Key.ToString() })
+            .ToArray();
+
+            return A;
         }
     }
 }
-
