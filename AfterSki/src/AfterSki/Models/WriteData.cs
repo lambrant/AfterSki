@@ -8,29 +8,73 @@ namespace AfterSki.Models
 {
     public class WriteData
     {
+
+        private RideStatisticDBContext _context;
+
+        public WriteData(RideStatisticDBContext context)
+
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Javaobject> swipeDateArray { get; set; }
+        public IEnumerable<FallingDataObject> fallDateArray { get; set; }
+
         public class Javaobject
         {
             public int y { get; set; }
             public string label { get; set; }
         }
 
-        public static List<RideStatistic> rs = new List<RideStatistic>();
-        public static RideStatisticDBContext rsdb = new RideStatisticDBContext();
-        public static AfterSki.ViewModels.SkidataViewModel PopulateRidesPerDayArray(string rideDate)
+        public class FallingDataObject
         {
-            rs = rsdb.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+            public int y { get; set; }
+            public string label { get; set; }
+            public int temp { get; set; }
+        }
 
-            var A = new ViewModels.SkidataViewModel();
+        public void PopulateRidesPerDayArray(string rideDate)
+        {
+            List<RideStatistic> ds = new List<RideStatistic>();
+            //RideStatisticDBContext dsdb = new RideStatisticDBContext();
+            ds = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
-            A.graph1 = rs.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy( x => x.Key).Select(group =>
-            new Javaobject{ y = group.Count(),label = group.Key.ToString() })
-            .ToArray();
+            swipeDateArray = ds.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(groupObject => new Javaobject
+            {
+                label = groupObject.Key.ToString(),
+                y = groupObject.Sum(u => u.height)
 
-            A.graph2 = rs.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(group =>
-            new Javaobject { y = group.Sum(i => i.height), label = group.Key.ToString() })
-            .ToArray();
+            }).ToArray();
 
-            return A;
+            List<RideStatistic> ld = new List<RideStatistic>();
+            //RideStatisticDBContext lddb = new RideStatisticDBContext();
+            ld = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
+
+            for (int i = 0; i < ld.Count; i++)
+            {
+                int intHeight = ld.Select(u => u.height).Sum();
+            }
+
+            fallDateArray = ld.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(groupObject =>
+
+            new FallingDataObject
+            {
+                label = groupObject.Key.ToString(),
+                //temp = groupObject.Sum(u => u.height),
+                y = groupObject.Sum(u => u.height)
+
+            }).ToArray();
+            
+            int temcAccu = 0;
+            foreach (var item in fallDateArray)
+            {
+                temcAccu += item.y;
+                item.y = temcAccu;
+            }
+
+            // fallDateArray = ds.Select(x => x.swipeTime).GroupBy(x => x.Hour).OrderBy(x => x.Key).Select(group =>
+            //new FallingDataObject { y = group.Count(), label = group.Key.ToString() })
+            // .ToArray();
         }
     }
 }

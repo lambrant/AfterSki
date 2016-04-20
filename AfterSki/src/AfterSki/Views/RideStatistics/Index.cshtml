@@ -3,16 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 <div class="container">
     <div class="page-header">
         <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
     </div>
     <div class="navbar navbar-default">
         <div class="dropdown navbar-form">
-            <button class="btn btn-default dropdown-toggle" type="button" aria-valuetext="" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Välj:
-                <span class="caret"></span>
-            </button>
             <ul class="bg-primary dropdown-menu " aria-labelledby="dropdownMenu1">
                 <li role="separator" class="divider"></li>
                 <li>
@@ -41,22 +38,23 @@
                 <li role="separator" class="divider"></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Skapa ny</li>
-                <li><a asp-action="Create"><span class="glyphicon glyphicon-edit"></span> Lägg Till </a></li>
-                <li>
+                <li><a asp-action="Create">
+                    <span class="glyphicon glyphicon-edit">
+                    </span> Lägg Till </a>
+                </li>
             </ul>
             <form class="navbar-form navbar-right" asp-controller="RideStatistics" asp-action="Index" method="get">
-                @*@Html.DropDownList("searchFacility", "All")*@
                 @Html.DropDownList("searchFacility", (SelectList)ViewBag.searchFacility, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Sök</button>
+                <button type="submit" class="btn btn-primary glyphicon glyphicon-check text-capitalize">Sök</button>
             </form>
         </div>
-    </div> 
+    </div>
     <div class="container-fluid">
         <table class="table">
             <tr class="modal-header">
-                <th>
-                    @Html.DisplayNameFor(model => model.id)
-                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.id)
+                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.name)
                 </th>
@@ -78,9 +76,9 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.id)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.name)
                     </td>
@@ -96,8 +94,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.swipeTime)
                     </td>
-                    
-                   
                     <td class="tablewidth-250">
                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.id">Details</a> |
@@ -105,7 +101,7 @@
                     </td>
                 </tr>
             }
-        </table>
+        </table> 
     </div>
     
 </div>

@@ -29,6 +29,4 @@ namespace AfterSki.Models.RideModels
         public Destination destination { get; set; }
 
     }
-
-
 }

@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNet.Mvc;
 using AfterSki.Models;
-using Microsoft.SqlServer.Server;
-using AfterSki.Models.RideModels;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc.Rendering;
+using System;
+using AfterSki.ViewComponents;
+using System.Threading.Tasks;
 
 namespace AfterSki.Controllers
 {
@@ -15,35 +16,46 @@ namespace AfterSki.Controllers
         public HomeController(RideStatisticDBContext context)
         {
             _context = context;
+
         }
+        ///<summary>
+        ///Instansiates DContext to access the database
+        /// </summary>
 
         public IActionResult Index()
-        {
-            JsonData jm = new JsonData();
-            jm.getSkiData();
-
+        {            
             return View();
-
         }
 
-        public IActionResult Skidata(string dropdownDates)
+        public IActionResult Skidata(string dropdownDates, string season)
         {
-            var dateQRY = from d in _context.RideStatistic orderby d.swipeDate select d.swipeDate;
+            ///<summary>
+            ///Gets all the days in the database
+            /// </summary>
+            var dateQRY = from d in _context.RideStatistic
+                          orderby d.swipeTime.Date
+                          select d.swipeDate;
 
+            ///<summary>
+            ///Creates a list of all the dates
+            /// </summary>
             var dateList = new List<string>();
             dateList.AddRange(dateQRY.Distinct());
 
-            var rides = from d in _context.RideStatistic select d;
+            ///<summary>
+            ///Puts all dates to a dropdown/Selectlist
+            /// </summary>
+            var rides = from d in _context.RideStatistic
+                        select d;
             ViewData["dropdownDates"] = new SelectList(dateList);
             if (!string.IsNullOrEmpty(dropdownDates))
             {
                 rides = rides.Where(r => r.swipeDate.Contains(dropdownDates));
             }
-            var graphArray = WriteData.PopulateRidesPerDayArray(dropdownDates);
-
-            return View(graphArray);
+            WriteData Instance = new WriteData(_context);
+            Instance.PopulateRidesPerDayArray(dropdownDates);
+            return View(Instance);
         }
-
 
         public IActionResult Contact()
         {
@@ -51,11 +63,8 @@ namespace AfterSki.Controllers
 
             return View();
         }
+
         public IActionResult Error()
-        {
-            return View();
-        }
-        public IActionResult VerticalDrop()
         {
             return View();
         }

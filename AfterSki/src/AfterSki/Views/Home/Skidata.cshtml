@@ -1,56 +1,134 @@
-﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
+﻿@model AfterSki.Models.WriteData
 @{
     ViewData["Title"] = "Skidata";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-@*
-<table class="table">
-    <tr>
-        <th class="tablewidth-250">
-            @Html.DisplayNameFor(model => )
-        </th>
-        <th class="tablewidth-150">
-            @Html.DisplayNameFor(model => model.Title)
-            @Html.DropDownList("searchTitle", "All")
-        </th>
-        <th class="tablewidth-350">
-            @Html.DisplayNameFor(model => model.WorkType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-            {
-        <tr>
-            <td class="tablewidth-250">
-                <span align="left" class="glyphicon glyphicon-briefcase glyphicon-35px"></span> 
-                <strong>@Html.DisplayFor(modelItem => item.destination.name)</strong>
-            </td>
-            <td class="tablewidth-100">
-                @Html.DisplayFor(modelItem => item.liftName)
-            </td>
-            <td class="tablewidth-350">
-                @Html.DisplayFor(modelItem => item.height)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.swipeDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.swipeTime)
-            </td>
+<script type="text/javascript">
+	window.onload = function () {
+		//initial value of dataPoints
+	    var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.swipeDateArray) as string);
 
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Ändra</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Se detaljer</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Ta bort</a>
-            </td>
-        </tr>
-    }
-</table>*@
+	    var chart = new CanvasJS.Chart("chartContainer",{
+	        animationEnabled: true,
+	        animationDuration: 2000,
+			title: { text: "Martins Statistik" },
+			axisY: { suffix: ""	},
+            axisX: { suffix: ":00"},
+			legend :{
+				verticalAlign: 'bottom',
+				horizontalAlign: "center"
+			},
+			data: [
+			{
+
+				type: "column",
+				bevelEnabled: false,
+				indexLabel: "{y}",
+				dataPoints: dps
+			}
+			]
+	    });
+
+
+
+		var updateChart = function () {
+		    chart.render();
+		};
+
+		updateChart();
+
+
+		var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.fallDateArray) as string);
+
+		var chart = new CanvasJS.Chart("chartContainer2",
+    {
+        theme: "theme2",
+        title:{
+            text: "Fallhöjd / Timme"
+        },
+        animationEnabled: true,
+        animationDuration: 2000,
+        axisX: {
+            valueFormatString: "MMM",
+            interval:1,
+            intervalType: "month",
+            suffix: ":00"
+
+        },
+        axisY:{
+            includeZero: false
+
+        },
+        data: [
+        {
+            type: "line",
+            //lineThickness: 3,
+            dataPoints: dps1
+        }
+
+
+        ]
+    });
+
+		var updateChart2 = function () {
+		    chart.render();
+		};
+
+		updateChart2();
+
+
+		var chart = new CanvasJS.Chart("chartContainer3",
+    {
+        animationEnabled: true,
+        animationDuration: 2000,
+        title:{
+            text: "A Combination Column Chart"
+
+        },
+        data: [{
+            type: "column",
+            dataPoints: dps
+        },
+        {
+            type: "line",
+            dataPoints: dps1
+        }
+
+        ]
+    });
+		var updateChart3 = function () {
+		    chart.render();
+		};
+
+		updateChart3();
+
+
+		chart.render();
+	}
+</script>
+<script type="text/javascript" src="~/js/canvasjs.min.js"></script>
+<div class="container">
+    <div class="page-header">
+        <h1><img src="~/images/logos/myskistarlogo.png" /></h1>
+        <div>@Component.Invoke(nameof(TotalCount))</div>
+        <hr />
+        <div class="navbar navbar-default">
+            <div class="dropdown navbar-form">
+                <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
+                    @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                    <button type="submit" class="btn btn-primary">Hämta graf</button>
+                </form>
+            </div>
+        </div>
+        <hr />
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+        </div>
+        <div id="chartContainer2" style="height: 300px; width: 100%;">
+        </div>
+        <div id="chartContainer3" style="height: 300px; width: 100%;">
+        </div>
+        @await Component.InvokeAsync(nameof(RideProg), "16:30")
+    </div>
+</div>
+
+

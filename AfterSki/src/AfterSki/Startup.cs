@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using AfterSki.Models;
 using AfterSki.Services;
 using AfterSki.Models.RideModels;
+using AfterSki.Controllers;
 
 namespace AfterSki
 {
@@ -19,6 +20,7 @@ namespace AfterSki
     {
         public Startup(IHostingEnvironment env)
         {
+            
             //Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
@@ -36,6 +38,14 @@ namespace AfterSki
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            var optionsBuilder = new DbContextOptionsBuilder();
+            optionsBuilder.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);
+            JsonData jm = new JsonData();
+            jm._context = new RideStatisticDBContext(optionsBuilder.Options);
+            jm.getSkiData();
+
+
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -48,8 +58,12 @@ namespace AfterSki
 
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+                //.AddDbContext<ApplicationDbContext>(options =>
+                //    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+
+            ///<summary>
+            ///RideStatisticDBContext crates a connection to database
+            /// </summary>
             .AddDbContext<RideStatisticDBContext>(options =>
              {
                  options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);
@@ -63,6 +77,7 @@ namespace AfterSki
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
