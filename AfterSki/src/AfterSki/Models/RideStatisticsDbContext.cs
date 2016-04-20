@@ -15,9 +15,6 @@ namespace AfterSki.Models
 
         public DbSet<RideStatistic> RideStatistic { get; set; }
 
-        public RideStatisticDBContext(DbContextOptions options)
-           : base(options) { }
-
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{
         //    options.UseSqlServer("Server=127.0.0.1;Database=AfterSki;Trusted_Connection=True;MultipleActiveResultSets=true");
