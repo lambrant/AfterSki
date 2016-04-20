@@ -1,119 +1,56 @@
-﻿@model AfterSki.ViewModels.SkidataViewModel
+﻿@model IEnumerable<AfterSki.Models.RideModels.RideStatistic>
 @{
     ViewData["Title"] = "Skidata";
 }
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+@*
+<table class="table">
+    <tr>
+        <th class="tablewidth-250">
+            @Html.DisplayNameFor(model => )
+        </th>
+        <th class="tablewidth-150">
+            @Html.DisplayNameFor(model => model.Title)
+            @Html.DropDownList("searchTitle", "All")
+        </th>
+        <th class="tablewidth-350">
+            @Html.DisplayNameFor(model => model.WorkType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th></th>
+    </tr>
 
-<script type="text/javascript">
-    window.onload = function () {
-
-//--------------------------------------------Diagram1--------------------------------------------------------//
-        //Diagram 1, Check how many times he skied /hour
-        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph1) as string);
-
-        var chart = new CanvasJS.Chart("chartContainer",{
-            title: { text: "Martins Åk/Timme Statistik" },
-            axisY: { suffix: " Åk"	},
-            axisX: { suffix: ":00"},
-            legend :{
-                verticalAlign: 'bottom',
-                horizontalAlign: "center"
-            },
-            data: [
-			{
-			    type: "column",
-			    bevelEnabled: true,
-			    indexLabel: "{y}",
-			    dataPoints: dps
-			}
-            ]});
-        var updateChart = function () {
-            chart.render();
-        };
-
-        updateChart();
-//--------------------------------------------Diagram2--------------------------------------------------------//
-
-        //Diagram 2, Check the sum amount of falling length /hour
-        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph2) as string);
-        var chart2 = new CanvasJS.Chart("chartContainer2",
-        {
-        theme: "theme3",
-        title: { text: "Martins Fallhöjd/Timme Statistik" },
-        axisY: { suffix: " M"	},
-        axisX: { suffix: ":00"},
-        data: [
-        {
-            type: "line",
-            bevelEnabled: true,
-            indexLabel: "{y}",
-            dataPoints: dps
-        }
-        ]});
-        var updateChart3 = function () {
-            chart2.render();
-        };
-        updateChart3();
-
-//--------------------------------------------Diagram3--------------------------------------------------------//
-            // TBA
-        var dps = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph1) as string);
-        var dps1 = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.graph2) as string);
-            var chart4 = new CanvasJS.Chart("chartContainer3",
+    @foreach (var item in Model)
             {
-                title:{
-                    text: "wombo combo"
-                },
-                data: [{
-                    type: 'column',
-                    dataPoints: dps
-                }
-                ],
-                data: [
-                {
-                    type: 'line',
-                    dataPoints: dps1
-                }
-            ]
-            });
+        <tr>
+            <td class="tablewidth-250">
+                <span align="left" class="glyphicon glyphicon-briefcase glyphicon-35px"></span> 
+                <strong>@Html.DisplayFor(modelItem => item.destination.name)</strong>
+            </td>
+            <td class="tablewidth-100">
+                @Html.DisplayFor(modelItem => item.liftName)
+            </td>
+            <td class="tablewidth-350">
+                @Html.DisplayFor(modelItem => item.height)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.swipeDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.swipeTime)
+            </td>
 
-            var updateChart4 = function () {
-                chart4.render();
-            };
-
-            updateChart4();
-
-        }
-
-</script>
-<script type="text/javascript" src="~/js/canvasjs.min.js"></script>
-<div class="container">
-    <div class="page-header">
-        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
-    </div>
-    <div class="navbar navbar-default">
-        <div class="dropdown navbar-form">
-            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
-                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Hämta graf</button>
-            </form>
-        </div>
-    </div>
-    </div>
-    <hr />
-    <br />
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
-    <br />
-    <div id="chartContainer2" style="height: 300px; width: 100%;">
-    </div>
-    <br />
-    <div id="chartContainer3" style="height: 300px; width: 100%;">
-    </div>
-    <br />
-</div>
-
-
-
-
-
-
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Ändra</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Se detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Ta bort</a>
+            </td>
+        </tr>
+    }
+</table>*@
