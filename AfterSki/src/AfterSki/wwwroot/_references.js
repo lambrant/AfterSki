@@ -10,6 +10,7 @@
 /// <reference path="js/mousescroll.js" />
 /// <reference path="js/owl.carousel.min.js" />
 /// <reference path="js/site.js" />
+/// <reference path="js/skidataexternal.js" />
 /// <reference path="js/wow.min.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />

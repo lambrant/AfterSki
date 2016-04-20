@@ -6,13 +6,7 @@ namespace AfterSki.Models
 {
     public class RideStatisticDBContext : DbContext
     {
-        public RideStatisticDBContext()
-        {
-
-        }
-        public RideStatisticDBContext(DbContextOptions options)  
-            : base(options) { }
-
+       
         public DbSet<RideStatistic> RideStatistic { get; set; }
 
         public RideStatisticDBContext(DbContextOptions options)
