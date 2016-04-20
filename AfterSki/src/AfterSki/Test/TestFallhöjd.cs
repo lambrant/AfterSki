@@ -21,6 +21,8 @@ namespace AfterSki.Test
             var optionsBuilder = new DbContextOptionsBuilder();
             optionsBuilder.UseInMemoryDatabase();
             _context = new RideStatisticDBContext(optionsBuilder.Options);
+            _context.Database.EnsureDeleted();
+            _context.Database.EnsureCreated();
 
             //Här populeras databasen finns på minnet med data från den riktiga databasen
             _context.RideStatistic.Add(new Models.RideModels.RideStatistic()
@@ -140,8 +142,9 @@ namespace AfterSki.Test
                 swipeDate = "Sön, 27 Mar"
             });
 
-            
+
             _context.SaveChanges(); // Här sparas datan
+            
 
             //Create test subject
             _controller = new HomeController(_context);
@@ -167,7 +170,7 @@ namespace AfterSki.Test
             IEnumerable<FallingData.FallingDataObject> fallHeightPerDayArray = fallDataInstance.FallHeightSumPerDay("Sön, 27 Mar");
 
             Assert.Equal(3, fallHeightPerDayArray.Count());
-            Assert.Equal(405, fallHeightPerDayArray.ElementAt(1).y);
+            Assert.Equal(280, fallHeightPerDayArray.ElementAt(0).y);
         }
     }
 }

@@ -57,10 +57,19 @@ namespace AfterSki.Models
             var chosenDayArrayQuery = _context.RideStatistic.Where(u => u.swipeDate.Equals(rideDate));
 
             //gruppera ihop swipetimes med dess heights efter swipedate och sen summera ihop heights
-            var fallHeightPerDay = chosenDayArrayQuery.GroupBy(x => x.swipeTime.Hour).Select(groupObject => new FallingDataObject
+            IEnumerable<FallingDataObject> fallHeightPerDay = chosenDayArrayQuery
+                .GroupBy(x => x.swipeTime.Hour)
+                .Select(groupObject => new FallingDataObject
             {
                 y = groupObject.Sum(u => u.height)
-            });
+            }).OrderBy(x=>x.y).ToArray();
+
+            int temcAccu = 0;
+            foreach (var item in fallHeightPerDay)
+            {
+                temcAccu += item.y;
+                item.y = temcAccu;
+            }
 
             return fallHeightPerDay;
         }
