@@ -131,6 +131,23 @@
         </div>
         @await Component.InvokeAsync(nameof(RideProg), "16:30")
     </div>
+    <div class="row">
+        <div>
+            <h2>Bargraph</h2>
+            <canvas id="canvasId"></canvas>
+            @section scripts{
+                <script>
+                            var ctx = document.getElementById("canvasId").getContext("2d");
+                            var fallArray = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.swipeDateArray) as string);
+                            var graph = new BarGraph(ctx);
+                            graph.margin = 2;
+                            graph.width = 450;
+                            graph.height = 150;
+                            graph.xAxisLabelArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                            graph.update([49,90,48,28,39,10]);
+                </script>}
+        </div>
+    </div>
 </div>
 
 
