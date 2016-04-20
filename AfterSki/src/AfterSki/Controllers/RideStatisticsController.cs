@@ -36,7 +36,7 @@ namespace AfterSki.Controllers
 
             var facility = from c in _context.RideStatistic
                           select c;
-
+            
             if (!String.IsNullOrEmpty(searchFacility))
             {
                 facility = facility.Where(s => s.name.Contains(searchFacility));
