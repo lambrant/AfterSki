@@ -20,9 +20,7 @@ namespace AfterSki
     {
         public Startup(IHostingEnvironment env)
         {
-            JsonData jm = new JsonData();
-            jm.getSkiData();
-
+            
             //Set up configuration sources.
 
             var builder = new ConfigurationBuilder()
@@ -40,6 +38,14 @@ namespace AfterSki
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            var optionsBuilder = new DbContextOptionsBuilder();
+            optionsBuilder.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);
+            JsonData jm = new JsonData();
+            jm._context = new RideStatisticDBContext(optionsBuilder.Options);
+            jm.getSkiData();
+
+
         }
 
         public IConfigurationRoot Configuration { get; set; }
