@@ -50,10 +50,10 @@ namespace AfterSki.Models
             //RideStatisticDBContext lddb = new RideStatisticDBContext();
             ld = _context.RideStatistic.Where(u => u.swipeDate.Contains(rideDate)).ToList();
 
-            for (int i = 0; i < ld.Count; i++)
-            {
-                int intHeight = ld.Select(u => u.height).Sum();
-            }
+            //for (int i = 0; i < ld.Count; i++)
+            //{
+            //    int intHeight = ld.Select(u => u.height).Sum();
+            //}
 
             fallDateArray = ld.GroupBy(x => x.swipeTime.Hour).OrderBy(x => x.Key).Select(groupObject =>
 
