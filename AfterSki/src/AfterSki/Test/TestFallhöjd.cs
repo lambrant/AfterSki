@@ -22,7 +22,7 @@
 //            optionsBuilder.UseInMemoryDatabase();
 //            _context = new RideStatisticDBContext(optionsBuilder.Options);
 
-//            //Seed data
+//            //Här seedas databasen som finns på minnet
 //            _context.RideStatistic.Add(new Models.RideModels.RideStatistic()
 //            {
 //                name = "Sälen",
