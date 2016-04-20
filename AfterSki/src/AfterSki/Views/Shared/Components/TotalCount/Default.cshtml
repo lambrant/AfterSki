@@ -1,0 +1,24 @@
+﻿@model AfterSki.Models.StatsCounter
+<div class="container">
+    <div class="row">
+        <div><h2>Season Summary</h2></div>
+        <table>
+            <tr>
+                <td><span><i class="fa fa-calendar-o text-right"></i><small> Active Season: </small></span></td>
+                <td><span class="badge-active text-right">@Model.season</span></td>
+            </tr>
+            <tr>
+                <td><span><i class="fa fa-calendar text-right"></i><small> Latest Ride: </small></span></td>
+                <td><span class="badge-active text-right">@Model.dayTime</span></td>
+            </tr>
+            <tr>
+                <td><span><i class="fa fa-area-chart text-right"></i><small> Total Meters: </small></span></td>
+                <td><span class="badge-active text-right"> @Model.totalMeters</span></td>
+            </tr>
+            <tr>
+                <td><span><i class="fa fa-bicycle text-right"></i><small> Total Rides: </small></span></td>
+                <td><span class="badge-active text-right"> @Model.totalRides </span></td>
+            </tr>
+        </table>
+    </div>
+</div>

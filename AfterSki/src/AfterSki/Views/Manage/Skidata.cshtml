@@ -31,7 +31,7 @@
 	    });
 
 
-		
+
 		var updateChart = function () {
 		    chart.render();
 		};
@@ -55,20 +55,20 @@
             interval:1,
             intervalType: "month",
             suffix: ":00"
-        
+
         },
         axisY:{
             includeZero: false
-        
+
         },
         data: [
-        {        
+        {
             type: "line",
-            //lineThickness: 3,        
+            //lineThickness: 3,
             dataPoints: dps1
         }
-      
-      
+
+
         ]
     });
 
@@ -85,17 +85,17 @@
         animationDuration: 2000,
         title:{
             text: "A Combination Column Chart"
-      
-        },   
-        data: [{        
+
+        },
+        data: [{
             type: "column",
             dataPoints: dps
         },
-        {        
+        {
             type: "line",
             dataPoints: dps1
         }
-        
+
         ]
     });
 		var updateChart3 = function () {
@@ -103,7 +103,7 @@
 		};
 
 		updateChart3();
-	
+
 
 		chart.render();
 	}
@@ -111,27 +111,26 @@
 <script type="text/javascript" src="~/js/canvasjs.min.js"></script>
 <div class="container">
     <div class="page-header">
-        <h1><img src="~/images/logos/myskistarlogo.png" /> <small>....so long so far....</small></h1>
-    </div>
-    <div class="navbar navbar-default">
-        <div class="dropdown navbar-form">
-            <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
-                @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
-                <button type="submit" class="btn btn-primary">Hämta graf</button>
-            </form>
+        <h1><img src="~/images/logos/myskistarlogo.png" /></h1>
+        <div>@Component.Invoke(nameof(TotalCount))</div>
+        <hr />
+        <div class="navbar navbar-default">
+            <div class="dropdown navbar-form">
+                <form class="navbar-form navbar-right" asp-controller="Home" asp-action="Skidata" method="get">
+                    @Html.DropDownList("dropdownDates", (SelectList)ViewBag.dropdownDates, "All", new { @class = "btn btn-default dropdown-toggle", data_toggle = "dropdown" })
+                    <button type="submit" class="btn btn-primary">Hämta graf</button>
+                </form>
+            </div>
         </div>
+        <hr />
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+        </div>
+        <div id="chartContainer2" style="height: 300px; width: 100%;">
+        </div>
+        <div id="chartContainer3" style="height: 300px; width: 100%;">
+        </div>
+        @await Component.InvokeAsync(nameof(RideProg), "16:30")
     </div>
-    <hr />
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
-    <div id="chartContainer2" style="height: 300px; width: 100%;">
-    </div>
-    <div id="chartContainer3" style="height: 300px; width: 100%;">
-    </div>
-    
-    @await Component.InvokeAsync(nameof(RideProg), "16:30")
-
-    
 </div>
 
 

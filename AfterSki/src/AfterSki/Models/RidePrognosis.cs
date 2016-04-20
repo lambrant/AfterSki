@@ -21,8 +21,7 @@ namespace AfterSki.Models
         public float heightForSpecificDateAndTime { get; set; }
         double hoursBetween;
         double hoursToEndOfDay;
-        //RideStatisticDBContext rideStats = new RideStatisticDBContext();
-        RideStatistic firstTimeOfSwipeOnDate;
+        RideModels.RideStatistic firstTimeOfSwipeOnDate;
         DateTime endOfDay1530 = new DateTime();
         TimeSpan endTime1530 = new TimeSpan(15, 30, 00);
         DateTime endOfDay1630 = new DateTime();
